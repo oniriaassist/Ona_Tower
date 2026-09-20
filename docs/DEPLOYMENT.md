@@ -2,6 +2,11 @@
 
 ## Target architecture
 
+Use the existing `new_ona_tower` project with Root Directory blank (repository
+root) and Framework Preset **Services**. Keep its existing domain. The root
+`vercel.json` is the only deployment configuration; nested configurations have
+been removed. See [Vercel's Services guide](https://vercel.com/kb/guide/vercel-services).
+
 ONA Towers deploys as **one Vercel project** using Vercel Services:
 
 - `frontend/` — Vite + React service
@@ -180,6 +185,7 @@ https://YOUR-DOMAIN/
 https://YOUR-DOMAIN/residences
 https://YOUR-DOMAIN/admin
 https://YOUR-DOMAIN/health
+https://YOUR-DOMAIN/health/config
 https://YOUR-DOMAIN/health/database
 https://YOUR-DOMAIN/api/residences
 ```
@@ -189,12 +195,20 @@ Expected behavior:
 - `/` and public pages render the Vite frontend.
 - Refreshing a nested frontend route does not return a 404.
 - `/health` returns the FastAPI liveness response.
+- `/health/config` reports configuration errors without preventing startup.
+  When production settings are invalid, other routes return 503 with
+  `service_misconfigured`. This also applies when `VERCEL_ENV=production`
+  but `APP_ENV` was not set correctly.
 - `/health/database` reports `database: connected`.
 - `/api/residences` returns seeded residence JSON.
 - `/admin` loads the admin UI and the configured production admin can sign in.
 - Creating an enquiry persists it in Supabase and it appears in the admin workspace.
 
 Production Swagger/ReDoc are intentionally disabled when `APP_ENV=production`.
+
+Keep `VITE_BACKEND_PROXY_TARGET` local; remove it from Vercel production.
+Use `VITE_API_BASE_URL=/api`. Keep the migration URL on the migration machine.
+Changing `ADMIN_PASSWORD` does not reset an existing seeded account's password.
 
 ## 9. Future schema changes
 

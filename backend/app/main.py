@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 
 from app.api.router import api_router
 from app.api.routes.health import router as health_router
-from app.core.config import get_settings
+from app.core.config import get_settings, is_production_runtime, production_configuration_errors
 from app.core.exceptions import AppError
 from app.core.logging import configure_logging
 from app.middleware.request_context import RequestContextMiddleware
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    if settings.auto_init_db and settings.app_env == "test":
+    if settings.auto_init_db and settings.app_env == "test" and not is_production_runtime(settings):
         from app.database.bootstrap import initialize_database
         initialize_database(create_schema=True)
     yield
@@ -49,6 +49,20 @@ app.add_middleware(
 
 app.include_router(health_router)
 app.include_router(api_router, prefix=settings.api_prefix)
+
+
+@app.middleware("http")
+async def production_configuration_guard(request: Request, call_next):
+    errors = production_configuration_errors(settings)
+    if errors and request.url.path not in {"/health", "/health/config"}:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "detail": "ONA Towers API production configuration is invalid.",
+                "code": "service_misconfigured",
+            },
+        )
+    return await call_next(request)
 
 
 @app.get("/")

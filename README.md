@@ -2,8 +2,8 @@
 
 ONA Towers is organized as one repository with separate frontend, backend, database, and operational layers.
 
-For separate frontend/backend Vercel projects with Supabase, follow
-[the separate deployment guide](docs/DEPLOYMENT_SEPARATE.md).
+For one Vercel Services project with Supabase, follow
+[the deployment guide](docs/DEPLOYMENT.md). Deploy from the repository root.
 
 ```text
 ONA_Tower/

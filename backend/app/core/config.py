@@ -2,6 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 import json
+import os
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -103,12 +104,18 @@ class Settings(BaseSettings):
         return normalize_database_url(self.database_url)
 
 
+def is_production_runtime(settings: "Settings") -> bool:
+    return settings.app_env == "production" or os.getenv("VERCEL_ENV") == "production"
+
+
 def production_configuration_errors(settings: "Settings") -> list[str]:
     """Report production configuration problems without preventing app import."""
-    if settings.app_env != "production":
+    if not is_production_runtime(settings):
         return []
 
     errors: list[str] = []
+    if settings.app_env != "production":
+        errors.append("APP_ENV must be set to production")
     database_url = settings.sqlalchemy_database_url.strip()
     if not database_url.startswith("postgresql+psycopg://"):
         errors.append("DATABASE_URL must be a PostgreSQL/Supabase connection string")

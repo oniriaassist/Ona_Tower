@@ -5,7 +5,7 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import NullPool, StaticPool
 
-from app.core.config import Settings, get_settings
+from app.core.config import Settings, get_settings, is_production_runtime
 
 
 def build_engine_options(settings: Settings) -> dict:
@@ -27,7 +27,7 @@ def build_engine_options(settings: Settings) -> dict:
         }
 
         if (
-            settings.app_env == "production"
+            is_production_runtime(settings)
             or ":6543/" in settings.sqlalchemy_database_url
         ):
             options["poolclass"] = NullPool

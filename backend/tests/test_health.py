@@ -53,7 +53,11 @@ def test_production_import_does_not_create_engine():
             "from fastapi.testclient import TestClient; "
             "client = TestClient(app); "
             "assert client.get('/health').status_code == 200; "
-            "assert client.get('/health/config').status_code == 503"
+            "assert client.get('/health/config').status_code == 503; "
+            "response = client.get('/api/residences'); "
+            "assert response.status_code == 503; "
+            "assert response.json()['code'] == 'service_misconfigured'; "
+            "assert client.get('/health/database').status_code == 503"
         )],
         cwd=Path(__file__).resolve().parents[1], env=env,
         capture_output=True, text=True, timeout=30,
@@ -68,3 +72,14 @@ def test_database_repository_and_readiness(client):
     assert main() == 0
     client.app.dependency_overrides.pop(get_repository)
     assert client.get("/api/residences").status_code == 200
+
+
+def test_vercel_production_guard(client, monkeypatch):
+    monkeypatch.setenv("VERCEL_ENV", "production")
+    assert client.get("/health").status_code == 200
+    response = client.get("/health/config")
+    assert response.status_code == 503
+    assert "APP_ENV must be set to production" in response.json()["detail"]["errors"]
+    response = client.post("/api/admin/login", json={})
+    assert response.status_code == 503
+    assert response.json()["code"] == "service_misconfigured"
