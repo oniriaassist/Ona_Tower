@@ -9,7 +9,7 @@ from app.database.models import (
     AdminTeamMember, Amenity, FloorPlan, LocationPoint, Residence,
     ResidenceMedia, SmartFeature,
 )
-from app.database.session import SessionLocal, engine
+from app.database.session import SessionLocal, get_engine
 
 logger = logging.getLogger(__name__)
 
@@ -179,8 +179,8 @@ def initialize_database(*, create_schema: bool = False) -> None:
     """
     validate_production_settings(get_settings())
     if create_schema:
-        Base.metadata.create_all(bind=engine)
-    with SessionLocal() as db:
+        Base.metadata.create_all(bind=get_engine())
+    with SessionLocal(bind=get_engine()) as db:
         _seed_if_missing(db, Residence, RESIDENCES, key="slug")
         db.flush()
 

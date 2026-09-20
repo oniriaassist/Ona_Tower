@@ -7,7 +7,7 @@ Run with:
 from sqlalchemy import func, inspect, select, text
 
 from app.database.models import Residence
-from app.database.session import SessionLocal
+from app.database.session import SessionLocal, get_engine
 
 REQUIRED_TABLES = {
     "residences",
@@ -25,7 +25,7 @@ REQUIRED_TABLES = {
 
 def main() -> int:
     try:
-        with SessionLocal() as db:
+        with SessionLocal(bind=get_engine()) as db:
             db.execute(text("SELECT 1"))
             bind = db.get_bind()
             existing_tables = set(inspect(bind).get_table_names())

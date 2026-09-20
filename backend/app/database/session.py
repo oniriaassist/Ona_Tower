@@ -1,4 +1,7 @@
+from functools import lru_cache
+
 from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import NullPool, StaticPool
 
@@ -11,32 +14,44 @@ def build_engine_options(settings: Settings) -> dict:
         "pool_pre_ping": True,
     }
 
-    # SQLite is used for local development/tests. TestClient may use another
-    # thread, so allow the same in-memory connection to be shared.
     if settings.database_url.startswith("sqlite"):
         options["connect_args"] = {"check_same_thread": False}
+
         if ":memory:" in settings.database_url:
             options["poolclass"] = StaticPool
 
-    # Vercel is serverless. For Supabase's transaction pooler, prepared
-    # statements must be disabled. NullPool prevents each warm serverless
-    # instance from holding its own long-lived SQLAlchemy connection pool.
     elif settings.sqlalchemy_database_url.startswith("postgresql"):
-        options["connect_args"] = {"prepare_threshold": None}
-        if settings.app_env == "production" or ":6543/" in settings.sqlalchemy_database_url:
+        options["connect_args"] = {
+            "prepare_threshold": None,
+            "connect_timeout": 10,
+        }
+
+        if (
+            settings.app_env == "production"
+            or ":6543/" in settings.sqlalchemy_database_url
+        ):
             options["poolclass"] = NullPool
 
     return options
 
 
-settings = get_settings()
-engine = create_engine(
-    settings.sqlalchemy_database_url,
-    **build_engine_options(settings),
-)
+@lru_cache(maxsize=1)
+def get_engine() -> Engine:
+    """
+    Build the SQLAlchemy engine lazily.
+
+    This is important for Vercel because importing the FastAPI application
+    should not require a working database connection/configuration.
+    """
+    settings = get_settings()
+
+    return create_engine(
+        settings.sqlalchemy_database_url,
+        **build_engine_options(settings),
+    )
+
 
 SessionLocal = sessionmaker(
-    bind=engine,
     class_=Session,
     autoflush=False,
     autocommit=False,
@@ -45,8 +60,7 @@ SessionLocal = sessionmaker(
 
 
 def get_db_session():
-    """Provide a database session and ensure it is closed afterwards."""
-    db = SessionLocal()
+    db = SessionLocal(bind=get_engine())
 
     try:
         yield db

@@ -1,25 +1,64 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import text
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import Session
+import logging
 
-from app.database.session import get_db_session
+from fastapi import APIRouter, HTTPException, status
+from sqlalchemy import text
+
+from app.core.config import (
+    get_settings,
+    production_configuration_errors,
+)
+
 
 router = APIRouter(tags=["Health"])
+
+logger = logging.getLogger(__name__)
 
 
 @router.get("/health")
 async def health():
-    """Lightweight application liveness check."""
-    return {"status": "ok", "service": "ona-towers-api"}
+    """
+    Pure liveness endpoint.
+
+    Must not require PostgreSQL or Supabase to answer.
+    """
+    return {
+        "status": "ok",
+        "service": "ona-towers-api",
+    }
+
+
+@router.get("/health/config")
+async def configuration_health():
+    settings = get_settings()
+    errors = production_configuration_errors(settings)
+
+    if errors:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail={
+                "status": "misconfigured",
+                "errors": errors,
+            },
+        )
+
+    return {
+        "status": "ok",
+        "environment": settings.app_env,
+        "database_configured": True,
+    }
 
 
 @router.get("/health/database")
-async def database_health(db: Session = Depends(get_db_session)):
-    """Verify that the application can execute a query through SQLAlchemy."""
+def database_health():
     try:
-        db.execute(text("SELECT 1"))
-    except SQLAlchemyError as exc:
+        from app.database.session import get_engine
+
+        with get_engine().connect() as connection:
+            connection.execute(text("SELECT 1"))
+
+    except Exception as exc:
+        logger.exception("Database health check failed")
+
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Database connection unavailable",

@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 
 from app.database.models import Enquiry
-from app.database.session import SessionLocal
+from app.database.session import SessionLocal, get_engine
 
 
 def _auth(client, email="admin@onatowers.dev", password="ona-admin-local"):
@@ -153,7 +153,7 @@ def test_change_own_password(client):
 
 
 def test_admin_can_read_and_update_customer_enquiry(client):
-    with SessionLocal() as db:
+    with SessionLocal(bind=get_engine()) as db:
         row = Enquiry(
             reference_number="ONA-TEST-ADMIN-001",
             name="Admin Integration Test",

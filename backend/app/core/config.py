@@ -103,15 +103,10 @@ class Settings(BaseSettings):
         return normalize_database_url(self.database_url)
 
 
-def validate_production_settings(settings: "Settings") -> None:
-    """Fail fast when a production runtime would start with unsafe defaults.
-
-    Local development and tests are intentionally unchanged. This check runs
-    only when APP_ENV=production and is called by the web app and production
-    database seed path.
-    """
+def production_configuration_errors(settings: "Settings") -> list[str]:
+    """Report production configuration problems without preventing app import."""
     if settings.app_env != "production":
-        return
+        return []
 
     errors: list[str] = []
     database_url = settings.sqlalchemy_database_url.strip()
@@ -134,6 +129,12 @@ def validate_production_settings(settings: "Settings") -> None:
     if settings.auto_init_db:
         errors.append("AUTO_INIT_DB must remain false in production; use Alembic migrations instead")
 
+    return errors
+
+
+def validate_production_settings(settings: "Settings") -> None:
+    """Keep database seeding strict while health checks remain diagnostic."""
+    errors = production_configuration_errors(settings)
     if errors:
         joined = "; ".join(errors)
         raise RuntimeError(f"Invalid production configuration: {joined}.")
