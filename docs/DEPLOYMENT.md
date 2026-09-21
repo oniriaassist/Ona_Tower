@@ -164,6 +164,22 @@ Same-origin production traffic does not need an extra CORS origin. Leave `CORS_O
 
 ## 7. Deploy
 
+Before deploying, validate your completed production environment file:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\check-production-config.py .env.production
+```
+
+Process environment variables override file values. This check reports setting
+names and requirements without printing secrets. It does not change Vercel
+settings or test database connectivity. Copy the validated values into the
+Vercel project's Production environment and redeploy.
+
+If `/health/config` reports `ADMIN_PASSWORD`, set a unique password with at
+least 12 characters in Vercel. Changing this environment variable does not
+reset a password already stored in Supabase. Use the account's existing password
+or the application's authenticated password-change workflow.
+
 Push the connected Git branch, or deploy from the repository root with Vercel CLI:
 
 ```powershell
