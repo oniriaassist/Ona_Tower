@@ -36,6 +36,9 @@ def test_entrypoint_reports_invalid_settings_without_exposing_values():
             "assert 'private-invalid-value' not in response.text; "
             "assert client.get('/docs').status_code == 404; "
             "assert client.get('/openapi.json').status_code == 404"
+            "; response = client.post('/api/enquiries', json={}); "
+            "assert response.status_code == 503; "
+            "assert response.json()['code'] == 'service_bootstrap_failed'"
         )],
         cwd=Path(__file__).resolve().parents[1], env=env,
         capture_output=True, text=True, timeout=30,

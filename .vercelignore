@@ -1,8 +1,8 @@
 .env
 .env.*
-docs/
-database/
-scripts/
+/docs/
+/database/
+/scripts/
 Dockerfile
 docker-compose.yml
 **/__pycache__/
