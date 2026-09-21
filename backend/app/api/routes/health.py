@@ -29,14 +29,22 @@ async def health():
 
 @router.get("/health/config")
 async def configuration_health():
-    settings = get_settings()
-    errors = production_configuration_errors(settings)
+    try:
+        settings = get_settings()
+        errors = production_configuration_errors(settings)
+    except Exception as exc:
+        logger.exception("Production configuration check failed")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail={"status": "misconfigured", "error_type": type(exc).__name__},
+        ) from exc
 
     if errors:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail={
                 "status": "misconfigured",
+                "error_type": "RuntimeError",
                 "errors": errors,
             },
         )

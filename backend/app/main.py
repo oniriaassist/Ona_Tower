@@ -53,8 +53,10 @@ app.include_router(api_router, prefix=settings.api_prefix)
 
 @app.middleware("http")
 async def production_configuration_guard(request: Request, call_next):
+    if request.url.path in {"/health", "/health/config"}:
+        return await call_next(request)
     errors = production_configuration_errors(settings)
-    if errors and request.url.path not in {"/health", "/health/config"}:
+    if errors:
         return JSONResponse(
             status_code=503,
             content={

@@ -1,3 +1,5 @@
+import { errorMessage } from './errors';
+
 export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
@@ -10,8 +12,7 @@ export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T
 
   const body = await response.json().catch(() => null);
   if (!response.ok) {
-    const message = body?.error?.message || `Request failed with status ${response.status}.`;
-    throw new Error(message);
+    throw new Error(errorMessage(body, response.status));
   }
 
   return body as T;

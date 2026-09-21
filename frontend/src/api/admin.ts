@@ -1,4 +1,5 @@
 import { API_BASE_URL } from './client';
+import { getErrorMessage as parseError } from './errors';
 
 export type AdminEnquiryStatus =
   | 'new'
@@ -137,13 +138,6 @@ export function clearAdminSession() {
   } catch {
     // Session storage can be unavailable in privacy-restricted contexts.
   }
-}
-
-async function parseError(response: Response): Promise<string> {
-  const body = await response.json().catch(() => null);
-  const details = body?.error?.details;
-  return body?.error?.message || body?.detail?.message || body?.detail ||
-    (Array.isArray(details) && details[0]?.msg) || `Request failed with status ${response.status}.`;
 }
 
 async function adminRequest<T>(path: string, init: RequestInit = {}): Promise<T> {

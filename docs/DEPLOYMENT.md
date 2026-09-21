@@ -206,6 +206,17 @@ Expected behavior:
 
 Production Swagger/ReDoc are intentionally disabled when `APP_ENV=production`.
 
+If importing the application fails, the `backend/main.py` entrypoint serves a
+minimal `/health` response with HTTP 503, `stage: bootstrap`, and the exception
+type. It does not expose exception messages or credentials; inspect server logs
+for the traceback. This fallback requires FastAPI itself to be installed.
+Configuration diagnostics likewise return a redacted exception type if checking
+settings fails. Ordinary validation messages contain setting names, not values.
+
+The public and admin API clients display supported server error messages and
+fall back to the HTTP status when the response is not JSON. A successful health
+check alone does not verify migrations, administrator credentials, or enquiries.
+
 Keep `VITE_BACKEND_PROXY_TARGET` local; remove it from Vercel production.
 Use `VITE_API_BASE_URL=/api`. Keep the migration URL on the migration machine.
 Changing `ADMIN_PASSWORD` does not reset an existing seeded account's password.

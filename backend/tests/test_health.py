@@ -4,6 +4,29 @@ def test_health(client):
     assert response.json()["status"] == "ok"
 
 
+def test_health_skips_configuration_validation(client, monkeypatch):
+    from app import main
+
+    def fail_validation(_):
+        raise RuntimeError("private configuration")
+
+    monkeypatch.setattr(main, "production_configuration_errors", fail_validation)
+    assert client.get("/health").status_code == 200
+
+
+def test_configuration_exception_is_redacted(client, monkeypatch):
+    from app.api.routes import health
+
+    def fail_settings():
+        raise ValueError("private configuration")
+
+    monkeypatch.setattr(health, "get_settings", fail_settings)
+    response = client.get("/health/config")
+    assert response.status_code == 503
+    assert response.json()["detail"]["error_type"] == "ValueError"
+    assert "private configuration" not in response.text
+
+
 def test_database_health(client):
     response = client.get("/health/database")
     assert response.status_code == 200
