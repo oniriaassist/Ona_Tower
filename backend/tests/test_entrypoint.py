@@ -2,6 +2,17 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import ast
+
+
+def test_entrypoint_declares_app_at_module_scope():
+    source = Path(__file__).resolve().parents[1] / "main.py"
+    module = ast.parse(source.read_text(encoding="utf-8"))
+    assert any(
+        isinstance(statement, ast.Assign)
+        and any(isinstance(target, ast.Name) and target.id == "app" for target in statement.targets)
+        for statement in module.body
+    )
 
 
 def test_entrypoint_exports_normal_application():
