@@ -1,0 +1,753 @@
+/* ==========================================================================
+   ONA TOWERS — PREMIUM LOCATION / GOOGLE MY MAPS
+   ========================================================================== */
+
+.ona-location-premium-page {
+  --location-bg: #302a26;
+  --location-bg-deep: #27221e;
+
+  --location-text: #f5f0ea;
+  --location-muted: #c7bab0;
+
+  --location-accent: #c4a487;
+  --location-accent-light: #ddc1a7;
+
+  --location-line:
+    rgba(245, 240, 234, 0.13);
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  color: var(--location-text);
+
+  background:
+    radial-gradient(
+      circle at 72% 4%,
+      rgba(196, 164, 135, 0.075),
+      transparent 34rem
+    ),
+    #302a26;
+}
+
+
+/* ==========================================================================
+   INTRO
+   ========================================================================== */
+
+.ona-location-premium-intro {
+  padding:
+    clamp(8rem, 11vw, 10rem)
+    0
+    clamp(3.5rem, 5vw, 5rem);
+}
+
+
+.ona-location-premium-heading {
+  width:
+    min(
+      940px,
+      100%
+    );
+
+  margin:
+    0
+    auto;
+
+  text-align: center;
+}
+
+
+.ona-location-premium-kicker {
+  display: block;
+
+  margin-bottom: 1rem;
+
+  color:
+    var(--location-accent);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.31em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-location-premium-script {
+  margin:
+    0
+    0
+    1.1rem;
+
+  color:
+    var(--location-accent-light);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.7vw,
+      1.4rem
+    );
+
+  font-style: italic;
+
+  line-height: 1.3;
+}
+
+
+.ona-location-premium-heading h1 {
+  margin: 0;
+
+  color:
+    var(--location-text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      4rem,
+      7.4vw,
+      7.4rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.88;
+
+  letter-spacing: -0.052em;
+}
+
+
+.ona-location-premium-heading h1 em {
+  color: #d8b99d;
+
+  font-weight: 400;
+}
+
+
+.ona-location-premium-lead {
+  max-width: 730px;
+
+  margin:
+    1.75rem
+    auto
+    0;
+
+  color:
+    var(--location-muted);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:
+    clamp(
+      0.97rem,
+      1.2vw,
+      1.08rem
+    );
+
+  line-height: 1.82;
+}
+
+
+/* ==========================================================================
+   HIGHLIGHTS
+   ========================================================================== */
+
+.ona-location-premium-highlights {
+  margin-top: 1.9rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 0.55rem;
+}
+
+
+.ona-location-premium-highlights span {
+  min-height: 39px;
+
+  padding:
+    0.56rem
+    0.84rem;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.48rem;
+
+  color: #dacdc2;
+
+  border:
+    1px solid
+    rgba(245, 240, 234, 0.13);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.58rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.075em;
+}
+
+
+.ona-location-premium-highlights svg {
+  color:
+    var(--location-accent);
+}
+
+
+/* ==========================================================================
+   MAP SECTION
+   ========================================================================== */
+
+.ona-location-premium-map-section {
+  padding:
+    0
+    0
+    clamp(
+      5rem,
+      9vw,
+      8rem
+    );
+}
+
+
+/* ==========================================================================
+   MAP HEADING
+   ========================================================================== */
+
+.ona-location-premium-map-heading {
+  width:
+    min(
+      1380px,
+      calc(100% - 64px)
+    );
+
+  margin:
+    0
+    auto
+    1.35rem;
+
+  padding-top: 1.35rem;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.65fr);
+
+  gap:
+    clamp(
+      2rem,
+      6vw,
+      6rem
+    );
+
+  align-items: end;
+
+  border-top:
+    1px solid
+    var(--location-line);
+}
+
+
+.ona-location-premium-map-heading > div > span {
+  display: block;
+
+  margin-bottom: 0.65rem;
+
+  color:
+    var(--location-accent);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.58rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.19em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-location-premium-map-heading h2 {
+  margin: 0;
+
+  color:
+    var(--location-text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      2rem,
+      3.2vw,
+      3.7rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.035em;
+}
+
+
+.ona-location-premium-map-heading h2 em {
+  color:
+    var(--location-accent-light);
+
+  font-weight: 400;
+}
+
+
+.ona-location-premium-map-heading > p {
+  max-width: 520px;
+
+  margin: 0;
+
+  justify-self: end;
+
+  color: #aa9d93;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.8rem;
+
+  line-height: 1.68;
+}
+
+
+/* ==========================================================================
+   MAP OUTER FRAME
+   ========================================================================== */
+
+.ona-location-premium-map {
+  width:
+    min(
+      1380px,
+      calc(100% - 64px)
+    );
+
+  height:
+    clamp(
+      620px,
+      69vw,
+      790px
+    );
+
+  max-height: 790px;
+
+  position: relative;
+
+  margin:
+    0
+    auto;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      245,
+      240,
+      234,
+      0.15
+    );
+
+  border-radius: 22px;
+
+  background:
+    #211d19;
+
+  box-shadow:
+    0
+    34px
+    95px
+    rgba(
+      0,
+      0,
+      0,
+      0.29
+    );
+}
+
+
+/* ==========================================================================
+   GOOGLE MY MAPS HEADER CROPPING
+   ========================================================================== */
+
+/*
+ * Google My Maps puts its own title / profile / share / fullscreen bar
+ * inside the google.com iframe.
+ *
+ * Because that iframe is cross-origin, the ONA website cannot directly
+ * select or hide Google's internal elements.
+ *
+ * Instead, this wrapper crops the upper portion of the iframe.
+ *
+ * IMPORTANT:
+ * Do not remove overflow:hidden.
+ */
+
+.ona-location-google-crop {
+  --google-map-header-offset: 82px;
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    #211d19;
+}
+
+
+/*
+ * The iframe is intentionally taller than its visible container
+ * and shifted upward by the same amount.
+ *
+ * This keeps the interactive map filling the complete ONA frame
+ * while the Google My Maps title/profile toolbar remains outside
+ * the visible area.
+ */
+
+.ona-location-google-map {
+  width: 100%;
+
+  height:
+    calc(
+      100% +
+      var(--google-map-header-offset)
+    );
+
+  position: absolute;
+
+  top:
+    calc(
+      -1 *
+      var(--google-map-header-offset)
+    );
+
+  left: 0;
+
+  display: block;
+
+  border: 0;
+
+  background:
+    #211d19;
+}
+
+
+/* ==========================================================================
+   ONA MAP BRAND BADGE
+   ========================================================================== */
+
+.ona-location-map-brand {
+  position: absolute;
+
+  top: 1.25rem;
+  left: 1.25rem;
+
+  z-index: 5;
+
+  padding:
+    0.75rem
+    0.9rem;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.14rem;
+
+  pointer-events: none;
+
+  color: #ffffff;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.18
+    );
+
+  border-radius: 13px;
+
+  background:
+    rgba(
+      34,
+      28,
+      23,
+      0.62
+    );
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  box-shadow:
+    0
+    12px
+    30px
+    rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+}
+
+
+.ona-location-map-brand span {
+  color: #d9b99d;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 0.49rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-location-map-brand strong {
+  color: #ffffff;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 0.88rem;
+
+  font-weight: 400;
+
+  line-height: 1.2;
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (
+  max-width: 960px
+) {
+
+  .ona-location-premium-map,
+  .ona-location-premium-map-heading {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  .ona-location-premium-map {
+    height: 680px;
+  }
+
+
+  .ona-location-premium-map-heading {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+  }
+
+
+  .ona-location-premium-map-heading > p {
+    max-width: 620px;
+
+    justify-self: start;
+  }
+
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (
+  max-width: 680px
+) {
+
+  .ona-location-premium-intro {
+    padding:
+      7rem
+      0
+      3rem;
+  }
+
+
+  .ona-location-premium-heading {
+    text-align: left;
+  }
+
+
+  .ona-location-premium-heading h1 {
+    font-size:
+      clamp(
+        3.5rem,
+        17vw,
+        5.3rem
+      );
+  }
+
+
+  .ona-location-premium-lead {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+
+  .ona-location-premium-highlights {
+    justify-content: flex-start;
+  }
+
+
+  .ona-location-premium-map,
+  .ona-location-premium-map-heading {
+    width:
+      calc(
+        100% - 20px
+      );
+  }
+
+
+  .ona-location-premium-map {
+    height: 610px;
+
+    border-radius: 14px;
+  }
+
+
+  /*
+   * Google can render a slightly smaller toolbar on narrow screens.
+   */
+
+  .ona-location-google-crop {
+    --google-map-header-offset: 72px;
+  }
+
+
+  .ona-location-map-brand {
+    top: 0.75rem;
+    left: 0.75rem;
+
+    padding:
+      0.62rem
+      0.72rem;
+  }
+
+
+  .ona-location-map-brand strong {
+    font-size: 0.78rem;
+  }
+
+}
+
+
+/* ==========================================================================
+   VERY SMALL MOBILE
+   ========================================================================== */
+
+@media (
+  max-width: 420px
+) {
+
+  .ona-location-premium-highlights {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+
+  .ona-location-premium-highlights span {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+
+  .ona-location-premium-map {
+    height: 570px;
+  }
+
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .ona-location-premium-page * {
+    scroll-behavior: auto;
+  }
+
+}

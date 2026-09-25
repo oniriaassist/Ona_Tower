@@ -1,0 +1,2079 @@
+/* ==========================================================================
+   ONA TOWERS — ADMINISTRATION
+   ========================================================================== */
+
+.ona-admin-workspace,
+.ona-admin-login-page,
+.ona-admin-loading {
+  --admin-dark: #302a26;
+  --admin-dark-deep: #27221e;
+
+  --admin-light: #f7f3ed;
+  --admin-light-soft: #f1ebe4;
+  --admin-white: #fffdf9;
+
+  --admin-text: #302a26;
+  --admin-muted: #786d65;
+
+  --admin-bronze: #a58a71;
+  --admin-bronze-light: #cfaf92;
+
+  --admin-dark-line:
+    rgba(255, 255, 255, 0.1);
+
+  --admin-light-line:
+    rgba(48, 42, 38, 0.12);
+}
+
+
+/* ==========================================================================
+   MAIN ADMIN
+   ========================================================================== */
+
+.ona-admin-workspace {
+  min-height: 100svh;
+
+  color: var(--admin-text);
+
+  background:
+    var(--admin-light);
+}
+
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+
+.ona-admin-sidebar {
+  width: 276px;
+
+  position: fixed;
+
+  inset:
+    0
+    auto
+    0
+    0;
+
+  z-index: 50;
+
+  display: flex;
+
+  flex-direction: column;
+
+  color: #f5f0ea;
+
+  border-right:
+    1px solid
+    var(--admin-dark-line);
+
+  background:
+    radial-gradient(
+      circle at 10% 2%,
+      rgba(165, 138, 113, 0.14),
+      transparent 19rem
+    ),
+    var(--admin-dark);
+}
+
+
+/* ==========================================================================
+   ADMIN BRAND
+   ========================================================================== */
+
+.ona-admin-brand-wrap {
+  min-height: 122px;
+
+  padding:
+    2rem
+    1.65rem
+    1.5rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+}
+
+
+/*
+   The admin logo is deliberately a button.
+
+   It never links to "/".
+   It only navigates to "/admin".
+*/
+
+.ona-admin-brand {
+  padding: 0;
+
+  display: inline-flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  color: #f5f0ea;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  transition:
+    opacity 170ms ease,
+    transform 170ms ease;
+}
+
+
+.ona-admin-brand:hover {
+  opacity: 0.8;
+}
+
+
+.ona-admin-brand:active {
+  transform:
+    translateY(1px);
+}
+
+
+.ona-admin-brand-main {
+  display: block;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 2.1rem;
+
+  font-weight: 400;
+
+  line-height: 0.84;
+
+  letter-spacing: 0.14em;
+}
+
+
+.ona-admin-brand-sub {
+  margin-top: 0.65rem;
+
+  display: block;
+
+  color:
+    rgba(
+      245,
+      240,
+      234,
+      0.78
+    );
+
+  font-size: 0.48rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.52em;
+
+  text-indent: 0.52em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-admin-sidebar-rule {
+  height: 1px;
+
+  margin:
+    0
+    1.5rem;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(207, 175, 146, 0.38),
+      transparent
+    );
+}
+
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+.ona-admin-navigation {
+  flex: 1;
+
+  padding:
+    1rem
+    0.85rem;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.3rem;
+}
+
+
+.ona-admin-nav-item {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding:
+    0.75rem
+    0.95rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  color: #cfc2b8;
+
+  border: 1px solid transparent;
+
+  border-radius: 11px;
+
+  background:
+    transparent;
+
+  font-size: 0.78rem;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color 170ms ease,
+    background-color 170ms ease,
+    border-color 170ms ease,
+    transform 170ms ease;
+}
+
+
+.ona-admin-nav-item:hover {
+  color: #fff;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.045
+    );
+}
+
+
+.ona-admin-nav-item.is-active {
+  color: #fff;
+
+  border-color:
+    rgba(
+      207,
+      175,
+      146,
+      0.24
+    );
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(
+        165,
+        138,
+        113,
+        0.25
+      ),
+      rgba(
+        165,
+        138,
+        113,
+        0.1
+      )
+    );
+}
+
+
+.ona-admin-nav-item.is-active svg {
+  color: #dfc2a7;
+}
+
+
+/* ==========================================================================
+   SIDEBAR ACCOUNT
+   ========================================================================== */
+
+.ona-admin-sidebar-account {
+  padding: 0.85rem;
+}
+
+
+.ona-admin-account-card {
+  padding: 0.85rem;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.09
+    );
+
+  border-radius: 15px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+}
+
+
+.ona-admin-account-person {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+}
+
+
+.ona-admin-account-person > div:last-child {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.ona-admin-account-person strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.ona-admin-account-person span {
+  margin-top: 0.2rem;
+
+  display: block;
+
+  overflow: hidden;
+
+  color: #a99b90;
+
+  font-size: 0.64rem;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.ona-admin-avatar {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+
+  flex: 0 0 auto;
+
+  place-items: center;
+
+  color: #dfc1a4;
+
+  border:
+    1px solid
+    rgba(
+      207,
+      175,
+      146,
+      0.28
+    );
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      165,
+      138,
+      113,
+      0.13
+    );
+
+  font-size: 0.67rem;
+
+  font-weight: 600;
+}
+
+
+.ona-admin-avatar--large {
+  width: 56px;
+  height: 56px;
+
+  font-size: 0.9rem;
+}
+
+
+.ona-admin-logout {
+  width: 100%;
+
+  min-height: 37px;
+
+  margin-top: 0.75rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  color: #cfc2b8;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.09
+    );
+
+  border-radius: 8px;
+
+  background:
+    transparent;
+
+  font-size: 0.58rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   MAIN RIGHT SIDE
+   ========================================================================== */
+
+.ona-admin-main {
+  min-height: 100svh;
+
+  margin-left: 276px;
+
+  background:
+    var(--admin-light);
+}
+
+
+/* ==========================================================================
+   TOPBAR
+   ========================================================================== */
+
+.ona-admin-topbar {
+  min-height: 102px;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 40;
+
+  padding:
+    1.35rem
+    clamp(
+      1.4rem,
+      3vw,
+      2.6rem
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  border-bottom:
+    1px solid
+    var(--admin-light-line);
+
+  background:
+    rgba(
+      247,
+      243,
+      237,
+      0.94
+    );
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+}
+
+
+.ona-admin-menu-button {
+  width: 42px;
+  height: 42px;
+
+  display: none;
+
+  place-items: center;
+
+  color: #514941;
+
+  border:
+    1px solid
+    #d8cec4;
+
+  border-radius: 11px;
+
+  background:
+    var(--admin-white);
+}
+
+
+.ona-admin-page-title {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.ona-admin-page-kicker {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color:
+    var(--admin-bronze);
+
+  font-size: 0.54rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-admin-page-title-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.65rem;
+}
+
+
+.ona-admin-page-title h1 {
+  margin: 0;
+
+  color: #302a26;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      2.35rem
+    );
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+
+.ona-admin-page-title p {
+  margin:
+    0.45rem
+    0
+    0;
+
+  overflow: hidden;
+
+  color: #81756d;
+
+  font-size: 0.72rem;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.ona-admin-role-badge {
+  padding:
+    0.35rem
+    0.55rem;
+
+  color: #846b57;
+
+  border-radius: 999px;
+
+  background:
+    #e9ded3;
+
+  font-size: 0.5rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-admin-alert-card {
+  min-height: 49px;
+
+  padding:
+    0.65rem
+    0.9rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  color: #63584f;
+
+  border:
+    1px solid
+    #ddd3ca;
+
+  border-radius: 13px;
+
+  background:
+    var(--admin-white);
+
+  box-shadow:
+    0
+    5px
+    20px
+    rgba(
+      48,
+      42,
+      38,
+      0.04
+    );
+}
+
+
+.ona-admin-alert-card span {
+  color: #81756c;
+
+  font-size: 0.54rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+
+.ona-admin-alert-card strong {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1.35rem;
+
+  font-weight: 400;
+}
+
+
+.ona-admin-alert-card i {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--admin-bronze);
+}
+
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.ona-admin-content {
+  min-height:
+    calc(
+      100svh - 102px
+    );
+
+  padding:
+    clamp(
+      1.5rem,
+      3vw,
+      2.6rem
+    );
+
+  background:
+    var(--admin-light);
+}
+
+
+/* ==========================================================================
+   EXISTING ADMIN VIEWS
+   ========================================================================== */
+
+.ona-admin-content
+:is(
+  section,
+  article
+) {
+  border-color:
+    var(--admin-light-line);
+}
+
+
+.ona-admin-content
+:is(
+  input,
+  select,
+  textarea
+) {
+  border-color:
+    #d8cec4 !important;
+
+  color:
+    #302a26 !important;
+
+  background:
+    #fffdf9 !important;
+}
+
+
+.ona-admin-content
+:is(
+  input,
+  select,
+  textarea
+):focus {
+  border-color:
+    var(--admin-bronze)
+    !important;
+
+  box-shadow:
+    0
+    0
+    0
+    3px
+    rgba(
+      165,
+      138,
+      113,
+      0.1
+    ) !important;
+}
+
+
+.ona-admin-content table {
+  color: #413a35;
+}
+
+
+.ona-admin-content thead {
+  background: #eee6dd;
+}
+
+
+.ona-admin-content tbody tr {
+  transition:
+    background-color
+    150ms ease;
+}
+
+
+.ona-admin-content tbody tr:hover {
+  background:
+    rgba(
+      165,
+      138,
+      113,
+      0.045
+    );
+}
+
+
+/* ==========================================================================
+   LOGIN
+   ========================================================================== */
+
+.ona-admin-login-page {
+  min-height: 100svh;
+
+  padding:
+    clamp(
+      1rem,
+      2.5vw,
+      2rem
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #28231f;
+}
+
+
+.ona-admin-login-shell {
+  width:
+    min(
+      1500px,
+      100%
+    );
+
+  min-height:
+    min(
+      820px,
+      calc(
+        100svh - 4rem
+      )
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.92fr)
+    minmax(500px, 1.08fr);
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.17
+    );
+
+  border-radius: 30px;
+
+  box-shadow:
+    0
+    38px
+    110px
+    rgba(
+      0,
+      0,
+      0,
+      0.32
+    );
+}
+
+
+/* ==========================================================================
+   LOGIN LEFT
+   ========================================================================== */
+
+.ona-admin-login-brand-panel {
+  min-height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  color: #f5f0ea;
+
+  background:
+    var(--admin-dark);
+}
+
+
+.ona-admin-login-image {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.14;
+}
+
+
+.ona-admin-login-image img,
+.ona-admin-login-image > div {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  inset: 0;
+}
+
+
+.ona-admin-login-image img {
+  object-fit: cover;
+
+  object-position: center;
+}
+
+
+.ona-admin-login-image > div {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(
+        48,
+        42,
+        38,
+        0.15
+      ),
+      rgba(
+        48,
+        42,
+        38,
+        0.78
+      )
+    );
+}
+
+
+.ona-admin-login-brand-content {
+  min-height: 100%;
+
+  position: relative;
+
+  z-index: 2;
+
+  padding:
+    clamp(
+      2.4rem,
+      5vw,
+      4.4rem
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+    flex-start;
+}
+
+
+.ona-admin-login-top {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items:
+    flex-start;
+}
+
+
+.ona-admin-private-workspace {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.8rem;
+
+  color: #d4b294;
+
+  font-size: 0.6rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ona-admin-private-icon {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #d7b89b;
+
+  border:
+    1px solid
+    rgba(
+      207,
+      175,
+      146,
+      0.36
+    );
+
+  border-radius: 50%;
+}
+
+
+/* ==========================================================================
+   LOGIN LOGO — ADMIN ONLY, NEVER PUBLIC HOME
+   ========================================================================== */
+
+.ona-admin-login-logo {
+  margin-top: 2.75rem;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  color: #fff;
+
+  border: 0;
+
+  outline: 0;
+
+  background:
+    transparent;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  transition:
+    opacity 170ms ease,
+    transform 170ms ease;
+}
+
+
+.ona-admin-login-logo:hover {
+  opacity: 0.8;
+}
+
+
+.ona-admin-login-logo:active {
+  transform:
+    translateY(1px);
+}
+
+
+.ona-admin-login-logo > span {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      2.9rem,
+      5vw,
+      4rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.82;
+
+  letter-spacing: 0.14em;
+}
+
+
+.ona-admin-login-logo > small {
+  margin-top: 0.8rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.76
+    );
+
+  font-size: 0.53rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.56em;
+
+  text-indent: 0.56em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ==========================================================================
+   STORY
+   ========================================================================== */
+
+.ona-admin-login-story {
+  max-width: 610px;
+
+  margin-top:
+    clamp(
+      3.1rem,
+      7vh,
+      4.7rem
+    );
+}
+
+
+.ona-admin-login-script {
+  margin: 0;
+
+  color: #dfbea2;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.2vw,
+      2rem
+    );
+
+  font-style: italic;
+}
+
+
+.ona-admin-login-story h1 {
+  margin:
+    1.15rem
+    0
+    0;
+
+  color: #fff;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      2.8rem,
+      4.1vw,
+      4.6rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.96;
+
+  letter-spacing:
+    -0.038em;
+}
+
+
+.ona-admin-login-story h1 em {
+  display: block;
+
+  color: #dfbea2;
+
+  font-weight: 400;
+}
+
+
+.ona-admin-login-story-text {
+  max-width: 540px;
+
+  margin:
+    1.4rem
+    0
+    0;
+
+  color: #cfc1b6;
+
+  font-size: 0.88rem;
+
+  line-height: 1.75;
+}
+
+
+.ona-admin-staff-label {
+  margin-top: 2rem;
+
+  padding-top: 1.15rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.65rem;
+
+  color: #ae9f94;
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  font-size: 0.56rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.17em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ona-admin-staff-label > span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    var(--admin-bronze);
+}
+
+
+/* ==========================================================================
+   LOGIN RIGHT
+   ========================================================================== */
+
+.ona-admin-login-form-panel {
+  min-height: 100%;
+
+  padding:
+    clamp(
+      2rem,
+      5vw,
+      5rem
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color:
+    var(--admin-text);
+
+  background:
+    var(--admin-light);
+}
+
+
+.ona-admin-login-form-inner {
+  width:
+    min(
+      540px,
+      100%
+    );
+}
+
+
+.ona-admin-login-mobile-brand {
+  display: none;
+}
+
+
+.ona-admin-login-access {
+  width: fit-content;
+
+  min-height: 35px;
+
+  padding:
+    0.55rem
+    0.85rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  color: #88705c;
+
+  border:
+    1px solid
+    rgba(
+      165,
+      138,
+      113,
+      0.24
+    );
+
+  border-radius: 999px;
+
+  background:
+    rgba(
+      165,
+      138,
+      113,
+      0.07
+    );
+
+  font-size: 0.56rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ona-admin-login-access > span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    var(--admin-bronze);
+}
+
+
+.ona-admin-login-heading {
+  margin-top: 2rem;
+}
+
+
+.ona-admin-login-heading > span {
+  display: block;
+
+  color:
+    var(--admin-bronze);
+
+  font-size: 0.56rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ona-admin-login-heading h2 {
+  margin:
+    0.65rem
+    0
+    0;
+
+  color:
+    var(--admin-text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      3rem,
+      4vw,
+      4rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing:
+    -0.04em;
+}
+
+
+.ona-admin-login-heading h2 em {
+  color: #987b64;
+
+  font-weight: 400;
+}
+
+
+.ona-admin-login-heading p {
+  max-width: 500px;
+
+  margin:
+    1.1rem
+    0
+    0;
+
+  color: #7c7067;
+
+  font-size: 0.85rem;
+
+  line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   LOGIN FORM
+   ========================================================================== */
+
+.ona-admin-login-form {
+  margin-top: 1.9rem;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1.25rem;
+}
+
+
+.ona-admin-field {
+  display: block;
+}
+
+
+.ona-admin-field > span,
+.ona-admin-field > label {
+  margin-bottom: 0.5rem;
+
+  display: block;
+
+  color: #675c54;
+
+  font-size: 0.57rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ona-admin-field input {
+  width: 100%;
+
+  min-height: 59px;
+
+  padding:
+    0
+    1rem !important;
+
+  color:
+    #302a26 !important;
+
+  border:
+    1px solid
+    #d9cfc6 !important;
+
+  border-radius:
+    13px !important;
+
+  outline: none;
+
+  background:
+    #fffdf9 !important;
+
+  box-shadow:
+    0
+    4px
+    16px
+    rgba(
+      48,
+      42,
+      38,
+      0.035
+    );
+
+  font-size: 0.9rem;
+}
+
+
+.ona-admin-field input:focus {
+  border-color:
+    var(--admin-bronze)
+    !important;
+
+  box-shadow:
+    0
+    0
+    0
+    3px
+    rgba(
+      165,
+      138,
+      113,
+      0.1
+    )
+    !important;
+}
+
+
+.ona-admin-password-wrap {
+  position: relative;
+}
+
+
+.ona-admin-password-wrap input {
+  padding-right:
+    3.7rem !important;
+}
+
+
+.ona-admin-password-toggle {
+  width: 38px;
+  height: 38px;
+
+  position: absolute;
+
+  top: 50%;
+  right: 0.65rem;
+
+  transform:
+    translateY(-50%);
+
+  display: grid;
+
+  place-items: center;
+
+  color: #8f8177;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    transparent;
+
+  cursor: pointer;
+}
+
+
+.ona-admin-password-toggle:hover {
+  color: #302a26;
+
+  background:
+    #f0e8e0;
+}
+
+
+/* ==========================================================================
+   FORGOT PASSWORD
+   ========================================================================== */
+
+.ona-admin-forgot-row {
+  margin-top: 0.55rem;
+
+  display: flex;
+
+  justify-content:
+    flex-end;
+}
+
+
+.ona-admin-forgot-row button {
+  padding: 0;
+
+  color: #93775f;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   PRIMARY BUTTON
+   ========================================================================== */
+
+.ona-admin-primary-button {
+  min-height: 56px;
+
+  padding:
+    0.85rem
+    1.1rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.65rem;
+
+  color: #fff;
+
+  border:
+    1px solid
+    var(--admin-bronze);
+
+  border-radius: 12px;
+
+  background:
+    var(--admin-bronze);
+
+  box-shadow:
+    0
+    13px
+    28px
+    rgba(
+      165,
+      138,
+      113,
+      0.19
+    );
+
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform:
+    uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background-color
+      160ms ease,
+    transform
+      160ms ease,
+    box-shadow
+      160ms ease;
+}
+
+
+.ona-admin-primary-button:hover:not(
+  :disabled
+) {
+  transform:
+    translateY(-2px);
+
+  background: #92765f;
+
+  box-shadow:
+    0
+    17px
+    34px
+    rgba(
+      146,
+      118,
+      95,
+      0.23
+    );
+}
+
+
+.ona-admin-primary-button:disabled {
+  opacity: 0.55;
+
+  cursor: wait;
+}
+
+
+/* ==========================================================================
+   MESSAGES
+   ========================================================================== */
+
+.ona-admin-success-message {
+  padding:
+    0.85rem
+    1rem;
+
+  color: #396b53;
+
+  border:
+    1px solid
+    #c2ddcd;
+
+  border-radius: 11px;
+
+  background:
+    #edf7f1;
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+}
+
+
+.ona-admin-back-button {
+  margin-bottom: 1.5rem;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  color: #92765f;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.ona-admin-security-note {
+  margin-top: 1.8rem;
+
+  padding-top: 1.25rem;
+
+  display: grid;
+
+  grid-template-columns:
+    auto
+    1fr;
+
+  gap: 0.7rem;
+
+  color:
+    var(--admin-bronze);
+
+  border-top:
+    1px solid
+    var(--admin-light-line);
+}
+
+
+.ona-admin-security-note p {
+  margin: 0;
+
+  color: #91857c;
+
+  font-size: 0.68rem;
+
+  line-height: 1.65;
+}
+
+
+/* ==========================================================================
+   MOBILE DRAWER
+   ========================================================================== */
+
+.ona-admin-mobile-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 80;
+
+  display: none;
+
+  background:
+    rgba(
+      23,
+      19,
+      16,
+      0.67
+    );
+
+  backdrop-filter:
+    blur(5px);
+}
+
+
+.ona-admin-mobile-drawer {
+  width:
+    min(
+      310px,
+      90vw
+    );
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  color: #fff;
+
+  background:
+    var(--admin-dark);
+}
+
+
+.ona-admin-mobile-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  padding-right: 1rem;
+}
+
+
+.ona-admin-icon-button {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #d6cac0;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border-radius: 50%;
+
+  background:
+    transparent;
+}
+
+
+.ona-admin-mobile-account {
+  margin-top: auto;
+
+  padding: 0.85rem;
+}
+
+
+/* ==========================================================================
+   LOADING
+   ========================================================================== */
+
+.ona-admin-loading {
+  min-height: 100svh;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #fff;
+
+  background:
+    var(--admin-dark);
+}
+
+
+.ona-admin-loading-inner {
+  width:
+    min(
+      500px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (
+  max-width: 1023px
+) {
+  .ona-admin-sidebar {
+    display: none;
+  }
+
+  .ona-admin-main {
+    margin-left: 0;
+  }
+
+  .ona-admin-menu-button {
+    display: grid;
+  }
+
+  .ona-admin-mobile-backdrop {
+    display: block;
+  }
+}
+
+
+@media (
+  max-width: 900px
+) {
+  .ona-admin-login-page {
+    padding: 0;
+  }
+
+  .ona-admin-login-shell {
+    min-height: 100svh;
+
+    grid-template-columns:
+      1fr;
+
+    border: 0;
+
+    border-radius: 0;
+  }
+
+  .ona-admin-login-brand-panel {
+    min-height: auto;
+  }
+
+  .ona-admin-login-brand-content {
+    padding:
+      2rem
+      1.5rem
+      2.75rem;
+  }
+
+  .ona-admin-login-story {
+    margin-top: 2.7rem;
+  }
+
+  .ona-admin-login-form-panel {
+    min-height: auto;
+
+    padding:
+      3.5rem
+      1.5rem;
+  }
+}
+
+
+@media (
+  max-width: 680px
+) {
+  .ona-admin-topbar {
+    min-height: 82px;
+
+    padding: 1rem;
+  }
+
+  .ona-admin-page-kicker,
+  .ona-admin-page-title p,
+  .ona-admin-role-badge {
+    display: none;
+  }
+
+  .ona-admin-alert-card span {
+    display: none;
+  }
+
+  .ona-admin-content {
+    padding: 1.15rem;
+  }
+
+  .ona-admin-login-brand-panel {
+    display: none;
+  }
+
+  .ona-admin-login-form-panel {
+    min-height: 100svh;
+
+    align-items:
+      flex-start;
+
+    padding:
+      2rem
+      1.3rem;
+  }
+
+  .ona-admin-login-mobile-brand {
+    margin-bottom: 3rem;
+
+    display: block;
+  }
+
+  .ona-admin-login-form-inner {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+.ona-admin-workspace
+:focus-visible,
+.ona-admin-login-page
+:focus-visible {
+  outline:
+    2px solid
+    var(--admin-bronze);
+
+  outline-offset: 3px;
+}
+
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .ona-admin-workspace *,
+  .ona-admin-login-page * {
+    transition:
+      none !important;
+
+    animation:
+      none !important;
+  }
+}

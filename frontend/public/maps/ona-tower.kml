@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1o45Bp_TRlkxOecQDxJorncTRtWC8IWFr">
+	<name>ONA TOWER</name>
+	<gx:CascadingStyle kml:id="__managed_style_0A6DDAFF6D420F22E0E9_highlight">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_0A6DDAFF6D420F22E0E9_normal">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.66667</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0A6DDAFF6D420F22E0E9">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_0A6DDAFF6D420F22E0E9_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_0A6DDAFF6D420F22E0E9_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<gx:CascadingStyle kml:id="__managed_style_0147175B1C420F22E0E8_highlight">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_0147175B1C420F22E0E8_normal">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.66667</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0147175B1C420F22E0E8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_0147175B1C420F22E0E8_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_0147175B1C420F22E0E8_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="06342CFCD3414B9A7FD4">
+		<name>Untitled polygon</name>
+		<LookAt>
+			<longitude>39.21069076935436</longitude>
+			<latitude>-6.201019023832249</latitude>
+			<altitude>22.40690878655411</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>30.00020017462844</gx:fovy>
+			<range>1000.332116201607</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0147175B1C420F22E0E8</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						39.21069769528089,-6.201001196068159,0 39.21032740783141,-6.200990538411113,0 39.21026332826951,-6.201213062816605,0 39.21022961825337,-6.201201144678251,0 39.21017377206582,-6.201373558478143,0 39.20976985981291,-6.201321242218794,0 39.20977822640521,-6.201578622550456,0 39.2099245177319,-6.20179154142045,0 39.21001645446736,-6.201817004255493,0 39.21022782964291,-6.201645652692075,0 39.21027236588836,-6.201664538031096,0 39.21031669820822,-6.201549326118815,0 39.21069254661739,-6.201593211704168,0 39.21069769528089,-6.201001196068159,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0BC272C572418C29F246">
+		<name>tower A</name>
+		<LookAt>
+			<longitude>39.21038410584553</longitude>
+			<latitude>-6.201355889000817</latitude>
+			<altitude>22.8099008216782</altitude>
+			<heading>-81.00027077808556</heading>
+			<tilt>8.248572600920898</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>240.6912108362304</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0147175B1C420F22E0E8</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						39.21036161279434,-6.201293156622974,0 39.21059850960649,-6.201324213116699,0 39.21062349085064,-6.201061581471822,0 39.21038594625247,-6.201056220919094,0 39.21036161279434,-6.201293156622974,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0C2FEEF2EF418C2A1008">
+		<name>Tower A</name>
+		<LookAt>
+			<longitude>39.21038410584553</longitude>
+			<latitude>-6.201355889016667</latitude>
+			<altitude>22.80990082309285</altitude>
+			<heading>-81.00027077819348</heading>
+			<tilt>8.248572600918637</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>240.6912108362304</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0A6DDAFF6D420F22E0E9</styleUrl>
+		<Point>
+			<coordinates>39.21051709217256,-6.201204455364329,24.01608254236142</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0E614CC14D418C2A5133">
+		<name>ONA House</name>
+		<LookAt>
+			<longitude>39.21038410584553</longitude>
+			<latitude>-6.201355889016667</latitude>
+			<altitude>22.80990082309285</altitude>
+			<heading>-81.00027077819348</heading>
+			<tilt>8.248572600918459</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>240.6912108362304</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0147175B1C420F22E0E8</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						39.2104086821312,-6.201540289663915,0 39.21061238372263,-6.201561555347131,0 39.21060534392858,-6.201389038876373,0 39.21041178588649,-6.201368655471424,0 39.2104086821312,-6.201540289663915,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0BFE4835FC418C2A6DF9">
+		<name>ONA House</name>
+		<LookAt>
+			<longitude>39.21038410584553</longitude>
+			<latitude>-6.201355889016667</latitude>
+			<altitude>22.80990082309285</altitude>
+			<heading>-81.00027077819348</heading>
+			<tilt>8.248572600918459</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>240.6912108362304</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0A6DDAFF6D420F22E0E9</styleUrl>
+		<Point>
+			<coordinates>39.21052949330137,-6.201478937102594,22.91810162332396</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="08B227572B418C2B654E">
+		<name>Tower B</name>
+		<LookAt>
+			<longitude>39.2101523157335</longitude>
+			<latitude>-6.201352450194711</latitude>
+			<altitude>21.70095396840673</altitude>
+			<heading>-81.00023220740812</heading>
+			<tilt>8.248690760017594</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>332.2743657304455</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0147175B1C420F22E0E8</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						39.20985629609422,-6.201662175068591,0 39.21011052552555,-6.201706588660383,0 39.21015842749678,-6.201480355632524,0 39.20989030936734,-6.20142432771793,0 39.20985629609422,-6.201662175068591,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0FBD7E2C75418C2B8021">
+		<name>Tower B</name>
+		<LookAt>
+			<longitude>39.2101523157335</longitude>
+			<latitude>-6.201352450194711</latitude>
+			<altitude>21.70095396840673</altitude>
+			<heading>-81.00023220740815</heading>
+			<tilt>8.248690760017459</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>332.2743657304455</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0A6DDAFF6D420F22E0E9</styleUrl>
+		<Point>
+			<coordinates>39.21000278979617,-6.201567753064157,21.63917702261122</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>
