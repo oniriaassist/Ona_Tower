@@ -111,7 +111,7 @@ export const FloorPlanModal: React.FC<FloorPlanModalProps> = ({ typology, isOpen
             }}
             className="w-full max-w-2xl origin-center"
           >
-            <img src={ONA_IMAGES[typology.planKey as ImageKey].url} alt={ONA_IMAGES[typology.planKey as ImageKey].alt} className="w-full h-auto max-h-[70vh] object-contain" />
+            <img src={ONA_IMAGES[typology.planKey as ImageKey]} alt={`${typology.name} floor plan`} className="w-full h-auto max-h-[70vh] object-contain" />
           </div>
 
           <div className="absolute bottom-4 right-4 bg-[#302A26]/95 border border-[#A58A71]/50 backdrop-blur-sm text-[#F5F0EA] text-[10px] font-sans tracking-widest px-3 py-1.5 uppercase rounded-sm">

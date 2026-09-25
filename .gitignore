@@ -1,4 +1,5 @@
 # Environment / secrets
+/.cleanup-backup/
 .env
 .env.*
 !.env.example

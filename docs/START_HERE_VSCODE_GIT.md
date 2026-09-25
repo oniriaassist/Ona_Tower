@@ -1,28 +1,31 @@
-# Start Here in VS Code
+# ONA Towers — Start Here in VS Code
 
-Open the **repository root** in VS Code.
+Open the `ONA_Tower` repository root in VS Code and use PowerShell terminals.
 
-## 1. First-time setup
-
-Windows PowerShell:
+## First-time setup
 
 ```powershell
-.\scripts\setup-windows.ps1
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+.\scripts\configure-local.ps1
+cd frontend
+npm ci
+cd ..
+python scripts\doctor.py
+python -m alembic -c database\alembic.ini upgrade head
+python seed.py
+python scripts\db_check.py
+python -m pytest -c backend\pyproject.toml backend\tests -q
 ```
 
-Then prepare the database explicitly:
-
-```powershell
-.\scripts\migrate-database.ps1
-```
-
-Setup and migrations are separate on purpose. Installing dependencies should never unexpectedly alter the database.
-
-## 2. Normal local development
+## Start the project
 
 Terminal 1:
 
 ```powershell
+.\.venv\Scripts\Activate.ps1
 .\scripts\start-backend.ps1
 ```
 
@@ -37,22 +40,19 @@ Open:
 - Website: `http://127.0.0.1:3010`
 - Admin: `http://127.0.0.1:3010/admin`
 - Backend: `http://127.0.0.1:8400`
-- Swagger: `http://127.0.0.1:8400/docs`
+- Swagger/API docs: `http://127.0.0.1:8400/docs`
+- Health: `http://127.0.0.1:8400/health`
 
-## 3. Run the same full-stack model used by Vercel
-
-With Vercel CLI installed:
+## Check the running stack
 
 ```powershell
-.\scripts\start-vercel.ps1
+.\scripts\smoke-test.ps1
 ```
 
-This runs the Vite and FastAPI services together through the root `vercel.json`.
-
-## 4. Before pushing
+## Check before Git push/deployment
 
 ```powershell
 .\scripts\verify.ps1
 ```
 
-The repository is designed to be pushed from the root as one Git project and imported into Vercel once with Framework set to **Services**.
+For more detail, read [`LOCAL_DEVELOPMENT.md`](LOCAL_DEVELOPMENT.md).

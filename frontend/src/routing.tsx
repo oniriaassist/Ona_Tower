@@ -7,6 +7,7 @@ export type SitePath =
   | '/lifestyle'
   | '/commercial'
   | '/location'
+  | '/brochure'
   | '/enquire';
 
 const NAVIGATE_EVENT = 'ona:navigate';

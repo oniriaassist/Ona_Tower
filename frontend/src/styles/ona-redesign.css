@@ -1,0 +1,7134 @@
+/* Recovered design rules from the last successful production build. */
+:root{--ona-dark: #27231f;--ona-deep: #1d1a17;--ona-text: #29241f;--ona-muted: #746c65;--ona-sand: #bea083;--ona-sand-light: #e5d3c1;--ona-cream: #f2eee8;--ona-warm-white: #fbf9f5;--ona-footer: #f7f3ed;--ona-line: rgba(44, 39, 35, .15);--ona-max-width: 1440px}
+.ona-section-shell{width:min(calc(100% - 96px),var(--ona-max-width));margin-inline:auto}
+.ona-eyebrow{margin:0;font-size:.67rem;font-weight:500;letter-spacing:.22em;line-height:1.4;text-transform:uppercase}
+.ona-script-label{margin:.7rem 0 0;color:var(--ona-sand);font-family:Georgia,Times New Roman,serif;font-size:clamp(1rem,1.7vw,1.55rem);font-style:italic;font-weight:400}
+.ona-button{min-height:52px;display:inline-flex;align-items:center;justify-content:space-between;gap:2.5rem;padding-inline:1.55rem;color:inherit;text-decoration:none;font-size:.66rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;transition:color .2s ease,background-color .2s ease,border-color .2s ease,transform .2s ease}
+.ona-button:hover{transform:translateY(-2px)}
+.ona-button--sand{color:#211d1a;background:var(--ona-sand);border:1px solid var(--ona-sand)}
+.ona-button--sand:hover{background:#cfb295;border-color:#cfb295}
+.ona-button--glass{color:#fff;background:#0000001a;border:1px solid rgba(255,255,255,.65);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.ona-button--glass:hover{color:var(--ona-dark);background:#fff}
+.ona-button--dark{color:#fff;background:var(--ona-dark);border:1px solid var(--ona-dark)}
+.ona-inline-button{display:inline-flex;align-items:center;gap:1.4rem;padding-bottom:.6rem;color:inherit;border-bottom:1px solid currentColor;text-decoration:none;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.sr-only{width:1px;height:1px;position:absolute;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.ona-header{position:fixed;top:0;right:0;left:0;z-index:1000;transition:color .25s ease,background-color .25s ease,box-shadow .25s ease}
+.ona-header--transparent{color:#fff;background:transparent}
+.ona-header--solid{color:var(--ona-dark);background:#f7f3edf7;box-shadow:0 1px 0 var(--ona-line);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px)}
+.ona-header-inner{width:min(calc(100% - 80px),1560px);height:90px;margin-inline:auto;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+.ona-header-nav{display:flex;align-items:center;gap:clamp(1rem,2.1vw,2.5rem)}
+.ona-header-nav--left{justify-content:flex-start}
+.ona-header-nav--right{justify-content:flex-end}
+.ona-nav-link{position:relative;color:inherit;font-size:.62rem;font-weight:500;letter-spacing:.15em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
+.ona-nav-link:after{content:"";position:absolute;right:0;bottom:-8px;left:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .2s ease}
+.ona-nav-link:hover:after{transform:scaleX(1);transform-origin:left}
+.ona-header-logo{padding-inline:2.8rem;display:flex;flex-direction:column;align-items:center;color:inherit;text-decoration:none;line-height:1}
+.ona-header-logo-main{font-family:Georgia,Times New Roman,serif;font-size:2rem;font-weight:400;letter-spacing:.13em}
+.ona-header-logo-sub{margin-top:.42rem;padding-left:.4em;font-size:.55rem;letter-spacing:.42em}
+.ona-menu-toggle{width:44px;height:44px;display:none;border:0;color:inherit;background:transparent;cursor:pointer}
+.ona-menu-toggle span{width:27px;height:1px;display:block;margin:7px auto;background:currentColor;transition:transform .2s ease}
+.ona-menu-toggle.is-open span:first-child{transform:translateY(4px) rotate(45deg)}
+.ona-menu-toggle.is-open span:last-child{transform:translateY(-4px) rotate(-45deg)}
+.ona-mobile-menu{position:fixed;top:0;right:0;bottom:0;left:0;z-index:990;visibility:hidden;opacity:0;background:var(--ona-footer);transform:translateY(-12px);transition:opacity .22s ease,visibility .22s ease,transform .22s ease}
+.ona-mobile-menu.is-open{visibility:visible;opacity:1;transform:none}
+.ona-mobile-menu-inner{min-height:100%;padding:125px 28px 32px;display:flex;flex-direction:column}
+.ona-mobile-menu nav{margin-top:2.5rem;display:flex;flex-direction:column}
+.ona-mobile-link{padding:1.15rem 0;color:var(--ona-dark);border-bottom:1px solid var(--ona-line);font-family:Georgia,Times New Roman,serif;font-size:clamp(1.8rem,8vw,3rem);text-decoration:none}
+.ona-mobile-menu-footer{margin-top:auto;display:flex;justify-content:space-between;gap:1rem;color:var(--ona-muted);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase}
+.ona-home-hero{height:100vh;min-height:720px;position:relative;overflow:hidden;color:#fff;background:#1a1815}
+.ona-home-hero-media,.ona-home-hero-media img,.ona-home-hero-overlay{position:absolute;top:0;right:0;bottom:0;left:0}
+.ona-home-hero-media img{width:100%;height:100%;object-fit:cover}
+.ona-home-hero-overlay{background:linear-gradient(180deg,#120e0b29,#120e0b08 42%,#120e0bb8),linear-gradient(90deg,rgba(15,11,8,.34),transparent 58%)}
+.ona-home-hero-content{width:min(calc(100% - 100px),1560px);height:100%;position:relative;z-index:2;margin-inline:auto;padding-bottom:clamp(4.5rem,8vh,7rem);display:flex;align-items:flex-end}
+.ona-home-hero-copy{width:min(850px,75vw)}
+.ona-home-hero-location{margin:0 0 1.2rem;font-size:.77rem;letter-spacing:.27em}
+.ona-home-hero-location span{color:var(--ona-sand-light)}
+.ona-home-hero h1{margin:0;display:flex;flex-direction:column;font-family:Georgia,Times New Roman,serif;font-size:clamp(3.8rem,7.2vw,8rem);font-weight:400;letter-spacing:-.035em;line-height:.88}
+.ona-home-hero-title-accent{color:var(--ona-sand-light)}
+.ona-home-hero-actions{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap}
+.ona-home-scroll{position:absolute;right:24px;bottom:28px;z-index:3;writing-mode:vertical-rl;font-size:.57rem;letter-spacing:.2em}
+.ona-home-experiences{padding:clamp(6rem,11vw,10rem) 0;color:var(--ona-dark);background:var(--ona-cream)}
+.ona-home-experiences-heading{max-width:900px;margin-bottom:clamp(3.5rem,7vw,6.5rem)}
+.ona-home-experiences-heading h2,.ona-explore-heading h2,.ona-vision-heading h1,.ona-masterplan-heading h2,.ona-lifestyle-intro h1,.ona-location-heading h1,.ona-commercial-hero h1{margin:1rem 0 1.5rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3rem,6vw,6.5rem);font-weight:400;letter-spacing:-.04em;line-height:.97}
+.ona-home-experiences-heading h2 em,.ona-explore-heading h2 em,.ona-vision-heading h1 em,.ona-masterplan-heading h2 em,.ona-lifestyle-intro h1 em,.ona-location-heading h1 em,.ona-commercial-hero h1 span{color:var(--ona-sand);font-weight:400}
+.ona-home-experiences-heading>p:last-child{max-width:600px;color:var(--ona-muted);line-height:1.8}
+.ona-experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#0000001f}
+.ona-experience-card{min-height:650px;position:relative;overflow:hidden;color:#fff;text-decoration:none}
+.ona-experience-image,.ona-experience-image img,.ona-experience-overlay{position:absolute;top:0;right:0;bottom:0;left:0}
+.ona-experience-image img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,0,1)}
+.ona-experience-overlay{background:linear-gradient(180deg,#0c0a0805,#0c0a08c2)}
+.ona-experience-card:hover .ona-experience-image img{transform:scale(1.035)}
+.ona-experience-number{position:absolute;top:30px;left:30px;z-index:2;font-size:.63rem;letter-spacing:.16em}
+.ona-experience-content{position:absolute;right:30px;bottom:34px;left:30px;z-index:2}
+.ona-experience-content h3{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(2rem,3vw,3.5rem);font-weight:400}
+.ona-experience-content p{max-width:420px;margin:1rem 0 2rem;color:#fffc;font-size:.87rem;line-height:1.75}
+.ona-text-link{padding-bottom:.55rem;display:inline-flex;gap:1rem;border-bottom:1px solid rgba(255,255,255,.6);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-explore-section{padding:clamp(6rem,11vw,10rem) 0;color:var(--ona-dark);background:var(--ona-warm-white)}
+.ona-explore-heading{margin-bottom:4rem}
+.ona-explore-list{border-top:1px solid var(--ona-line)}
+.ona-explore-row{min-height:230px;padding:2rem 0;display:grid;grid-template-columns:minmax(0,1fr) 300px 50px;align-items:center;gap:2rem;color:inherit;border-bottom:1px solid var(--ona-line);text-decoration:none}
+.ona-explore-row-copy>span{color:var(--ona-sand);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase}
+.ona-explore-row-copy h3{margin:.65rem 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(2rem,3vw,3.5rem);font-weight:400}
+.ona-explore-row-copy p{max-width:580px;margin:0;color:var(--ona-muted);line-height:1.75}
+.ona-explore-row-image{height:165px;overflow:hidden}
+.ona-explore-row-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.ona-explore-row:hover .ona-explore-row-image img{transform:scale(1.04)}
+.ona-explore-arrow{justify-self:end;font-size:2rem}
+.ona-footer{padding:2.6rem 0 2rem;color:var(--ona-dark);background:#f7f3ed}
+.ona-footer-inner{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:2.5rem}
+.ona-footer-brand{max-width:520px}
+.ona-footer-logo{width:fit-content;display:flex;flex-direction:column;color:var(--ona-dark);text-decoration:none}
+.ona-footer-logo span{font-family:Georgia,Times New Roman,serif;font-size:2rem;line-height:1;letter-spacing:.11em}
+.ona-footer-logo small{margin-top:.32rem;padding-left:.32em;font-size:.52rem;letter-spacing:.36em}
+.ona-footer-tagline{margin:.9rem 0 .55rem;color:#9a7e65;font-family:Georgia,Times New Roman,serif;font-size:1rem;font-style:italic}
+.ona-footer-intro{max-width:480px;margin:0;color:#706860;font-size:.9rem;line-height:1.55}
+.ona-footer-meta{max-width:500px;justify-self:end;padding-top:.1rem}
+.ona-footer-meta strong{display:block;margin-bottom:.65rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.ona-footer-meta p{margin:.3rem 0;color:#746c64;font-size:.88rem;line-height:1.5}
+.ona-footer-register{margin-top:1rem;padding-bottom:.42rem;display:inline-flex;align-items:center;gap:.75rem;color:var(--ona-dark);border-bottom:1px solid #a48669;text-decoration:none;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-footer-socials{margin-top:1rem;display:flex;align-items:center;gap:.55rem}
+
+.ona-footer-social-link{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;color:#746c64;border:1px solid rgba(39,35,31,.18);border-radius:50%;text-decoration:none;transition:color .2s ease,border-color .2s ease,transform .2s ease}
+
+.ona-footer-social-link:hover{color:var(--ona-dark);border-color:#a48669;transform:translateY(-1px)}
+
+.ona-footer-social-link:focus-visible{outline:2px solid #a48669;outline-offset:3px}
+
+.ona-footer-bottom{padding-top:1.5rem;display:flex;justify-content:space-between;gap:2rem;color:#8c837a;border-top:1px solid rgba(39,35,31,.14);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+.ona-residence-selector{padding:clamp(7rem,11vw,11rem) 0;color:var(--ona-dark);background:var(--ona-cream)}
+.ona-residence-selector-heading{display:grid;grid-template-columns:.75fr 1.2fr 1fr;align-items:end;gap:3rem;margin-bottom:4rem}
+.ona-residence-selector-heading h2{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(3.2rem,5.5vw,6rem);font-weight:400;line-height:.95}
+.ona-residence-selector-heading h2 em{color:var(--ona-sand);font-weight:400}
+.ona-residence-selector-heading>p:last-child{color:var(--ona-muted);line-height:1.8}
+.ona-residence-type-tabs{margin-bottom:1px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ona-line)}
+.ona-residence-type-tabs button{min-height:70px;padding:1rem;border:0;color:var(--ona-muted);background:var(--ona-warm-white);cursor:pointer;font:inherit;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;transition:color .18s ease,background-color .18s ease}
+.ona-residence-type-tabs button.is-active{color:#fff;background:var(--ona-dark)}
+.ona-residence-selector-layout{display:grid;grid-template-columns:minmax(320px,.7fr) minmax(0,1.3fr);gap:1px;background:var(--ona-line)}
+.ona-residence-selector-copy{padding:clamp(2.5rem,5vw,5rem);background:var(--ona-warm-white)}
+.ona-residence-range{color:var(--ona-sand);font-family:Georgia,Times New Roman,serif;font-size:clamp(2.6rem,5vw,5rem)}
+.ona-residence-selector-copy h3{margin:1.2rem 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(2rem,3vw,3.5rem);font-weight:400}
+.ona-residence-selector-copy>p{color:var(--ona-muted);line-height:1.8}
+.ona-residence-variant-tabs{margin:2.5rem 0;display:grid;gap:1px;background:var(--ona-line)}
+.ona-residence-variant-tabs button{padding:1rem;display:flex;justify-content:space-between;gap:1rem;border:0;color:var(--ona-muted);background:#fff;cursor:pointer;font:inherit;text-align:left}
+.ona-residence-variant-tabs button.is-active{color:#fff;background:var(--ona-dark)}
+.ona-residence-variant-tabs strong{font-weight:500}
+.ona-residence-variant-tabs span{font-size:.76rem}
+.ona-residence-specs{margin:0}
+.ona-residence-specs>div{padding:.85rem 0;display:flex;justify-content:space-between;gap:2rem;border-bottom:1px solid var(--ona-line)}
+.ona-residence-specs dt{color:var(--ona-muted);font-size:.76rem}
+.ona-residence-specs dd{margin:0;font-weight:500}
+.ona-residence-plan{min-height:680px;padding:2.5rem;display:flex;align-items:center;justify-content:center;background:#fff}
+.ona-residence-plan img{width:100%;height:100%;max-height:780px;object-fit:contain}
+.ona-penthouse{padding:clamp(7rem,11vw,11rem) 0;color:#fff;background:var(--ona-deep)}
+.ona-penthouse-heading{margin-bottom:5rem;display:grid;grid-template-columns:1fr 1fr;gap:8vw}
+.ona-penthouse-heading h2{margin:1rem 0 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(4rem,8vw,8rem);font-weight:400;line-height:.82}
+.ona-penthouse-heading h2 em{color:var(--ona-sand-light);font-weight:400}
+.ona-penthouse-intro p{max-width:590px;color:#ffffffad;line-height:1.8}
+.ona-penthouse-intro .ona-inline-button{margin-top:2rem}
+.ona-penthouse-image{min-height:650px;position:relative;overflow:hidden}
+.ona-penthouse-image img{width:100%;height:100%;min-height:650px;object-fit:cover}
+.ona-penthouse-image:after{content:"";position:absolute;top:40%;right:0;bottom:0;left:0;background:linear-gradient(transparent,#000000a3)}
+.ona-penthouse-image-copy{position:absolute;right:40px;bottom:40px;left:40px;z-index:2}
+.ona-penthouse-image-copy span{display:block;margin-bottom:.7rem;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-penthouse-image-copy strong{font-family:Georgia,Times New Roman,serif;font-size:clamp(1.8rem,3vw,3rem);font-weight:400}
+.ona-interiors{padding:clamp(7rem,11vw,11rem) 0;color:var(--ona-dark);background:var(--ona-warm-white)}
+.ona-interiors-heading{margin-bottom:6rem;display:grid;grid-template-columns:.7fr 1.2fr 1fr;align-items:end;gap:4rem}
+.ona-interiors-heading h2,.ona-architecture-heading h2{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(4rem,7vw,8rem);font-weight:400;line-height:.82}
+.ona-interiors-heading h2 span,.ona-architecture-heading h2 span{color:var(--ona-sand)}
+.ona-interiors-lead,.ona-architecture-heading>p{max-width:500px;color:var(--ona-muted);line-height:1.85}
+.ona-interiors-feature{margin-bottom:8rem;display:grid;grid-template-columns:2fr 1fr}
+.ona-interiors-feature>img{width:100%;height:720px;object-fit:cover}
+.ona-interiors-feature-caption{padding:4rem;display:flex;flex-direction:column;justify-content:flex-end;background:var(--ona-sand-light)}
+.ona-interiors-feature-caption span,.ona-interiors-story-card>span{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase}
+.ona-interiors-feature-caption h3,.ona-interiors-story-card h3{font-family:Georgia,Times New Roman,serif;font-size:clamp(2rem,3vw,3.4rem);font-weight:400;line-height:1.06}
+.ona-interiors-feature-caption p,.ona-interiors-story-card p{color:var(--ona-muted);line-height:1.8}
+.ona-interiors-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,9rem)}
+.ona-interiors-story-card--offset{margin-top:10rem}
+.ona-interiors-story-image{aspect-ratio:4 / 5;margin-bottom:2rem;overflow:hidden}
+.ona-interiors-story-image img{width:100%;height:100%;object-fit:cover}
+.ona-interiors-closing{margin-top:10rem;padding-top:2.5rem;display:flex;justify-content:space-between;gap:2rem;border-top:1px solid var(--ona-line)}
+.ona-interiors-closing p,.ona-interiors-closing strong{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(1.4rem,2vw,2.3rem);font-weight:400}
+.ona-vision{padding:10rem 0 8rem;color:#fff;background:var(--ona-deep)}
+.ona-vision-heading{max-width:1100px;margin-bottom:5rem}
+.ona-vision-heading>p:last-child{max-width:650px;color:#ffffffa3;line-height:1.8}
+.ona-vision-image{height:min(78vh,900px);margin-bottom:6rem;overflow:hidden}
+.ona-vision-image img{width:100%;height:100%;object-fit:cover}
+.ona-vision-points{border-top:1px solid rgba(255,255,255,.15)}
+.ona-vision-point{padding:2.3rem 0;display:grid;grid-template-columns:90px 1fr;gap:2rem;border-bottom:1px solid rgba(255,255,255,.15)}
+.ona-vision-point>span{color:var(--ona-sand);font-size:.64rem;letter-spacing:.15em}
+.ona-vision-point h2{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(1.8rem,3vw,3.2rem);font-weight:400}
+.ona-vision-point p{max-width:720px;margin:.8rem 0 0;color:#ffffff8f;line-height:1.8}
+.ona-masterplan{padding:clamp(7rem,11vw,11rem) 0;color:var(--ona-dark);background:var(--ona-cream)}
+.ona-masterplan-heading{margin-bottom:5rem;display:grid;grid-template-columns:.8fr 1.1fr 1fr;align-items:end;gap:3rem}
+.ona-masterplan-heading>p{color:var(--ona-muted);line-height:1.8}
+.ona-masterplan-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,.8fr);gap:1px;background:var(--ona-line)}
+.ona-masterplan-image{background:#fff}
+.ona-masterplan-image img{width:100%;height:100%;min-height:680px;object-fit:cover}
+.ona-masterplan-info{padding:clamp(2rem,4vw,4rem);background:var(--ona-warm-white)}
+.ona-masterplan-index{margin:0 0 3rem;color:var(--ona-sand);font-size:.64rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-masterplan-info h3{margin:0;font-family:Georgia,Times New Roman,serif;font-size:clamp(2.5rem,4vw,4.6rem);font-weight:400}
+.ona-masterplan-info h4{margin:.75rem 0 1.5rem;color:var(--ona-sand);font-size:1rem;font-weight:400}
+.ona-masterplan-info>p{color:var(--ona-muted);line-height:1.75}
+.ona-masterplan-facts{margin:2.5rem 0 3rem}
+.ona-masterplan-facts>div{padding:.75rem 0;display:grid;grid-template-columns:25px 1fr;gap:.5rem;border-bottom:1px solid var(--ona-line)}
+.ona-masterplan-facts p{margin:0;font-size:.82rem;line-height:1.5}
+.ona-building-tabs{display:flex;flex-direction:column}
+.ona-building-tabs button{padding:1rem 0;display:grid;grid-template-columns:35px 1fr;border:0;border-top:1px solid var(--ona-line);color:var(--ona-muted);background:transparent;cursor:pointer;font:inherit;text-align:left}
+.ona-building-tabs button:last-child{border-bottom:1px solid var(--ona-line)}
+.ona-building-tabs button span{color:var(--ona-sand);font-size:.63rem}
+.ona-building-tabs button.is-active{color:var(--ona-dark);font-weight:600}
+.ona-landscape-story{min-height:760px;display:grid;grid-template-columns:1.55fr .8fr;color:#fff;background:var(--ona-dark)}
+.ona-landscape-story-image img{width:100%;height:100%;object-fit:cover}
+.ona-landscape-story-copy{padding:clamp(3rem,6vw,7rem);display:flex;flex-direction:column;justify-content:center}
+.ona-landscape-story-copy h2{margin:1rem 0 2rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3rem,5vw,5.5rem);font-weight:400;line-height:.95}
+.ona-landscape-story-copy h2 em{color:var(--ona-sand-light);font-weight:400}
+.ona-landscape-story-copy>p:not(.ona-eyebrow){color:#ffffff9e;line-height:1.8}
+.ona-landscape-story-copy strong{margin-top:2rem;font-family:Georgia,Times New Roman,serif;font-size:1.3rem;font-weight:400}
+.ona-connected{padding:clamp(6rem,10vw,10rem) 0;color:var(--ona-dark);background:var(--ona-sand-light)}
+.ona-connected-inner{max-width:1050px}
+.ona-connected h2{margin:1rem 0 2rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3rem,6vw,6.5rem);font-weight:400;line-height:.95}
+.ona-connected h2 em{color:#896e57;font-weight:400}
+.ona-connected-inner>p:last-child{max-width:700px;color:#65594f;line-height:1.85}
+.ona-architecture{padding:clamp(7rem,11vw,11rem) 0;color:var(--ona-dark);background:var(--ona-warm-white)}
+.ona-architecture-heading{margin-bottom:6rem;display:grid;grid-template-columns:.8fr 1.4fr 1fr;align-items:end;gap:3rem}
+.ona-architecture-feature{margin-bottom:10rem;display:grid;grid-template-columns:1.6fr .7fr}
+.ona-architecture-feature-image{min-height:760px}
+.ona-architecture-feature-image img{width:100%;height:100%;object-fit:cover}
+.ona-architecture-feature-copy{padding:clamp(3rem,5vw,6rem);display:flex;flex-direction:column;justify-content:flex-end;background:var(--ona-cream)}
+.ona-architecture-feature-copy>span,.ona-architecture-secondary-copy>span{color:var(--ona-sand);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-architecture-feature-copy h3,.ona-architecture-secondary-copy h3{margin:1rem 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(2rem,3.5vw,4rem);font-weight:400}
+.ona-architecture-feature-copy p,.ona-architecture-secondary-copy p{color:var(--ona-muted);line-height:1.8}
+.ona-architecture-secondary{display:grid;grid-template-columns:.8fr 1.4fr;align-items:center;gap:7vw}
+.ona-architecture-secondary-copy{padding-left:4vw}
+.ona-architecture-secondary-image{min-height:650px}
+.ona-architecture-secondary-image img{width:100%;height:100%;object-fit:cover}
+.ona-lifestyle-intro{padding:11rem 0 7rem;color:var(--ona-dark);background:var(--ona-cream)}
+.ona-lifestyle-intro-grid{display:grid;grid-template-columns:.8fr 1.4fr 1fr;align-items:end;gap:3rem}
+.ona-lifestyle-intro-grid>p{color:var(--ona-muted);line-height:1.8}
+.ona-amenities{padding-bottom:10rem;background:var(--ona-cream)}
+.ona-amenity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--ona-line)}
+.ona-amenity-card{background:var(--ona-warm-white)}
+.ona-amenity-image{aspect-ratio:16 / 10;overflow:hidden}
+.ona-amenity-image img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.ona-amenity-card:hover .ona-amenity-image img{transform:scale(1.025)}
+.ona-amenity-content{padding:2.2rem}
+.ona-amenity-content>span{color:var(--ona-sand);font-size:.62rem;letter-spacing:.15em}
+.ona-amenity-content h2{margin:.7rem 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(1.9rem,3vw,3rem);font-weight:400}
+.ona-amenity-content p{max-width:540px;margin:0;color:var(--ona-muted);line-height:1.75}
+.ona-life-landscape{height:min(90vh,900px);min-height:680px;position:relative;overflow:hidden;color:#fff}
+.ona-life-landscape-image,.ona-life-landscape-image img,.ona-life-landscape-overlay{position:absolute;top:0;right:0;bottom:0;left:0}
+.ona-life-landscape-image img{width:100%;height:100%;object-fit:cover}
+.ona-life-landscape-overlay{background:linear-gradient(90deg,#14100dbd,#14100d0d 72%)}
+.ona-life-landscape-content{width:min(calc(100% - 96px),var(--ona-max-width));height:100%;position:relative;z-index:2;margin-inline:auto;display:flex;flex-direction:column;justify-content:center}
+.ona-life-landscape-content h2{max-width:720px;margin:1rem 0 2rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3.5rem,6vw,7rem);font-weight:400;line-height:.9}
+.ona-life-landscape-content h2 em{color:var(--ona-sand-light);font-weight:400}
+.ona-life-landscape-content>p:not(.ona-eyebrow){max-width:580px;color:#ffffffc2;line-height:1.8}
+.ona-life-landscape-content strong{margin-top:1.5rem;font-family:Georgia,Times New Roman,serif;font-size:1.35rem;font-weight:400}
+.ona-commercial-hero{padding:11rem 0 7rem;color:#fff;background:var(--ona-deep)}
+.ona-commercial-hero-inner{display:grid;grid-template-columns:.7fr 1.3fr 1fr;align-items:end;gap:3rem}
+.ona-commercial-hero-inner>p{color:#ffffff9e;line-height:1.8}
+.ona-commercial-plan{padding:8rem 0;background:var(--ona-cream)}
+.ona-commercial-plan-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:1px;background:var(--ona-line)}
+.ona-commercial-plan-image{padding:2rem;background:#fff}
+.ona-commercial-plan-image img{width:100%;height:100%;min-height:650px;object-fit:contain}
+.ona-commercial-plan-copy{padding:clamp(3rem,5vw,5rem);background:var(--ona-warm-white)}
+.ona-commercial-plan-copy h2,.ona-commercial-service h2{margin:1rem 0 2rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3rem,5vw,5.5rem);font-weight:400;line-height:.96}
+.ona-commercial-plan-copy h2 em,.ona-commercial-service h2 em{color:var(--ona-sand);font-weight:400}
+.ona-commercial-plan-copy>p{color:var(--ona-muted);line-height:1.8}
+.ona-commercial-points{margin-top:3rem;display:flex;flex-direction:column}
+.ona-commercial-points span{padding:.85rem 0;border-bottom:1px solid var(--ona-line)}
+.ona-commercial-service{padding:clamp(7rem,11vw,11rem) 0;color:#fff;background:var(--ona-dark)}
+.ona-commercial-service .ona-section-shell{max-width:1050px}
+.ona-commercial-service>div>p:not(.ona-eyebrow){max-width:650px;color:#ffffffa6;line-height:1.8}
+.ona-commercial-service .ona-inline-button{margin-top:2rem}
+.ona-location{padding:11rem 0 9rem;color:var(--ona-dark);background:var(--ona-warm-white)}
+.ona-location-heading{margin-bottom:5rem;display:grid;grid-template-columns:.7fr 1.3fr 1fr;align-items:end;gap:3rem}
+.ona-location-heading>p{color:var(--ona-muted);line-height:1.8}
+.ona-location-map{padding:1.5rem;background:#fff}
+.ona-location-map img{width:100%;max-height:800px;display:block;object-fit:contain}
+.ona-travel-times{margin-top:1px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ona-line)}
+.ona-travel-time{padding:2.5rem;background:var(--ona-cream)}
+.ona-travel-time>div{display:flex;align-items:baseline;gap:.5rem}
+.ona-travel-time strong{font-family:Georgia,Times New Roman,serif;font-size:clamp(3rem,5vw,5rem);font-weight:400}
+.ona-travel-time span{color:var(--ona-sand);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+.ona-travel-time p{margin:.5rem 0 0;color:var(--ona-muted)}
+.ona-location-actions{margin-top:3rem;display:flex;justify-content:flex-end}
+.ona-enquiry{min-height:100vh;display:grid;grid-template-columns:minmax(0,.9fr) minmax(580px,1.1fr);background:var(--ona-warm-white)}
+.ona-enquiry-visual{min-height:100vh;position:sticky;top:0;overflow:hidden}
+.ona-enquiry-visual>img,.ona-enquiry-visual-overlay{position:absolute;top:0;right:0;bottom:0;left:0}
+.ona-enquiry-visual>img{width:100%;height:100%;object-fit:cover}
+.ona-enquiry-visual-overlay{background:linear-gradient(180deg,#110d0a1a,#110d0aa3)}
+.ona-enquiry-visual-copy{position:absolute;right:55px;bottom:55px;left:55px;z-index:2;color:#fff}
+.ona-enquiry-visual-copy>p,.ona-enquiry-visual-copy>span{font-size:.64rem;letter-spacing:.17em;text-transform:uppercase}
+.ona-enquiry-visual-copy h2{margin:1rem 0;font-family:Georgia,Times New Roman,serif;font-size:clamp(3.3rem,6vw,6rem);font-weight:400;line-height:.92}
+.ona-enquiry-visual-copy h2 em{color:var(--ona-sand-light);font-weight:400}
+.ona-enquiry-form-wrap{padding:10rem clamp(2.5rem,7vw,8rem) 6rem}
+.ona-enquiry-form-inner{width:min(720px,100%);margin-inline:auto}
+.ona-enquiry-form-inner h1{margin:1rem 0 1.5rem;font-family:Georgia,Times New Roman,serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:400;line-height:.9}
+.ona-enquiry-intro{max-width:620px;color:var(--ona-muted);line-height:1.8}
+.ona-enquiry-summary{margin:3rem 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ona-line);border-bottom:1px solid var(--ona-line)}
+.ona-enquiry-summary>div{padding:1.4rem 0}
+.ona-enquiry-summary>div+div{padding-left:2rem;border-left:1px solid var(--ona-line)}
+.ona-enquiry-summary span{display:block;margin-bottom:.45rem;color:var(--ona-muted);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-enquiry-summary strong{font-family:Georgia,Times New Roman,serif;font-size:1.35rem;font-weight:400}
+.ona-enquiry-form{display:grid;grid-template-columns:1fr 1fr;gap:1.7rem}
+.ona-form-field{display:flex;flex-direction:column}
+.ona-form-field--full,.ona-form-phone,.ona-consent,.ona-enquiry-submit,.ona-form-status{grid-column:1 / -1}
+.ona-form-phone{display:grid;grid-template-columns:minmax(190px,.45fr) 1fr;gap:1rem}
+.ona-form-field label{margin-bottom:.7rem;color:#726a63;font-size:.63rem;letter-spacing:.11em;text-transform:uppercase}
+.ona-form-field input,.ona-form-field select,.ona-form-field textarea{width:100%;padding:.85rem 0;border:0;border-bottom:1px solid #aaa098;border-radius:0;outline:0;color:var(--ona-dark);background:transparent;font:inherit;font-size:.94rem;transition:border-color .18s ease}
+.ona-form-field textarea{resize:vertical}
+.ona-form-field input:focus,.ona-form-field select:focus,.ona-form-field textarea:focus{border-color:var(--ona-dark)}
+.ona-consent{display:flex;align-items:flex-start;gap:.8rem;color:var(--ona-muted);font-size:.78rem;line-height:1.55}
+.ona-consent input{margin-top:.25rem;accent-color:var(--ona-dark)}
+.ona-enquiry-submit{min-height:58px;padding-inline:1.5rem;display:flex;align-items:center;justify-content:space-between;border:0;color:#fff;background:var(--ona-dark);cursor:pointer;font:inherit;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase}
+.ona-enquiry-submit:disabled{opacity:.65;cursor:wait}
+.ona-form-status{padding:1rem;font-size:.83rem;line-height:1.6}
+.ona-form-status--success{color:#354735;background:#e8eee7}
+.ona-form-status--error{color:#6f443b;background:#f1e7e4}
+@media(max-width:1180px){.ona-header-nav{gap:1rem}.ona-nav-link{font-size:.57rem;letter-spacing:.1em}.ona-header-logo{padding-inline:1.2rem}.ona-interiors-heading,.ona-architecture-heading,.ona-masterplan-heading,.ona-lifestyle-intro-grid,.ona-location-heading,.ona-commercial-hero-inner,.ona-residence-selector-heading{grid-template-columns:1fr 1.3fr}.ona-interiors-heading>p:last-child,.ona-architecture-heading>p:last-child,.ona-masterplan-heading>p:last-child,.ona-lifestyle-intro-grid>p:last-child,.ona-location-heading>p:last-child,.ona-commercial-hero-inner>p:last-child,.ona-residence-selector-heading>p:last-child{grid-column:2}}
+@media(max-width:920px){.ona-section-shell{width:min(calc(100% - 48px),var(--ona-max-width))}.ona-header-inner{width:calc(100% - 40px);height:76px}.ona-header-nav{display:none}.ona-header-logo{grid-column:2}.ona-menu-toggle{grid-column:3;display:block;justify-self:end}.ona-home-hero-content{width:calc(100% - 48px)}.ona-home-hero-copy{width:100%}.ona-experience-grid{grid-template-columns:1fr}.ona-experience-card{min-height:65vh}.ona-explore-row{grid-template-columns:1fr 190px 30px}.ona-footer-inner,.ona-penthouse-heading,.ona-interiors-grid,.ona-masterplan-layout,.ona-landscape-story,.ona-architecture-feature,.ona-architecture-secondary,.ona-commercial-plan-layout,.ona-residence-selector-layout{grid-template-columns:1fr}.ona-footer-meta{justify-self:start}.ona-interiors-heading,.ona-architecture-heading,.ona-masterplan-heading,.ona-lifestyle-intro-grid,.ona-location-heading,.ona-commercial-hero-inner,.ona-residence-selector-heading{grid-template-columns:1fr}.ona-interiors-heading>p:last-child,.ona-architecture-heading>p:last-child,.ona-masterplan-heading>p:last-child,.ona-lifestyle-intro-grid>p:last-child,.ona-location-heading>p:last-child,.ona-commercial-hero-inner>p:last-child,.ona-residence-selector-heading>p:last-child{grid-column:auto}.ona-interiors-feature{grid-template-columns:1fr}.ona-interiors-feature>img{height:600px}.ona-interiors-story-card--offset{margin-top:0}.ona-masterplan-image img{min-height:500px}.ona-landscape-story-image{min-height:600px}.ona-architecture-feature-copy{min-height:430px}.ona-architecture-secondary-copy{padding-left:0}.ona-amenity-grid{grid-template-columns:1fr}.ona-travel-times{grid-template-columns:1fr 1fr}.ona-enquiry{display:block}.ona-enquiry-visual{min-height:72vh;position:relative}.ona-residence-type-tabs{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.ona-section-shell{width:calc(100% - 36px)}.ona-header-inner{width:calc(100% - 28px)}.ona-header-logo-main{font-size:1.65rem}.ona-home-hero{min-height:680px}.ona-home-hero-content{width:calc(100% - 36px);padding-bottom:3rem}.ona-home-hero h1{font-size:clamp(3.1rem,15vw,5.8rem)}.ona-home-hero-actions{flex-direction:column;align-items:stretch}.ona-button{width:100%}.ona-home-scroll{display:none}.ona-experience-card{min-height:560px}.ona-experience-number{left:22px}.ona-experience-content{right:22px;left:22px}.ona-explore-row{min-height:0;grid-template-columns:1fr 35px}.ona-explore-row-image{display:none}.ona-explore-arrow{grid-column:2;grid-row:1}.ona-footer-inner{gap:2rem;padding-bottom:0}.ona-footer-bottom{flex-direction:column;gap:.7rem}.ona-penthouse-image,.ona-penthouse-image img{min-height:520px}.ona-penthouse-image-copy{right:22px;bottom:22px;left:22px}.ona-interiors-feature>img{height:430px}.ona-interiors-feature-caption{padding:2rem}.ona-interiors-closing{margin-top:5rem;flex-direction:column}.ona-vision{padding-top:7rem}.ona-vision-image{height:60vh}.ona-vision-point{grid-template-columns:45px 1fr}.ona-masterplan-image img{min-height:380px}.ona-masterplan-info{padding:2rem}.ona-landscape-story-image{min-height:480px}.ona-landscape-story-copy{padding:3rem 1.5rem}.ona-architecture-feature-image,.ona-architecture-secondary-image{min-height:470px}.ona-architecture-feature-copy{min-height:0;padding:2.5rem 1.5rem}.ona-life-landscape-content{width:calc(100% - 36px)}.ona-travel-times{grid-template-columns:1fr}.ona-location-map{padding:.7rem}.ona-location-actions{justify-content:stretch}.ona-commercial-plan-image img{min-height:400px}.ona-residence-type-tabs{grid-template-columns:1fr}.ona-residence-plan{min-height:450px;padding:1rem}.ona-enquiry-visual{min-height:620px}.ona-enquiry-visual-copy{right:24px;bottom:30px;left:24px}.ona-enquiry-form-wrap{padding:5rem 1.3rem}.ona-enquiry-summary{grid-template-columns:1fr}.ona-enquiry-summary>div+div{padding-left:0;border-top:1px solid var(--ona-line);border-left:0}.ona-enquiry-form,.ona-form-phone{grid-template-columns:1fr}}
+
+/* =========================================================
+   2026 DARK SITE THEME + HOME HORIZONTAL NAVIGATION
+   Exact user-supplied swatch: #302A26 (RGB 48, 42, 38).
+   Footer intentionally remains on its original light surface.
+   ========================================================= */
+
+/* Public-page canvas */
+main {
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+/* Keep plain public page sections on the supplied dark brown. */
+main .ona-home-experiences,
+main .ona-explore-section,
+main .ona-residence-selector,
+main .ona-penthouse,
+main .ona-interiors,
+main .ona-vision,
+main .ona-masterplan,
+main .ona-connected,
+main .ona-architecture,
+main .ona-lifestyle-intro,
+main .ona-amenities,
+main .ona-commercial-hero,
+main .ona-commercial-plan,
+main .ona-commercial-service,
+main .ona-location,
+main .ona-enquiry,
+main .ona-home-next {
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+/* Muted text on dark backgrounds. */
+main .ona-explore-row-copy p,
+main .ona-residence-selector-heading > p,
+main .ona-residence-selector-copy > p,
+main .ona-interiors-heading > p,
+main .ona-vision-point p,
+main .ona-masterplan-heading > p,
+main .ona-masterplan-info > p,
+main .ona-building-tabs button,
+main .ona-connected p,
+main .ona-architecture-heading > p,
+main .ona-architecture-secondary-copy > p,
+main .ona-lifestyle-intro-grid > p,
+main .ona-commercial-hero-inner > p,
+main .ona-commercial-plan-copy > p,
+main .ona-location-heading > p,
+main .ona-travel-time p,
+main .ona-enquiry-intro,
+main .ona-consent,
+main .ona-enquiry-summary span,
+main .ona-form-field label {
+  color: #cfc2b7;
+}
+
+/* Dark surfaces for content blocks that were previously ivory/white. */
+main .ona-residence-selector-copy,
+main .ona-interiors-feature-caption,
+main .ona-masterplan-info,
+main .ona-architecture-feature-copy,
+main .ona-amenity-card,
+main .ona-commercial-plan-copy,
+main .ona-travel-time {
+  background: #38312c;
+  color: #f5f0ea;
+}
+
+main .ona-residence-type-tabs button,
+main .ona-residence-variant-tabs button {
+  background: #38312c;
+  color: #cfc2b7;
+}
+
+main .ona-residence-type-tabs button.is-active,
+main .ona-residence-variant-tabs button.is-active {
+  background: #a58a71;
+  color: #fff;
+}
+
+/* Floor plans and maps stay light so technical drawings remain legible. */
+main .ona-residence-plan,
+main .ona-masterplan-image,
+main .ona-commercial-plan-image,
+main .ona-location-map {
+  background: #f5f0ea;
+}
+
+/* Enquiry form controls on the dark page. */
+main .ona-form-field input,
+main .ona-form-field select,
+main .ona-form-field textarea {
+  color: #f5f0ea;
+  border-bottom-color: rgba(245, 240, 234, 0.34);
+}
+
+main .ona-form-field input:focus,
+main .ona-form-field select:focus,
+main .ona-form-field textarea:focus {
+  border-bottom-color: #a58a71;
+}
+
+main .ona-form-field input::placeholder,
+main .ona-form-field textarea::placeholder {
+  color: #aa9e94;
+}
+
+main .ona-enquiry-submit {
+  color: #302a26;
+  background: #a58a71;
+}
+
+/* =========================================================
+   HOME — PREMIUM ONA SHOWCASE
+   ========================================================= */
+
+.ona-home-showcase {
+  position: relative;
+
+  /*
+   * Keep the existing page background.
+   * Do not introduce another section colour.
+   */
+  background: transparent;
+
+  padding: 4.6rem 0 4.2rem;
+
+  color: #f5f0ea;
+}
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.ona-home-showcase-intro {
+  max-width: 1050px;
+
+  margin: 0 auto 2.7rem;
+
+  text-align: center;
+}
+
+.ona-home-showcase-kicker {
+  display: inline-block;
+
+  margin-bottom: 0.9rem;
+
+  color: #a58a71;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.67rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.28em;
+
+  text-transform: uppercase;
+}
+
+.ona-home-showcase-title {
+  margin: 0;
+
+  color: #f5f0ea;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(2.2rem, 3.6vw, 3.7rem);
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.025em;
+}
+
+.ona-home-showcase-copy {
+  max-width: 960px;
+
+  margin: 1.25rem auto 0;
+
+  color: #cfc2b7;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: clamp(0.98rem, 1.25vw, 1.1rem);
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   PREMIUM IMAGE CARDS
+   ========================================================= */
+
+.ona-home-showcase-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 1.2rem;
+}
+
+.ona-home-showcase-card {
+  position: relative;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  /*
+   * Reduced from the previous very tall version.
+   */
+  min-height: 450px;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  background-size: cover;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  isolation: isolate;
+
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.ona-home-showcase-card::before {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 14, 12, 0) 25%,
+      rgba(16, 14, 12, 0.16) 52%,
+      rgba(16, 14, 12, 0.88) 100%
+    );
+
+  content: "";
+
+  transition: background 260ms ease;
+}
+
+.ona-home-showcase-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 21px 46px rgba(0, 0, 0, 0.22);
+}
+
+.ona-home-showcase-card:hover::before {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 14, 12, 0) 20%,
+      rgba(16, 14, 12, 0.12) 48%,
+      rgba(16, 14, 12, 0.92) 100%
+    );
+}
+
+/* =========================================================
+   IMAGE CARD CONTENT
+   ========================================================= */
+
+.ona-home-showcase-card-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  padding: 1.45rem 1.45rem 1.55rem;
+}
+
+.ona-home-showcase-card h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(1.75rem, 2.2vw, 2.25rem);
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.02em;
+}
+
+.ona-home-showcase-card p {
+  max-width: 330px;
+
+  margin: 0.7rem 0 0;
+
+  color: rgba(255, 255, 255, 0.84);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.84rem;
+
+  line-height: 1.55;
+}
+
+.ona-home-showcase-card-action {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  margin-top: 1rem;
+
+  padding-bottom: 0.3rem;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.55);
+
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+}
+
+.ona-home-showcase-card-action span:last-child {
+  font-size: 0.85rem;
+
+  letter-spacing: 0;
+
+  transition: transform 180ms ease;
+}
+
+.ona-home-showcase-card:hover
+.ona-home-showcase-card-action
+span:last-child {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   EXPLORE FURTHER
+   ========================================================= */
+
+.ona-home-explore {
+  margin-top: 3.5rem;
+}
+
+.ona-home-explore-heading {
+  margin-bottom: 1rem;
+}
+
+.ona-home-explore-heading span {
+  color: #a58a71;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.66rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.26em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   EXPLORE GRID
+   ========================================================= */
+
+.ona-home-explore-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  border-top:
+    1px solid rgba(245, 240, 234, 0.16);
+
+  border-bottom:
+    1px solid rgba(245, 240, 234, 0.16);
+}
+
+/* =========================================================
+   EXPLORE CARD
+   ========================================================= */
+
+.ona-home-explore-card {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  /*
+   * Compact.
+   */
+  min-height: 180px;
+
+  padding: 1.45rem 1.6rem;
+
+  color: #f5f0ea;
+
+  text-decoration: none;
+
+  transition:
+    background-color 220ms ease,
+    transform 220ms ease;
+}
+
+.ona-home-explore-card + .ona-home-explore-card {
+  border-left:
+    1px solid rgba(245, 240, 234, 0.14);
+}
+
+.ona-home-explore-card:hover {
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.ona-home-explore-label {
+  display: block;
+
+  margin-bottom: 0.7rem;
+
+  color: #a58a71;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.62rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.ona-home-explore-card h3 {
+  margin: 0;
+
+  color: #f5f0ea;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(1.4rem, 1.8vw, 1.75rem);
+
+  font-weight: 400;
+
+  line-height: 1.15;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.ona-home-explore-card p {
+  max-width: 350px;
+
+  margin: 0.65rem 0 0;
+
+  color: #cfc2b7;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.82rem;
+
+  line-height: 1.55;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.ona-home-explore-action {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  width: fit-content;
+
+  margin-top: auto;
+
+  padding-top: 1rem;
+
+  color: #f5f0ea;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.61rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+}
+
+.ona-home-explore-action span:last-child {
+  color: #a58a71;
+
+  font-size: 0.85rem;
+
+  letter-spacing: 0;
+
+  transition: transform 180ms ease;
+}
+
+.ona-home-explore-card:hover
+.ona-home-explore-action
+span:last-child {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   SALES CARD
+   ========================================================= */
+
+.ona-home-explore-card--featured {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(165, 138, 113, 0.14),
+      rgba(165, 138, 113, 0.025)
+    );
+}
+
+.ona-home-explore-card--featured:hover {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(165, 138, 113, 0.2),
+      rgba(165, 138, 113, 0.05)
+    );
+}
+
+.ona-home-explore-card--featured
+.ona-home-explore-label {
+  color: #c5a688;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 980px) {
+  .ona-home-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ona-home-showcase-card {
+    min-height: 420px;
+  }
+
+  .ona-home-explore-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-home-explore-card {
+    min-height: 0;
+
+    padding: 1.35rem 3.5rem 1.35rem 0;
+  }
+
+  .ona-home-explore-card + .ona-home-explore-card {
+    padding-left: 0;
+
+    border-top:
+      1px solid rgba(245, 240, 234, 0.14);
+
+    border-left: 0;
+  }
+
+  .ona-home-explore-action {
+    margin-top: 0.85rem;
+
+    padding-top: 0;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 680px) {
+  .ona-home-showcase {
+    padding: 3.8rem 0 3.6rem;
+  }
+
+  .ona-home-showcase-intro {
+    margin-bottom: 2rem;
+
+    text-align: left;
+  }
+
+  .ona-home-showcase-title br {
+    display: none;
+  }
+
+  .ona-home-showcase-copy {
+    margin-left: 0;
+
+    margin-right: 0;
+  }
+
+  .ona-home-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-home-showcase-card {
+    min-height: 400px;
+
+    border-radius: 18px;
+  }
+
+  .ona-home-showcase-card-content {
+    padding: 1.25rem;
+  }
+
+  .ona-home-explore {
+    margin-top: 2.8rem;
+  }
+
+  .ona-home-explore-card {
+    padding: 1.3rem 0;
+  }
+}
+/* =========================================================
+   FOOTER — intentionally excluded from the dark page theme
+   ========================================================= */
+.ona-footer {
+  padding: 2rem 0 0.9rem;
+  background: #f7f3ed;
+  color: #27231f;
+}
+
+.ona-footer-main {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 190px;
+}
+
+.ona-footer-brand {
+  width: max-content;
+  max-width: 260px;
+}
+
+.ona-footer-logo {
+  display: inline-flex;
+  flex-direction: column;
+  width: fit-content;
+  color: #27231f;
+  text-decoration: none;
+}
+
+.ona-footer-logo span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.35rem;
+  line-height: 0.9;
+  letter-spacing: 0.12em;
+}
+
+.ona-footer-logo small {
+  margin-top: 0.48rem;
+  padding-left: 0.32em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+}
+
+.ona-footer-tagline {
+  margin: 1.25rem 0 0;
+  color: #a47f61;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.ona-footer-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ona-footer-center p {
+  margin: 0;
+  color: #756a61;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ona-footer-meta {
+  width: max-content;
+  max-width: none;
+  margin-left: auto;
+  padding-top: 0;
+  justify-self: auto;
+  text-align: left;
+}
+
+.ona-footer-meta strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #27231f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ona-footer-meta p {
+  margin: 0 0 0.35rem;
+  color: #796b60;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.ona-footer-register {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.05rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid #b39376;
+  color: #27231f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.ona-footer-register-arrow {
+  display: inline-block;
+  margin-left: 0.05rem;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  transition: transform 180ms ease;
+}
+
+.ona-footer-register:hover {
+  color: #a47f61;
+  border-color: #a47f61;
+}
+
+.ona-footer-register:hover .ona-footer-register-arrow {
+  transform: translateX(3px);
+}
+
+.ona-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ona-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(51, 45, 39, 0.17);
+  border-radius: 50%;
+  color: #786e65;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-footer-social-link svg {
+  display: block;
+}
+
+.ona-footer-social-link:hover {
+  border-color: #a47f61;
+  background: rgba(164, 127, 97, 0.07);
+  color: #a47f61;
+  transform: translateY(-2px);
+}
+
+.ona-footer-social-link:focus-visible {
+  outline: 2px solid #a47f61;
+  outline-offset: 3px;
+}
+
+.ona-footer-bottom {
+  margin-top: 0;
+  padding-top: 0.85rem;
+  display: block;
+  border-top: 1px solid rgba(45, 39, 34, 0.1);
+  color: #9a8d83;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.ona-footer-bottom p {
+  margin: 0;
+  color: #9a8d83;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
+  .ona-footer-center {
+    width: 360px;
+  }
+
+  .ona-footer-center p {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 760px) {
+  .ona-footer {
+    padding: 1.8rem 0 0.9rem;
+  }
+
+  .ona-footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+
+  .ona-footer-center {
+    position: static;
+    width: 100%;
+    transform: none;
+    text-align: left;
+  }
+
+  .ona-footer-center p {
+    white-space: normal;
+    text-align: left;
+  }
+
+  .ona-footer-meta {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .ona-footer-bottom {
+    margin-top: 1.4rem;
+  }
+}
+
+/* =========================================================
+   OUR STORY — ONA DARK EDITORIAL PAGE
+   Scoped to /development only through .ona-story-page.
+   Uses the current ONA site palette. Footer remains unchanged.
+   ========================================================= */
+
+.ona-story-page {
+  --story-bg: #302a26;
+  --story-panel: #38312c;
+  --story-panel-soft: #342d29;
+  --story-text: #f5f0ea;
+  --story-muted: #cfc2b7;
+  --story-muted-soft: #aa9e94;
+  --story-sand: #a58a71;
+  --story-sand-light: #d8c3ae;
+  --story-line: rgba(245, 240, 234, 0.16);
+  background: var(--story-bg);
+  color: var(--story-text);
+  overflow: hidden;
+}
+
+.ona-story-page .ona-section-shell {
+  width: min(calc(100% - 112px), 1500px);
+}
+
+.ona-story-overline {
+  margin: 0;
+  color: var(--story-text);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.ona-story-rule {
+  width: 42px;
+  height: 1px;
+  display: block;
+  margin-top: 1rem;
+  background: var(--story-sand);
+}
+
+.ona-story-script {
+  margin: 1.35rem 0 0;
+  color: var(--story-sand-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ona-story-card-rule {
+  width: 28px;
+  height: 1px;
+  display: block;
+  margin: 1rem 0;
+  background: var(--story-sand);
+}
+
+.ona-story-page em {
+  color: var(--story-sand-light);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.ona-story-hero {
+  min-height: 790px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--story-bg);
+}
+
+.ona-story-hero-media {
+  position: absolute;
+  inset: 0 0 0 42%;
+  z-index: -3;
+}
+
+.ona-story-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.ona-story-hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      #302a26 0%,
+      #302a26 29%,
+      rgba(48, 42, 38, 0.98) 36%,
+      rgba(48, 42, 38, 0.78) 48%,
+      rgba(48, 42, 38, 0.24) 66%,
+      rgba(48, 42, 38, 0.04) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(25, 21, 18, 0.24) 0%,
+      rgba(25, 21, 18, 0.03) 48%,
+      rgba(25, 21, 18, 0.22) 100%
+    );
+}
+
+.ona-story-hero-inner {
+  min-height: 790px;
+  padding-top: 142px;
+  padding-bottom: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.ona-story-hero-copy {
+  width: min(650px, 52vw);
+}
+
+.ona-story-hero-copy h1 {
+  margin: 1.45rem 0 1.35rem;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.5rem, 5.3vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.ona-story-hero-lead {
+  max-width: 600px;
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.97rem;
+  line-height: 1.78;
+}
+
+.ona-story-gold-button {
+  min-height: 49px;
+  width: fit-content;
+  margin-top: 2rem;
+  padding: 0 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.55rem;
+  color: #302a26;
+  background: var(--story-sand);
+  border: 1px solid var(--story-sand);
+  text-decoration: none;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.ona-story-gold-button:hover {
+  background: var(--story-sand-light);
+  transform: translateY(-2px);
+}
+
+.ona-story-hero-meta {
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  display: flex;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--story-line);
+  color: var(--story-muted-soft);
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ona-story-hero-meta span + span::before {
+  margin-right: 1.4rem;
+  color: var(--story-sand);
+  content: "•";
+}
+
+/* =========================================================
+   THE BEGINNING
+   ========================================================= */
+
+.ona-story-origin {
+  padding: 6.2rem 0;
+  background: var(--story-bg);
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-origin-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(600px, 1.12fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+}
+
+.ona-story-origin-copy h2 {
+  max-width: 650px;
+  margin: 1.25rem 0 1.2rem;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 4.2vw, 4.7rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.ona-story-origin-copy > p:last-child {
+  max-width: 580px;
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.92rem;
+  line-height: 1.78;
+}
+
+.ona-story-origin-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.ona-story-origin-card {
+  min-height: 275px;
+  padding: 1.65rem 1.45rem 1.5rem;
+  border: 1px solid var(--story-line);
+  background: var(--story-panel);
+  box-shadow: 0 18px 45px rgba(18, 15, 13, 0.12);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+
+.ona-story-origin-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 138, 113, 0.48);
+  background: #3c342f;
+}
+
+.ona-story-origin-mark {
+  min-height: 28px;
+  display: block;
+  color: var(--story-sand);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.ona-story-origin-label {
+  display: block;
+  margin-top: 0.85rem;
+  color: var(--story-sand-light);
+  font-size: 0.57rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ona-story-origin-card h3 {
+  margin: 0.55rem 0 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.28rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.ona-story-origin-card p {
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.78rem;
+  line-height: 1.66;
+}
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.ona-story-values {
+  min-height: 600px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--story-bg);
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-values-image {
+  position: absolute;
+  inset: 0 0 0 43%;
+  z-index: -3;
+}
+
+.ona-story-values-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ona-story-values-wash {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      #302a26 0%,
+      #302a26 29%,
+      rgba(48, 42, 38, 0.96) 42%,
+      rgba(48, 42, 38, 0.6) 58%,
+      rgba(48, 42, 38, 0.18) 82%,
+      rgba(48, 42, 38, 0.08) 100%
+    ),
+    linear-gradient(180deg, rgba(27, 23, 20, 0.12), rgba(27, 23, 20, 0.32));
+}
+
+.ona-story-values-inner {
+  min-height: 600px;
+  padding-top: 5.2rem;
+  padding-bottom: 5.2rem;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.76fr) minmax(650px, 1.24fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+.ona-story-values-copy h2 {
+  margin: 1.2rem 0 1rem;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 4.2vw, 4.7rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.ona-story-values-copy > p:last-child {
+  max-width: 520px;
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.ona-story-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.ona-story-value-card {
+  min-height: 260px;
+  padding: 1.55rem 1.25rem;
+  background: rgba(56, 49, 44, 0.94);
+  border: 1px solid rgba(245, 240, 234, 0.18);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(18, 15, 13, 0.16);
+}
+
+.ona-story-value-number {
+  color: var(--story-sand-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+}
+
+.ona-story-value-card h3 {
+  margin: 1.1rem 0 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.ona-story-value-card p {
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.76rem;
+  line-height: 1.62;
+}
+
+/* =========================================================
+   PEOPLE & RELATIONSHIPS
+   ========================================================= */
+
+.ona-story-people {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  background: var(--story-bg);
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-people-image {
+  min-height: 570px;
+  overflow: hidden;
+}
+
+.ona-story-people-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.9) contrast(1.02);
+}
+
+.ona-story-people-copy {
+  min-height: 570px;
+  padding: clamp(3.5rem, 6vw, 7rem);
+  display: flex;
+  align-items: center;
+  background: var(--story-panel-soft);
+}
+
+.ona-story-people-copy > div {
+  max-width: 650px;
+}
+
+.ona-story-people-copy h2 {
+  margin: 1.4rem 0 1.2rem;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.9rem, 4.5vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.ona-story-people-copy p:not(.ona-story-overline) {
+  max-width: 620px;
+  margin: 0 0 1rem;
+  color: var(--story-muted);
+  font-size: 0.91rem;
+  line-height: 1.78;
+}
+
+/* =========================================================
+   PARTNERS
+   ========================================================= */
+
+.ona-story-partners {
+  padding: 5rem 0 4rem;
+  background: var(--story-bg);
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-partners-heading {
+  margin-bottom: 1.55rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.ona-story-partners-heading > div {
+  max-width: 760px;
+}
+
+.ona-story-partners-heading h2 {
+  margin: 0.65rem 0 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3vw, 3.35rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.ona-story-partners-heading > span {
+  width: min(200px, 18vw);
+  height: 1px;
+  display: block;
+  margin-bottom: 0.45rem;
+  background: var(--story-sand);
+}
+
+.ona-story-partners-list {
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-partner-row {
+  min-height: 175px;
+  padding: 1.35rem 0;
+  display: grid;
+  grid-template-columns: minmax(230px, 0.48fr) minmax(0, 1.25fr) 150px;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  color: inherit;
+  border-bottom: 1px solid var(--story-line);
+  text-decoration: none;
+  transition: background-color 180ms ease, padding 180ms ease;
+}
+
+.ona-story-partner-row:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.ona-story-partner-logo-wrap {
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  overflow: visible;
+}
+
+.ona-story-partner-logo {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ona-story-partner-logo--oniria {
+  width: min(100%, 245px);
+  max-height: 82px;
+}
+
+.ona-story-partner-logo--vigor {
+  width: min(100%, 185px);
+  max-height: 118px;
+}
+
+.ona-story-partner-logo--zhc {
+  width: min(100%, 220px);
+  max-height: 100px;
+}
+
+.ona-story-partner-copy > span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--story-sand-light);
+  font-size: 0.57rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ona-story-partner-copy h3 {
+  margin: 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 2vw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.ona-story-partner-copy p {
+  max-width: 760px;
+  margin: 0.55rem 0 0;
+  color: var(--story-muted);
+  font-size: 0.83rem;
+  line-height: 1.62;
+}
+
+.ona-story-partner-link {
+  padding-bottom: 0.45rem;
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--story-text);
+  border-bottom: 1px solid rgba(245, 240, 234, 0.45);
+  font-size: 0.61rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.ona-story-partner-row:hover .ona-story-partner-link {
+  color: var(--story-sand-light);
+  border-color: var(--story-sand);
+}
+
+/* =========================================================
+   FROM IDEA TO PLACE
+   ========================================================= */
+
+.ona-story-place {
+  padding: 5.8rem 0 5.3rem;
+  background: var(--story-panel-soft);
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-place-heading {
+  margin-bottom: 2.7rem;
+}
+
+.ona-story-place-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.78fr) minmax(260px, 0.62fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.ona-story-place-intro h2 {
+  margin: 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.6rem, 4vw, 4.45rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.ona-story-place-intro > p {
+  max-width: 560px;
+  margin: 1rem 0 1.5rem;
+  color: var(--story-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.ona-story-place-main-image {
+  height: 390px;
+  overflow: hidden;
+  border: 1px solid var(--story-line);
+}
+
+.ona-story-place-main-image img,
+.ona-story-perspective-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 550ms ease;
+}
+
+.ona-story-place-main-image:hover img,
+.ona-story-perspective-image:hover img {
+  transform: scale(1.025);
+}
+
+.ona-story-place-copy {
+  padding-top: 2.5rem;
+}
+
+.ona-story-place-kicker,
+.ona-story-perspective-copy > span {
+  display: block;
+  color: var(--story-sand-light);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ona-story-place-copy h3 {
+  margin: 0.85rem 0;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.ona-story-place-copy > p {
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.79rem;
+  line-height: 1.67;
+}
+
+.ona-story-place-details {
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--story-line);
+}
+
+.ona-story-place-details p {
+  margin: 0;
+  padding: 0.46rem 0;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 0.45rem;
+  color: var(--story-muted);
+  font-size: 0.73rem;
+  line-height: 1.48;
+}
+
+.ona-story-place-details p > span {
+  color: var(--story-sand-light);
+}
+
+.ona-story-perspective-card {
+  background: #302a26;
+}
+
+.ona-story-perspective-image {
+  height: 290px;
+  overflow: hidden;
+  border: 1px solid var(--story-line);
+}
+
+.ona-story-perspective-copy {
+  padding: 1.4rem 0 0;
+}
+
+.ona-story-perspective-copy h3 {
+  margin: 0.75rem 0 0.7rem;
+  color: var(--story-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 1.9vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.ona-story-perspective-copy p {
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.75rem;
+  line-height: 1.62;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .ona-story-page .ona-section-shell {
+    width: min(calc(100% - 72px), 1500px);
+  }
+
+  .ona-story-origin-layout,
+  .ona-story-values-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-story-origin-copy,
+  .ona-story-values-copy {
+    max-width: 760px;
+  }
+
+  .ona-story-values-image {
+    inset: 32% 0 0 28%;
+  }
+
+  .ona-story-values-wash {
+    background: linear-gradient(180deg, #302a26 0%, #302a26 38%, rgba(48, 42, 38, 0.86) 53%, rgba(48, 42, 38, 0.42) 100%);
+  }
+
+  .ona-story-values-grid {
+    max-width: 900px;
+  }
+
+  .ona-story-place-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .ona-story-perspective-card {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .ona-story-perspective-image {
+    height: 360px;
+  }
+}
+
+@media (max-width: 920px) {
+  .ona-story-page .ona-section-shell {
+    width: calc(100% - 48px);
+  }
+
+  .ona-story-hero {
+    min-height: 780px;
+  }
+
+  .ona-story-hero-media {
+    inset: 38% 0 0 0;
+  }
+
+  .ona-story-hero-fade {
+    background: linear-gradient(180deg, #302a26 0%, #302a26 38%, rgba(48, 42, 38, 0.88) 50%, rgba(48, 42, 38, 0.2) 76%, rgba(48, 42, 38, 0.05) 100%);
+  }
+
+  .ona-story-hero-inner {
+    min-height: 780px;
+    padding-top: 120px;
+    align-items: flex-start;
+  }
+
+  .ona-story-hero-copy {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .ona-story-origin-cards,
+  .ona-story-values-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ona-story-people {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-story-people-image,
+  .ona-story-people-copy {
+    min-height: 460px;
+  }
+
+  .ona-story-partner-row {
+    grid-template-columns: 180px 1fr 120px;
+    gap: 2rem;
+  }
+
+  .ona-story-place-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-story-place-copy {
+    padding-top: 0;
+  }
+
+  .ona-story-perspective-card {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-story-page .ona-section-shell {
+    width: calc(100% - 36px);
+  }
+
+  .ona-story-hero {
+    min-height: 720px;
+  }
+
+  .ona-story-hero-inner {
+    min-height: 720px;
+    padding-top: 104px;
+    padding-bottom: 2.5rem;
+  }
+
+  .ona-story-hero-copy h1 {
+    font-size: clamp(2.8rem, 13vw, 4.5rem);
+  }
+
+  .ona-story-hero-lead {
+    font-size: 0.88rem;
+  }
+
+  .ona-story-hero-meta {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .ona-story-hero-meta span + span::before {
+    display: none;
+  }
+
+  .ona-story-origin,
+  .ona-story-partners,
+  .ona-story-place {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .ona-story-origin-layout {
+    gap: 2rem;
+  }
+
+  .ona-story-origin-copy h2,
+  .ona-story-values-copy h2,
+  .ona-story-people-copy h2 {
+    font-size: clamp(2.35rem, 11vw, 3.8rem);
+  }
+
+  .ona-story-origin-cards,
+  .ona-story-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-story-origin-card,
+  .ona-story-value-card {
+    min-height: 0;
+  }
+
+  .ona-story-values-inner {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .ona-story-values-image {
+    inset: 45% 0 0 0;
+  }
+
+  .ona-story-values-wash {
+    background: linear-gradient(180deg, #302a26 0%, #302a26 47%, rgba(48, 42, 38, 0.84) 61%, rgba(48, 42, 38, 0.28) 100%);
+  }
+
+  .ona-story-people-image {
+    min-height: 360px;
+  }
+
+  .ona-story-people-copy {
+    min-height: 0;
+    padding: 3rem 1.25rem;
+  }
+
+  .ona-story-partners-heading {
+    align-items: flex-start;
+  }
+
+  .ona-story-partners-heading > span {
+    display: none;
+  }
+
+  .ona-story-partner-row {
+    min-height: 0;
+    padding: 1.7rem 0;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ona-story-partner-logo-wrap {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    justify-content: flex-start;
+    background: transparent;
+    border: 0;
+  }
+
+  .ona-story-partner-logo {
+    width: auto;
+    max-width: min(245px, 72vw);
+    height: auto;
+    object-position: left center;
+  }
+
+  .ona-story-partner-logo--oniria {
+    width: min(235px, 70vw);
+    max-height: 78px;
+  }
+
+  .ona-story-partner-logo--vigor {
+    width: min(165px, 50vw);
+    max-height: 108px;
+  }
+
+  .ona-story-partner-logo--zhc {
+    width: min(210px, 64vw);
+    max-height: 96px;
+  }
+
+  .ona-story-partner-link {
+    width: fit-content;
+  }
+
+  .ona-story-place-main-image {
+    height: 300px;
+  }
+
+  .ona-story-perspective-card {
+    display: block;
+  }
+
+  .ona-story-perspective-image {
+    height: 300px;
+  }
+
+  .ona-story-perspective-copy {
+    padding-top: 1.2rem;
+  }
+}
+
+/* =========================================================
+   2026 PREMIUM SALES PAGES
+   Life & Community · Residences · Private Enquiry
+   Scoped so the Home, Our Story, Location and footer retain
+   their current design language.
+   ========================================================= */
+
+/* Shared page canvas */
+.ona-lifestyle-page,
+.ona-residences-page,
+.ona-enquiry-page {
+  --ona-page-bg: #302a26;
+  --ona-page-panel: #38312c;
+  --ona-page-panel-soft: #342e2a;
+  --ona-page-text: #f5f0ea;
+  --ona-page-muted: #cfc2b7;
+  --ona-page-accent: #a58a71;
+  --ona-page-line: rgba(245, 240, 234, 0.16);
+  background: var(--ona-page-bg);
+  color: var(--ona-page-text);
+}
+
+.ona-lifestyle-page .ona-eyebrow,
+.ona-residences-page .ona-eyebrow,
+.ona-enquiry-page .ona-eyebrow {
+  color: #f5f0ea;
+}
+
+.ona-lifestyle-page .ona-script-label,
+.ona-residences-page .ona-script-label,
+.ona-enquiry-page .ona-script-label {
+  color: #c5a688;
+}
+
+/* =========================================================
+   LIFE & COMMUNITY — HERO
+   ========================================================= */
+.ona-life-hero {
+  min-height: min(900px, 92vh);
+  position: relative;
+  overflow: hidden;
+  background: #211d1a;
+}
+
+.ona-life-hero-image,
+.ona-life-hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-life-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ona-life-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(31, 25, 21, 0.9) 0%, rgba(31, 25, 21, 0.5) 46%, rgba(31, 25, 21, 0.08) 76%),
+    linear-gradient(180deg, rgba(17, 13, 10, 0.12), rgba(17, 13, 10, 0.38));
+}
+
+.ona-life-hero-inner {
+  min-height: min(900px, 92vh);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 9rem;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.ona-life-hero-copy {
+  width: min(780px, 72vw);
+}
+
+.ona-life-hero-copy h1 {
+  margin: 1rem 0 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.8rem, 7vw, 7.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.ona-life-hero-copy h1 em {
+  color: #e5d3c1;
+  font-weight: 400;
+}
+
+.ona-life-hero-copy > p:not(.ona-eyebrow):not(.ona-script-label) {
+  max-width: 640px;
+  margin: 0;
+  color: rgba(245, 240, 234, 0.82);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.ona-life-hero-notes {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ona-life-hero-notes span {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+  background: rgba(20, 16, 13, 0.18);
+  backdrop-filter: blur(7px);
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   LIFE & COMMUNITY — AMENITY PORTFOLIO
+   ========================================================= */
+.ona-life-amenities {
+  padding: clamp(5.5rem, 9vw, 9rem) 0;
+  background: #302a26;
+}
+
+.ona-life-section-heading {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: 0.7fr 1.25fr 0.9fr;
+  align-items: end;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.ona-life-section-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.9rem, 5.1vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.ona-life-section-heading h2 em {
+  color: #c5a688;
+  font-weight: 400;
+}
+
+.ona-life-section-heading > p:last-child {
+  margin: 0;
+  color: #cfc2b7;
+  line-height: 1.8;
+}
+
+.ona-life-amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.ona-life-amenity-card {
+  min-height: 360px;
+  position: relative;
+  grid-column: span 4;
+  overflow: hidden;
+  border: 1px solid rgba(245,240,234,.12);
+  background: #38312c;
+}
+
+.ona-life-amenity-card--featured {
+  min-height: 520px;
+  grid-column: span 6;
+}
+
+.ona-life-amenity-card--text {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(197,166,136,.18), transparent 34%),
+    linear-gradient(145deg, #3b332e, #2f2925);
+}
+
+.ona-life-amenity-media,
+.ona-life-amenity-media img,
+.ona-life-amenity-media-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-life-amenity-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .65s cubic-bezier(.2,.7,0,1);
+}
+
+.ona-life-amenity-media-overlay {
+  background: linear-gradient(180deg, rgba(15,12,10,.04) 22%, rgba(15,12,10,.86) 100%);
+}
+
+.ona-life-amenity-card:hover .ona-life-amenity-media img {
+  transform: scale(1.035);
+}
+
+.ona-life-amenity-content {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.7rem;
+}
+
+.ona-life-amenity-card--text .ona-life-amenity-content {
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.ona-life-amenity-meta {
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #c5a688;
+}
+
+.ona-life-amenity-meta span {
+  font-size: .62rem;
+  letter-spacing: .17em;
+}
+
+.ona-life-amenity-content h3 {
+  margin: 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.65rem, 2.5vw, 2.7rem);
+  font-weight: 400;
+}
+
+.ona-life-amenity-content p {
+  max-width: 440px;
+  margin: .8rem 0 0;
+  color: rgba(255,255,255,.76);
+  font-size: .88rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   LIFE & COMMUNITY — LANDSCAPE CLOSE
+   ========================================================= */
+.ona-life-landscape-premium {
+  min-height: min(820px, 88vh);
+  position: relative;
+  overflow: hidden;
+  background: #201b18;
+}
+
+.ona-life-landscape-premium > img,
+.ona-life-landscape-premium-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-life-landscape-premium > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ona-life-landscape-premium-overlay {
+  background: linear-gradient(90deg, rgba(24,19,16,.9), rgba(24,19,16,.54) 48%, rgba(24,19,16,.08));
+}
+
+.ona-life-landscape-premium-inner {
+  min-height: min(820px, 88vh);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.ona-life-landscape-premium-copy {
+  max-width: 700px;
+}
+
+.ona-life-landscape-premium-copy h2 {
+  margin: 1rem 0 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.3rem, 6vw, 6.8rem);
+  font-weight: 400;
+  line-height: .92;
+}
+
+.ona-life-landscape-premium-copy h2 em {
+  color: #e5d3c1;
+  font-weight: 400;
+}
+
+.ona-life-landscape-premium-copy > p:not(.ona-eyebrow):not(.ona-script-label) {
+  max-width: 590px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.8;
+}
+
+.ona-life-landscape-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
+
+/* =========================================================
+   RESIDENCES — HERO
+   ========================================================= */
+.ona-residences-hero {
+  min-height: min(920px, 94vh);
+  position: relative;
+  overflow: hidden;
+  background: #211c19;
+}
+
+.ona-residences-hero-image,
+.ona-residences-hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-residences-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ona-residences-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(25,20,17,.9) 0%, rgba(25,20,17,.48) 52%, rgba(25,20,17,.1) 78%),
+    linear-gradient(180deg, rgba(12,10,8,.12), rgba(12,10,8,.35));
+}
+
+.ona-residences-hero-inner {
+  min-height: min(920px, 94vh);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 9rem;
+  padding-bottom: clamp(4.2rem, 8vw, 7rem);
+}
+
+.ona-residences-hero-copy {
+  width: min(900px, 76vw);
+}
+
+.ona-residences-hero-copy h1 {
+  margin: 1rem 0 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.7rem, 6.8vw, 7.4rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .9;
+}
+
+.ona-residences-hero-copy h1 em {
+  color: #e5d3c1;
+  font-weight: 400;
+}
+
+.ona-residences-hero-copy > p:not(.ona-eyebrow):not(.ona-script-label) {
+  max-width: 690px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.85;
+}
+
+.ona-residences-hero-actions {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
+
+/* =========================================================
+   RESIDENCES — LIVE / LIFE / WORK
+   ========================================================= */
+.ona-residences-world {
+  padding: clamp(5.5rem, 9vw, 9rem) 0;
+  background: #302a26;
+}
+
+.ona-residences-world-heading {
+  max-width: 940px;
+  margin-bottom: 3.5rem;
+}
+
+.ona-residences-world-heading h2 {
+  margin: 1rem 0 1.4rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 5.4vw, 6rem);
+  font-weight: 400;
+  line-height: .95;
+}
+
+.ona-residences-world-heading h2 em {
+  color: #c5a688;
+  font-weight: 400;
+}
+
+.ona-residences-world-heading > p:last-child {
+  max-width: 620px;
+  color: #cfc2b7;
+  line-height: 1.8;
+}
+
+.ona-residences-world-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.ona-residences-world-card {
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+}
+
+.ona-residences-world-card > img,
+.ona-residences-world-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-residences-world-card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.ona-residences-world-card:hover > img {
+  transform: scale(1.035);
+}
+
+.ona-residences-world-overlay {
+  background: linear-gradient(180deg, rgba(10,8,7,.04), rgba(10,8,7,.84));
+}
+
+.ona-residences-world-label {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2;
+  color: #e5d3c1;
+  font-size: .64rem;
+  letter-spacing: .2em;
+}
+
+.ona-residences-world-content {
+  position: absolute;
+  z-index: 2;
+  right: 1.5rem;
+  bottom: 1.7rem;
+  left: 1.5rem;
+}
+
+.ona-residences-world-content h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3vw, 3.3rem);
+  font-weight: 400;
+}
+
+.ona-residences-world-content p {
+  max-width: 430px;
+  margin: .8rem 0 1.4rem;
+  color: rgba(255,255,255,.78);
+  font-size: .88rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   RESIDENCES — PRODUCT SELECTOR
+   ========================================================= */
+.ona-residences-page .ona-residence-selector {
+  scroll-margin-top: 90px;
+  padding: clamp(6rem, 10vw, 9.5rem) 0;
+  color: #f5f0ea;
+  background: #342e2a;
+}
+
+.ona-residences-page .ona-residence-selector-heading {
+  margin-bottom: 3.5rem;
+  grid-template-columns: .72fr 1.2fr .9fr;
+}
+
+.ona-residences-page .ona-residence-selector-heading h2 {
+  color: #f5f0ea;
+}
+
+.ona-residences-page .ona-residence-selector-heading h2 em {
+  color: #c5a688;
+}
+
+.ona-residences-page .ona-residence-selector-heading > p:last-child {
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-residence-type-tabs {
+  margin-bottom: 1rem;
+  gap: .6rem;
+  background: transparent;
+}
+
+.ona-residences-page .ona-residence-type-tabs button {
+  min-height: 80px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: .3rem;
+  border: 1px solid rgba(245,240,234,.14);
+  color: #cfc2b7;
+  background: #302a26;
+  text-align: left;
+}
+
+.ona-residences-page .ona-residence-type-tabs button span {
+  color: inherit;
+  font-size: .65rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-residence-type-tabs button small {
+  color: #9f9186;
+  font-size: .72rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ona-residences-page .ona-residence-type-tabs button.is-active {
+  border-color: #a58a71;
+  color: #302a26;
+  background: #a58a71;
+}
+
+.ona-residences-page .ona-residence-type-tabs button.is-active small {
+  color: rgba(48,42,38,.72);
+}
+
+.ona-residences-page .ona-residence-selector-layout {
+  gap: 0;
+  border: 1px solid rgba(245,240,234,.13);
+  background: transparent;
+}
+
+.ona-residences-page .ona-residence-selector-copy {
+  padding: clamp(2.4rem, 4.2vw, 4.2rem);
+  color: #f5f0ea;
+  background: #302a26;
+}
+
+.ona-residence-product-label {
+  margin: 0 0 1rem;
+  color: #a58a71;
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-residence-range {
+  color: #c5a688;
+  font-size: clamp(2.4rem, 4vw, 4.4rem);
+}
+
+.ona-residences-page .ona-residence-selector-copy h3 {
+  color: #f5f0ea;
+}
+
+.ona-residences-page .ona-residence-selector-copy > p {
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-residence-variant-tabs {
+  gap: .5rem;
+  background: transparent;
+}
+
+.ona-residences-page .ona-residence-variant-tabs button {
+  border: 1px solid rgba(245,240,234,.13);
+  color: #cfc2b7;
+  background: #38312c;
+}
+
+.ona-residences-page .ona-residence-variant-tabs button.is-active {
+  border-color: #a58a71;
+  color: #302a26;
+  background: #a58a71;
+}
+
+.ona-residences-page .ona-residence-specs > div {
+  border-bottom-color: rgba(245,240,234,.13);
+}
+
+.ona-residences-page .ona-residence-specs dt {
+  color: #9f9186;
+}
+
+.ona-residences-page .ona-residence-sales-link {
+  margin-top: 2rem;
+  padding-bottom: .55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  color: #f5f0ea;
+  border-bottom: 1px solid #a58a71;
+  text-decoration: none;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-residence-plan {
+  min-height: 680px;
+  position: relative;
+  padding: 5rem 2rem 2rem;
+  background: #f7f3ed;
+}
+
+.ona-residences-page .ona-residence-plan img {
+  max-height: 720px;
+}
+
+.ona-residence-plan-note {
+  margin: 1rem 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: inherit;
+  opacity: .8;
+}
+
+.ona-residence-plan-toolbar {
+  position: absolute;
+  top: 1.3rem;
+  right: 1.5rem;
+  left: 1.5rem;
+  padding-bottom: .8rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #756c64;
+  border-bottom: 1px solid rgba(39,35,31,.12);
+  font-size: .62rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   RESIDENCES — PENTHOUSE
+   ========================================================= */
+.ona-residences-page .ona-penthouse {
+  padding: clamp(6rem, 10vw, 9.5rem) 0;
+  background: #302a26;
+}
+
+.ona-residences-page .ona-penthouse-heading {
+  margin-bottom: 3.8rem;
+}
+
+.ona-residences-page .ona-penthouse-heading h2 {
+  font-size: clamp(3.8rem, 7vw, 7rem);
+}
+
+.ona-residences-page .ona-penthouse-intro p {
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-penthouse-image {
+  min-height: 620px;
+  border: 1px solid rgba(245,240,234,.1);
+}
+
+.ona-residences-page .ona-penthouse-image img {
+  min-height: 620px;
+}
+
+/* =========================================================
+   RESIDENCES — INTERIORS
+   ========================================================= */
+.ona-residences-page .ona-interiors {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+  color: #f5f0ea;
+  background: #342e2a;
+}
+
+.ona-residences-page .ona-interiors-heading {
+  margin-bottom: 4.5rem;
+}
+
+.ona-residences-page .ona-interiors-heading h2 {
+  color: #f5f0ea;
+}
+
+.ona-residences-page .ona-interiors-heading h2 span {
+  color: #c5a688;
+}
+
+.ona-residences-page .ona-interiors-lead {
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-interiors-feature {
+  margin-bottom: 6rem;
+  grid-template-columns: 1.65fr .8fr;
+}
+
+.ona-residences-page .ona-interiors-feature > img {
+  height: 650px;
+}
+
+.ona-residences-page .ona-interiors-feature-caption {
+  padding: clamp(2.5rem, 4vw, 4rem);
+  color: #f5f0ea;
+  background: #302a26;
+}
+
+.ona-residences-page .ona-interiors-feature-caption span,
+.ona-residences-page .ona-interiors-story-card > span {
+  color: #a58a71;
+}
+
+.ona-residences-page .ona-interiors-feature-caption p,
+.ona-residences-page .ona-interiors-story-card p {
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-interiors-grid {
+  gap: clamp(2.5rem, 6vw, 7rem);
+}
+
+.ona-residences-page .ona-interiors-story-card--offset {
+  margin-top: 6rem;
+}
+
+.ona-residences-page .ona-interiors-closing {
+  margin-top: 7rem;
+  border-top-color: rgba(245,240,234,.14);
+}
+
+.ona-residences-page .ona-interiors-closing strong {
+  color: #c5a688;
+}
+
+/* =========================================================
+   PRIVATE ENQUIRY / CONTACT
+   ========================================================= */
+.ona-enquiry-page .ona-enquiry {
+  min-height: 100vh;
+  grid-template-columns: minmax(0, .95fr) minmax(600px, 1.05fr);
+  color: #f5f0ea;
+  background: #302a26;
+}
+
+.ona-enquiry-page .ona-enquiry-visual {
+  min-height: 100vh;
+}
+
+.ona-enquiry-page .ona-enquiry-visual > img {
+  object-position: center;
+}
+
+.ona-enquiry-page .ona-enquiry-visual-overlay {
+  background:
+    linear-gradient(180deg, rgba(15,11,9,.16), rgba(15,11,9,.78)),
+    linear-gradient(90deg, rgba(15,11,9,.15), transparent 70%);
+}
+
+.ona-enquiry-page .ona-enquiry-visual-copy {
+  right: clamp(2rem, 4vw, 4.2rem);
+  bottom: clamp(2rem, 5vw, 4.8rem);
+  left: clamp(2rem, 4vw, 4.2rem);
+}
+
+.ona-enquiry-page .ona-enquiry-visual-copy h2 {
+  max-width: 620px;
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(3.7rem, 6.5vw, 6.8rem);
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts {
+  max-width: 570px;
+  margin-top: 2.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255,255,255,.25);
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts > div {
+  padding: 1rem 0;
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts > div + div {
+  padding-left: 1.4rem;
+  border-left: 1px solid rgba(255,255,255,.2);
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts small,
+.ona-enquiry-page .ona-enquiry-visual-facts strong {
+  display: block;
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts small {
+  margin-bottom: .35rem;
+  color: rgba(255,255,255,.62);
+  font-size: .55rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.ona-enquiry-page .ona-enquiry-visual-facts strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.03rem;
+  font-weight: 400;
+}
+
+.ona-enquiry-page .ona-enquiry-form-wrap {
+  padding: 9rem clamp(2.5rem, 6vw, 6.5rem) 5rem;
+  background: #302a26;
+}
+
+.ona-enquiry-page .ona-enquiry-form-inner {
+  width: min(680px, 100%);
+}
+
+.ona-enquiry-heading h1 {
+  margin: 1rem 0 1.35rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.4rem, 5.7vw, 6.2rem);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .9;
+}
+
+.ona-enquiry-heading h1 em {
+  color: #c5a688;
+  font-weight: 400;
+}
+
+.ona-enquiry-page .ona-enquiry-intro {
+  max-width: 570px;
+  color: #cfc2b7;
+  line-height: 1.8;
+}
+
+.ona-enquiry-service-strip {
+  margin: 2.5rem 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(245,240,234,.15);
+  border-bottom: 1px solid rgba(245,240,234,.15);
+}
+
+.ona-enquiry-service-strip > div {
+  min-height: 92px;
+  padding: 1rem .9rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .35rem;
+}
+
+.ona-enquiry-service-strip > div + div {
+  padding-left: .9rem;
+  border-left: 1px solid rgba(245,240,234,.12);
+}
+
+.ona-enquiry-service-strip span {
+  color: #a58a71;
+  font-size: .58rem;
+  letter-spacing: .15em;
+}
+
+.ona-enquiry-service-strip strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.ona-enquiry-page .ona-enquiry-form {
+  gap: 1.45rem;
+}
+
+.ona-enquiry-page .ona-form-field label {
+  color: #aa9e94;
+}
+
+.ona-enquiry-page .ona-form-field input,
+.ona-enquiry-page .ona-form-field select,
+.ona-enquiry-page .ona-form-field textarea {
+  padding: .9rem 0;
+  color: #f5f0ea;
+  border-bottom-color: rgba(245,240,234,.28);
+}
+
+.ona-enquiry-page .ona-form-field select {
+  color-scheme: dark;
+}
+
+.ona-enquiry-page .ona-form-field input::placeholder,
+.ona-enquiry-page .ona-form-field textarea::placeholder {
+  color: #80746a;
+}
+
+.ona-enquiry-page .ona-form-field input:focus,
+.ona-enquiry-page .ona-form-field select:focus,
+.ona-enquiry-page .ona-form-field textarea:focus {
+  border-bottom-color: #a58a71;
+}
+
+.ona-enquiry-page .ona-consent {
+  color: #9f9186;
+}
+
+.ona-enquiry-page .ona-consent input {
+  accent-color: #a58a71;
+}
+
+.ona-enquiry-page .ona-enquiry-submit {
+  min-height: 62px;
+  color: #302a26;
+  background: #a58a71;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.ona-enquiry-page .ona-enquiry-submit:hover:not(:disabled) {
+  background: #c0a184;
+  transform: translateY(-2px);
+}
+
+.ona-enquiry-page .ona-form-status--success {
+  color: #dce7da;
+  background: rgba(87,112,82,.28);
+}
+
+.ona-enquiry-page .ona-form-status--error {
+  color: #f2d5cc;
+  background: rgba(126,71,58,.28);
+}
+
+.ona-enquiry-privacy-note {
+  margin: 1.2rem 0 0;
+  color: #80746a;
+  font-size: .72rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   RESPONSIVE — PREMIUM SALES PAGES
+   ========================================================= */
+@media (max-width: 1180px) {
+  .ona-life-section-heading,
+  .ona-residences-page .ona-residence-selector-heading,
+  .ona-residences-page .ona-interiors-heading {
+    grid-template-columns: 1fr 1.35fr;
+  }
+
+  .ona-life-section-heading > p:last-child,
+  .ona-residences-page .ona-residence-selector-heading > p:last-child,
+  .ona-residences-page .ona-interiors-heading > p:last-child {
+    grid-column: 2;
+  }
+
+  .ona-life-amenity-card {
+    grid-column: span 6;
+  }
+
+  .ona-life-amenity-card--featured {
+    grid-column: span 6;
+  }
+
+  .ona-enquiry-page .ona-enquiry {
+    grid-template-columns: minmax(0,.9fr) minmax(520px,1.1fr);
+  }
+}
+
+@media (max-width: 920px) {
+  .ona-life-hero-copy,
+  .ona-residences-hero-copy {
+    width: 100%;
+  }
+
+  .ona-life-section-heading,
+  .ona-residences-page .ona-residence-selector-heading,
+  .ona-residences-page .ona-interiors-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life-section-heading > p:last-child,
+  .ona-residences-page .ona-residence-selector-heading > p:last-child,
+  .ona-residences-page .ona-interiors-heading > p:last-child {
+    grid-column: auto;
+  }
+
+  .ona-residences-world-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-residences-world-card {
+    min-height: 520px;
+  }
+
+  .ona-residences-page .ona-residence-selector-layout,
+  .ona-residences-page .ona-penthouse-heading,
+  .ona-residences-page .ona-interiors-feature,
+  .ona-residences-page .ona-interiors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-residences-page .ona-interiors-feature > img {
+    height: 540px;
+  }
+
+  .ona-residences-page .ona-interiors-story-card--offset {
+    margin-top: 0;
+  }
+
+  .ona-enquiry-page .ona-enquiry {
+    display: block;
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual {
+    min-height: 76vh;
+    position: relative;
+  }
+
+  .ona-enquiry-page .ona-enquiry-form-wrap {
+    padding-top: 5rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-life-hero,
+  .ona-life-hero-inner,
+  .ona-residences-hero,
+  .ona-residences-hero-inner {
+    min-height: 720px;
+  }
+
+  .ona-life-hero-inner,
+  .ona-residences-hero-inner {
+    padding-bottom: 3rem;
+  }
+
+  .ona-life-hero-copy h1,
+  .ona-residences-hero-copy h1 {
+    font-size: clamp(3.1rem, 14vw, 5.3rem);
+  }
+
+  .ona-life-hero-notes {
+    gap: .5rem;
+  }
+
+  .ona-life-hero-notes span {
+    padding: .55rem .65rem;
+    font-size: .54rem;
+  }
+
+  .ona-life-amenity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life-amenity-card,
+  .ona-life-amenity-card--featured {
+    min-height: 440px;
+    grid-column: auto;
+  }
+
+  .ona-life-amenity-card--text {
+    min-height: 300px;
+  }
+
+  .ona-life-landscape-premium,
+  .ona-life-landscape-premium-inner {
+    min-height: 680px;
+  }
+
+  .ona-life-landscape-actions,
+  .ona-residences-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ona-life-landscape-actions .ona-button,
+  .ona-residences-hero-actions .ona-button {
+    width: 100%;
+  }
+
+  .ona-residences-world-card {
+    min-height: 460px;
+  }
+
+  .ona-residences-page .ona-residence-type-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ona-residences-page .ona-residence-type-tabs button {
+    min-height: 72px;
+  }
+
+  .ona-residences-page .ona-residence-selector-copy {
+    padding: 2rem 1.25rem;
+  }
+
+  .ona-residences-page .ona-residence-plan {
+    min-height: 430px;
+    padding: 4.5rem .7rem 1rem;
+  }
+
+  .ona-residence-plan-toolbar {
+    right: .9rem;
+    left: .9rem;
+    font-size: .52rem;
+  }
+
+  .ona-residences-page .ona-penthouse-image,
+  .ona-residences-page .ona-penthouse-image img {
+    min-height: 500px;
+  }
+
+  .ona-residences-page .ona-interiors-feature > img {
+    height: 420px;
+  }
+
+  .ona-residences-page .ona-interiors-feature-caption {
+    padding: 2rem 1.3rem;
+  }
+
+  .ona-residences-page .ona-interiors-closing {
+    margin-top: 4rem;
+    flex-direction: column;
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual {
+    min-height: 640px;
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual-copy {
+    right: 1.3rem;
+    bottom: 1.8rem;
+    left: 1.3rem;
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual-copy h2 {
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-enquiry-page .ona-enquiry-visual-facts > div + div {
+    padding-left: 0;
+    border-top: 1px solid rgba(255,255,255,.18);
+    border-left: 0;
+  }
+
+  .ona-enquiry-page .ona-enquiry-form-wrap {
+    padding: 4.5rem 1.2rem 3.5rem;
+  }
+
+  .ona-enquiry-heading h1 {
+    font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  .ona-enquiry-service-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-enquiry-service-strip > div {
+    min-height: 68px;
+  }
+
+  .ona-enquiry-service-strip > div + div {
+    padding-left: 0;
+    border-top: 1px solid rgba(245,240,234,.12);
+    border-left: 0;
+  }
+
+  .ona-enquiry-page .ona-enquiry-form,
+  .ona-enquiry-page .ona-form-phone {
+    grid-template-columns: 1fr;
+  }
+}
+/* ========================================================================
+   2026 FINAL PREMIUM PAGE SYSTEM
+   Life & Community · Residences · ONA House · Private Enquiry
+   This block intentionally comes last so it safely overrides older rules
+   without changing the Story page or the light footer.
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   SHARED PAGE SYSTEM
+   ------------------------------------------------------------------------ */
+
+.ona-page {
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-page .ona-kicker {
+  display: inline-block;
+  margin: 0 0 0.7rem;
+  color: #a58a71;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ona-page .ona-subkicker {
+  display: block;
+  margin: 0 0 1rem;
+  color: #cfc2b7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ona-page .ona-editorial-intro {
+  max-width: 860px;
+  margin: 0 auto 2.6rem;
+  text-align: center;
+}
+
+.ona-page .ona-editorial-intro--left {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.ona-page .ona-editorial-intro h2,
+.ona-page .ona-life-hero-copy h1,
+.ona-page .ona-res-hero-copy h1,
+.ona-page .ona-commercial-hero-copy h1,
+.ona-page .ona-form-intro h2,
+.ona-page .ona-enquire-aside-content h1 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.ona-page .ona-editorial-intro h2 span,
+.ona-page .ona-life-hero-copy h1 span,
+.ona-page .ona-res-hero-copy h1 span,
+.ona-page .ona-commercial-hero-copy h1 span,
+.ona-page .ona-form-intro h2 span,
+.ona-page .ona-enquire-aside-content h1 span {
+  color: #d9c7b7;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ona-page .ona-editorial-intro p,
+.ona-page .ona-life-hero-copy p,
+.ona-page .ona-res-hero-copy p,
+.ona-page .ona-commercial-hero-copy p,
+.ona-page .ona-form-intro p,
+.ona-page .ona-enquire-aside-content p {
+  margin-top: 1rem;
+  color: #cfc2b7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.ona-page .ona-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  padding-bottom: 0.38rem;
+  color: #f5f0ea;
+  border-bottom: 1px solid rgba(245, 240, 234, 0.42);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.ona-page .ona-text-link span {
+  transition: transform 180ms ease;
+}
+
+.ona-page .ona-text-link:hover {
+  color: #d9c7b7;
+  border-color: #a58a71;
+}
+
+.ona-page .ona-text-link:hover span {
+  transform: translateX(4px);
+}
+
+.ona-page .ona-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.6rem;
+}
+
+.ona-page .ona-inline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1.4rem;
+  color: #cfc2b7;
+}
+
+.ona-page .ona-inline-meta strong {
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------
+   LIFE & COMMUNITY
+   ------------------------------------------------------------------------ */
+
+.ona-life-page {
+  background: #302a26;
+}
+
+.ona-life-page .ona-life-hero,
+.ona-life-page .ona-life-intro,
+.ona-life-page .ona-life-outdoors {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-life-page .ona-life-hero {
+  padding-top: clamp(8rem, 13vw, 11rem);
+}
+
+.ona-life-page .ona-life-hero-grid,
+.ona-life-page .ona-life-outdoors-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.ona-life-page .ona-life-hero-copy {
+  max-width: 620px;
+}
+
+.ona-life-page .ona-life-hero-image,
+.ona-life-page .ona-life-outdoors-image {
+  overflow: hidden;
+  border-radius: 24px;
+  background: #38312c;
+}
+
+.ona-life-page .ona-life-hero-image {
+  aspect-ratio: 5 / 4;
+}
+
+.ona-life-page .ona-life-outdoors-image {
+  aspect-ratio: 4 / 3;
+}
+
+.ona-life-page .ona-life-hero-image img,
+.ona-life-page .ona-life-outdoors-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 650ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-life-page .ona-life-hero-image:hover img,
+.ona-life-page .ona-life-outdoors-image:hover img {
+  transform: scale(1.025);
+}
+
+.ona-life-page .ona-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1rem;
+  margin-top: 1.6rem;
+}
+
+.ona-life-page .ona-hero-meta span {
+  color: #a58a71;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ona-life-page .ona-life-intro {
+  padding-top: 3rem;
+}
+
+.ona-life-page .ona-editorial-intro {
+  margin-bottom: 3rem;
+}
+
+.ona-life-page .ona-amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+  background: transparent;
+}
+
+.ona-life-page .ona-amenity-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 22px;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.ona-life-page .ona-amenity-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 138, 113, 0.34);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.ona-life-page .ona-amenity-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #2d2723;
+}
+
+.ona-life-page .ona-amenity-card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 550ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-life-page .ona-amenity-card:hover .ona-amenity-card-image img {
+  transform: scale(1.035);
+}
+
+.ona-life-page .ona-amenity-card-body {
+  min-height: 150px;
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.ona-life-page .ona-amenity-card-body h3 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.ona-life-page .ona-amenity-card-body p {
+  margin: 0.7rem 0 0;
+  color: #cfc2b7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.ona-life-page .ona-life-outdoors {
+  padding-top: 3rem;
+}
+
+.ona-life-page .ona-life-outdoors-copy {
+  max-width: 590px;
+}
+
+.ona-life-page .ona-life-outdoors-copy h2 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 4.7vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.ona-life-page .ona-life-outdoors-copy h2 span {
+  color: #d9c7b7;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ona-life-page .ona-life-outdoors-copy p {
+  max-width: 560px;
+  margin: 1.2rem 0 0;
+  color: #cfc2b7;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.ona-life-page .ona-life-outdoors-copy strong {
+  display: block;
+  margin-top: 1.2rem;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------
+   RESIDENCES
+   ------------------------------------------------------------------------ */
+
+.ona-residences-page {
+  background: #302a26;
+}
+
+.ona-residences-page .ona-res-hero,
+.ona-residences-page .ona-discover-grid-section,
+.ona-residences-page .ona-portfolio-section,
+.ona-residences-page .ona-penthouse-section,
+.ona-residences-page .ona-interiors-section {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-residences-page .ona-res-hero {
+  padding-top: clamp(8rem, 13vw, 11rem);
+}
+
+.ona-residences-page .ona-res-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.ona-residences-page .ona-res-hero-copy {
+  max-width: 630px;
+}
+
+.ona-residences-page .ona-res-hero-image {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #38312c;
+}
+
+.ona-residences-page .ona-res-hero-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 650ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-residences-page .ona-res-hero-image:hover img {
+  transform: scale(1.025);
+}
+
+.ona-residences-page .ona-discover-grid-section {
+  padding-top: 3rem;
+}
+
+.ona-residences-page .ona-discover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+
+.ona-residences-page .ona-discover-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 22px;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.ona-residences-page .ona-discover-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 138, 113, 0.34);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.ona-residences-page .ona-discover-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #2d2723;
+}
+
+.ona-residences-page .ona-discover-card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 550ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-residences-page .ona-discover-card:hover .ona-discover-card-image img {
+  transform: scale(1.035);
+}
+
+.ona-residences-page .ona-discover-card-body {
+  min-height: 220px;
+  padding: 1.3rem 1.3rem 1.45rem;
+}
+
+.ona-residences-page .ona-discover-card-label {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  color: #a58a71;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-discover-card-body h3 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.ona-residences-page .ona-discover-card-body p {
+  margin: 0.7rem 0 1rem;
+  color: #cfc2b7;
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.ona-residences-page .ona-portfolio-section {
+  padding-top: 3rem;
+}
+
+.ona-residences-page .ona-res-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.6rem;
+}
+
+.ona-residences-page .ona-res-tab {
+  min-height: 46px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(245, 240, 234, 0.14);
+  border-radius: 999px;
+  color: #cfc2b7;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.ona-residences-page .ona-res-tab:hover {
+  border-color: rgba(165, 138, 113, 0.6);
+  color: #f5f0ea;
+}
+
+.ona-residences-page .ona-res-tab.is-active {
+  color: #302a26;
+  background: #f5f0ea;
+  border-color: #f5f0ea;
+}
+
+.ona-residences-page .ona-portfolio-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.8rem;
+  align-items: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 26px;
+}
+
+.ona-residences-page .ona-portfolio-copy {
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.ona-residences-page .ona-portfolio-area {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #a58a71;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-portfolio-copy h3 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.ona-residences-page .ona-portfolio-copy > p {
+  margin: 0.9rem 0 0;
+  color: #cfc2b7;
+  line-height: 1.75;
+}
+
+.ona-residences-page .ona-portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.1rem 0 1.25rem;
+}
+
+.ona-residences-page .ona-portfolio-tags span,
+.ona-commercial-page .ona-feature-list span,
+.ona-enquire-page .ona-sales-pillars span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 999px;
+  color: #e6dbd0;
+  background: rgba(245, 240, 234, 0.055);
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.ona-residences-page .ona-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.2rem 0 1.45rem;
+}
+
+.ona-residences-page .ona-metric-grid > div {
+  min-width: 0;
+  padding: 1rem;
+  background: rgba(245, 240, 234, 0.045);
+  border: 1px solid rgba(245, 240, 234, 0.055);
+  border-radius: 18px;
+}
+
+.ona-residences-page .ona-metric-grid small {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #a58a71;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-metric-grid strong {
+  display: block;
+  color: #f5f0ea;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ona-residences-page .ona-portfolio-image {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+  background: #f7f3ed;
+  border-radius: 20px;
+}
+
+.ona-residences-page .ona-portfolio-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 620px;
+  display: block;
+  object-fit: contain;
+}
+
+.ona-residences-page .ona-penthouse-section {
+  background: #27231f;
+}
+
+.ona-residences-page .ona-penthouse-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.ona-residences-page .ona-penthouse-copy {
+  max-width: 610px;
+}
+
+.ona-residences-page .ona-penthouse-copy h2 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.ona-residences-page .ona-penthouse-copy h2 span {
+  color: #d9c7b7;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ona-residences-page .ona-penthouse-copy p {
+  margin: 1rem 0 0;
+  color: #cfc2b7;
+  line-height: 1.78;
+}
+
+.ona-residences-page .ona-penthouse-copy .ona-text-link {
+  margin-top: 1.4rem;
+}
+
+.ona-residences-page .ona-penthouse-image {
+  min-height: 0;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.ona-residences-page .ona-penthouse-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  object-fit: cover;
+}
+
+.ona-residences-page .ona-interiors-section {
+  padding-top: 5rem;
+}
+
+.ona-residences-page .ona-interior-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+
+.ona-residences-page .ona-interior-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 22px;
+}
+
+.ona-residences-page .ona-interior-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.ona-residences-page .ona-interior-card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 550ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-residences-page .ona-interior-card:hover .ona-interior-card-image img {
+  transform: scale(1.035);
+}
+
+.ona-residences-page .ona-interior-card-body {
+  min-height: 205px;
+  padding: 1.25rem;
+}
+
+.ona-residences-page .ona-interior-label {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  color: #a58a71;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ona-residences-page .ona-interior-card-body h3 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.18;
+}
+
+.ona-residences-page .ona-interior-card-body p {
+  margin: 0.75rem 0 0;
+  color: #cfc2b7;
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.ona-residences-page .ona-res-final-note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 2rem;
+  text-align: center;
+  color: #cfc2b7;
+}
+
+.ona-residences-page .ona-res-final-note strong {
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------
+   ONA HOUSE / COMMERCIAL
+   ------------------------------------------------------------------------ */
+
+.ona-commercial-page {
+  background: #302a26;
+}
+
+.ona-commercial-page .ona-commercial-hero,
+.ona-commercial-page .ona-commercial-office-section,
+.ona-commercial-page .ona-commercial-convenience-section {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  color: #f5f0ea;
+  background: #302a26;
+}
+
+.ona-commercial-page .ona-commercial-hero {
+  padding-top: clamp(8rem, 13vw, 11rem);
+}
+
+.ona-commercial-page .ona-commercial-hero-grid,
+.ona-commercial-page .ona-commercial-office-grid,
+.ona-commercial-page .ona-commercial-convenience-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.ona-commercial-page .ona-commercial-hero-copy,
+.ona-commercial-page .ona-commercial-office-copy,
+.ona-commercial-page .ona-commercial-convenience-copy {
+  max-width: 620px;
+}
+
+.ona-commercial-page .ona-commercial-hero-image,
+.ona-commercial-page .ona-commercial-office-image,
+.ona-commercial-page .ona-commercial-convenience-image {
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.ona-commercial-page .ona-commercial-hero-image {
+  padding: 1rem;
+  aspect-ratio: 5 / 4;
+  background: #f7f3ed;
+}
+
+.ona-commercial-page .ona-commercial-office-image,
+.ona-commercial-page .ona-commercial-convenience-image {
+  aspect-ratio: 4 / 3;
+  background: #38312c;
+}
+
+.ona-commercial-page .ona-commercial-hero-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  object-fit: contain;
+}
+
+.ona-commercial-page .ona-commercial-office-image img,
+.ona-commercial-page .ona-commercial-convenience-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 550ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-commercial-page .ona-commercial-office-image:hover img,
+.ona-commercial-page .ona-commercial-convenience-image:hover img {
+  transform: scale(1.03);
+}
+
+.ona-commercial-page .ona-commercial-office-section {
+  padding-top: 3rem;
+}
+
+.ona-commercial-page .ona-commercial-office-copy h2,
+.ona-commercial-page .ona-commercial-convenience-copy h2 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 4.7vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.ona-commercial-page .ona-commercial-office-copy h2 span,
+.ona-commercial-page .ona-commercial-convenience-copy h2 span {
+  color: #d9c7b7;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ona-commercial-page .ona-commercial-office-copy p,
+.ona-commercial-page .ona-commercial-convenience-copy p {
+  margin: 1rem 0 0;
+  color: #cfc2b7;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.ona-commercial-page .ona-feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.3rem;
+}
+
+.ona-commercial-page .ona-commercial-convenience-section {
+  padding-top: 3rem;
+  background: #27231f;
+}
+
+.ona-commercial-page .ona-commercial-convenience-copy .ona-text-link {
+  margin-top: 1.4rem;
+}
+
+/* ------------------------------------------------------------------------
+   PRIVATE ENQUIRY / CONTACT
+   ------------------------------------------------------------------------ */
+
+.ona-enquire-page {
+  background: #302a26;
+}
+
+.ona-enquire-page .ona-enquire-section {
+  padding: clamp(8rem, 12vw, 10rem) 0 clamp(4rem, 8vw, 7rem);
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-enquire-page .ona-enquire-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.ona-enquire-page .ona-enquire-aside,
+.ona-enquire-page .ona-enquire-form-wrap {
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 24px;
+}
+
+.ona-enquire-page .ona-enquire-aside {
+  display: flex;
+  flex-direction: column;
+}
+
+.ona-enquire-page .ona-enquire-aside-media {
+  flex: 0 0 auto;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #2d2723;
+}
+
+.ona-enquire-page .ona-enquire-aside-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.ona-enquire-page .ona-enquire-aside-content,
+.ona-enquire-page .ona-enquire-form-wrap {
+  padding: clamp(1.4rem, 3vw, 2rem);
+}
+
+.ona-enquire-page .ona-enquire-aside-content {
+  flex: 1;
+}
+
+.ona-enquire-page .ona-enquire-aside-content h1 {
+  margin-top: 0.25rem;
+  font-size: clamp(2.6rem, 4.8vw, 4.8rem);
+}
+
+.ona-enquire-page .ona-enquire-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(245, 240, 234, 0.1);
+}
+
+.ona-enquire-page .ona-enquire-meta > div:first-child {
+  grid-column: 1 / -1;
+}
+
+.ona-enquire-page .ona-enquire-meta small {
+  display: block;
+  color: #a58a71;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ona-enquire-page .ona-enquire-meta strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #f5f0ea;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.ona-enquire-page .ona-form-intro {
+  max-width: 650px;
+}
+
+.ona-enquire-page .ona-sales-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.ona-enquire-page .ona-form {
+  margin-top: 1.8rem;
+}
+
+.ona-enquire-page .ona-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ona-enquire-page .ona-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ona-enquire-page .ona-field--full,
+.ona-enquire-page .ona-field--phone {
+  grid-column: 1 / -1;
+}
+
+.ona-enquire-page .ona-field > span {
+  color: #f5f0ea;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.ona-enquire-page .ona-field input,
+.ona-enquire-page .ona-field select,
+.ona-enquire-page .ona-field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(245, 240, 234, 0.11);
+  border-radius: 14px;
+  outline: none;
+  color: #f5f0ea;
+  background: #2d2723;
+  font: inherit;
+  font-size: 0.93rem;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.ona-enquire-page .ona-field textarea {
+  min-height: 135px;
+  resize: vertical;
+}
+
+.ona-enquire-page .ona-field input::placeholder,
+.ona-enquire-page .ona-field textarea::placeholder {
+  color: #9f948b;
+}
+
+.ona-enquire-page .ona-field input:focus,
+.ona-enquire-page .ona-field select:focus,
+.ona-enquire-page .ona-field textarea:focus {
+  border-color: rgba(165, 138, 113, 0.85);
+  background: #312a25;
+}
+
+.ona-enquire-page .ona-field select {
+  cursor: pointer;
+}
+
+.ona-enquire-page .ona-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  color: #cfc2b7;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.ona-enquire-page .ona-checkbox input {
+  margin-top: 0.25rem;
+  accent-color: #a58a71;
+}
+
+.ona-enquire-page .ona-form-actions {
+  margin-top: 1.4rem;
+}
+
+.ona-enquire-page .ona-form-actions button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid #f5f0ea;
+  border-radius: 999px;
+  color: #302a26;
+  background: #f5f0ea;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-enquire-page .ona-form-actions button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  color: #f5f0ea;
+  background: transparent;
+}
+
+.ona-enquire-page .ona-form-actions button:disabled {
+  opacity: 0.58;
+  cursor: wait;
+}
+
+.ona-enquire-page .ona-form-actions p {
+  max-width: 620px;
+  margin: 0.9rem 0 0;
+  color: #a99d94;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.ona-enquire-page .ona-form-actions small {
+  display: block;
+  margin-top: 0.8rem;
+  color: #d3b597;
+  font-size: 0.86rem;
+}
+
+/* ------------------------------------------------------------------------
+   react-phone-input-2
+   All countries are supplied by the library.
+   The collapsed control shows the flag + dial code; country names remain
+   inside the searchable dropdown list.
+   ------------------------------------------------------------------------ */
+
+.ona-enquire-page .ona-field--phone .react-tel-input {
+  width: 100%;
+  font-family: inherit;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .form-control {
+  width: 100% !important;
+  height: 54px !important;
+  padding-left: 60px !important;
+  border: 1px solid rgba(245, 240, 234, 0.11) !important;
+  border-radius: 14px !important;
+  outline: none !important;
+  color: #f5f0ea !important;
+  background: #2d2723 !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 0.93rem !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .form-control:focus {
+  border-color: rgba(165, 138, 113, 0.85) !important;
+  background: #312a25 !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .flag-dropdown {
+  width: 50px;
+  border: 1px solid rgba(245, 240, 234, 0.11) !important;
+  border-right: 0 !important;
+  border-radius: 14px 0 0 14px !important;
+  background: #2d2723 !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .selected-flag {
+  width: 49px !important;
+  padding-left: 12px !important;
+  border-radius: 14px 0 0 14px !important;
+  background: transparent !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .selected-flag:hover,
+.ona-enquire-page .ona-field--phone .react-tel-input .selected-flag:focus,
+.ona-enquire-page .ona-field--phone .react-tel-input .flag-dropdown.open .selected-flag {
+  background: rgba(245, 240, 234, 0.04) !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .selected-flag .arrow {
+  border-top-color: #cfc2b7 !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .selected-flag .arrow.up {
+  border-bottom-color: #cfc2b7 !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list {
+  width: min(360px, calc(100vw - 48px)) !important;
+  max-height: 320px !important;
+  margin-top: 8px !important;
+  padding: 0.35rem 0 !important;
+  overflow-x: hidden !important;
+  border: 1px solid rgba(245, 240, 234, 0.1) !important;
+  border-radius: 14px !important;
+  color: #f5f0ea !important;
+  background: #2d2723 !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .search {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2;
+  margin: 0 !important;
+  padding: 0.7rem !important;
+  background: #2d2723 !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .search-box {
+  width: 100% !important;
+  min-height: 40px !important;
+  margin: 0 !important;
+  padding: 0.65rem 0.8rem !important;
+  border: 1px solid rgba(245, 240, 234, 0.11) !important;
+  border-radius: 10px !important;
+  outline: none !important;
+  color: #f5f0ea !important;
+  background: #38312c !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .country {
+  min-height: 42px;
+  padding: 0.6rem 0.75rem !important;
+  color: #f5f0ea !important;
+  background: transparent !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .country:hover,
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .country.highlight {
+  background: #3b332e !important;
+}
+
+.ona-enquire-page .ona-field--phone .react-tel-input .country-list .country .dial-code {
+  color: #a58a71 !important;
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------------------ */
+
+@media (max-width: 1100px) {
+  .ona-life-page .ona-amenity-grid,
+  .ona-residences-page .ona-discover-grid,
+  .ona-residences-page .ona-interior-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ona-life-page .ona-life-hero-grid,
+  .ona-life-page .ona-life-outdoors-grid,
+  .ona-residences-page .ona-res-hero-grid,
+  .ona-residences-page .ona-portfolio-panel,
+  .ona-residences-page .ona-penthouse-grid,
+  .ona-commercial-page .ona-commercial-hero-grid,
+  .ona-commercial-page .ona-commercial-office-grid,
+  .ona-commercial-page .ona-commercial-convenience-grid,
+  .ona-enquire-page .ona-enquire-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-residences-page .ona-res-hero-copy,
+  .ona-life-page .ona-life-hero-copy,
+  .ona-commercial-page .ona-commercial-hero-copy,
+  .ona-commercial-page .ona-commercial-office-copy,
+  .ona-commercial-page .ona-commercial-convenience-copy {
+    max-width: 760px;
+  }
+
+  .ona-residences-page .ona-portfolio-image {
+    min-height: 440px;
+  }
+
+  .ona-enquire-page .ona-enquire-aside-media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 740px) {
+  .ona-life-page .ona-life-hero,
+  .ona-life-page .ona-life-intro,
+  .ona-life-page .ona-life-outdoors,
+  .ona-residences-page .ona-res-hero,
+  .ona-residences-page .ona-discover-grid-section,
+  .ona-residences-page .ona-portfolio-section,
+  .ona-residences-page .ona-penthouse-section,
+  .ona-residences-page .ona-interiors-section,
+  .ona-commercial-page .ona-commercial-hero,
+  .ona-commercial-page .ona-commercial-office-section,
+  .ona-commercial-page .ona-commercial-convenience-section,
+  .ona-enquire-page .ona-enquire-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .ona-life-page .ona-life-hero,
+  .ona-residences-page .ona-res-hero,
+  .ona-commercial-page .ona-commercial-hero,
+  .ona-enquire-page .ona-enquire-section {
+    padding-top: 7rem;
+  }
+
+  .ona-page .ona-editorial-intro,
+  .ona-page .ona-editorial-intro--left {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .ona-life-page .ona-amenity-grid,
+  .ona-residences-page .ona-discover-grid,
+  .ona-residences-page .ona-interior-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life-page .ona-amenity-card-body,
+  .ona-residences-page .ona-discover-card-body,
+  .ona-residences-page .ona-interior-card-body {
+    min-height: 0;
+  }
+
+  .ona-residences-page .ona-res-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ona-residences-page .ona-res-tab {
+    width: 100%;
+  }
+
+  .ona-residences-page .ona-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-residences-page .ona-portfolio-panel {
+    padding: 1rem;
+  }
+
+  .ona-residences-page .ona-portfolio-copy {
+    padding: 0.5rem;
+  }
+
+  .ona-residences-page .ona-portfolio-image {
+    min-height: 340px;
+  }
+
+  .ona-enquire-page .ona-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-enquire-page .ona-field--full,
+  .ona-enquire-page .ona-field--phone {
+    grid-column: auto;
+  }
+
+  .ona-enquire-page .ona-enquire-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-enquire-page .ona-enquire-meta > div:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .ona-residences-page .ona-res-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life-page .ona-life-hero-image,
+  .ona-life-page .ona-life-outdoors-image,
+  .ona-residences-page .ona-res-hero-image,
+  .ona-residences-page .ona-penthouse-image,
+  .ona-commercial-page .ona-commercial-office-image,
+  .ona-commercial-page .ona-commercial-convenience-image {
+    border-radius: 18px;
+  }
+
+  .ona-enquire-page .ona-enquire-aside,
+  .ona-enquire-page .ona-enquire-form-wrap {
+    border-radius: 18px;
+  }
+}
+
+/* ========================================================================
+   2026 FINAL HOME / LIFE / CONTACT REFINEMENT
+   Scoped refinements for the uploaded production project.
+   ======================================================================== */
+
+/* =========================================================
+   HOME — PRIVATE SALES FINALE
+   ========================================================= */
+
+.ona-home-sales-finale {
+  min-height: min(72vh, 720px);
+  margin-top: clamp(3rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: #171410;
+}
+
+.ona-home-sales-finale-image,
+.ona-home-sales-finale-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-home-sales-finale-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ona-home-sales-finale-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 14, 11, 0.42) 0%,
+      rgba(18, 14, 11, 0.58) 48%,
+      rgba(18, 14, 11, 0.72) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(18, 14, 11, 0.18) 0%,
+      rgba(18, 14, 11, 0.08) 50%,
+      rgba(18, 14, 11, 0.18) 100%
+    );
+}
+
+.ona-home-sales-finale-inner {
+  min-height: min(72vh, 720px);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ona-home-sales-finale-copy {
+  width: min(760px, 88vw);
+  margin-inline: auto;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ona-home-sales-finale-copy > span:first-child {
+  display: block;
+  margin-bottom: 1rem;
+  color: #d8b998;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ona-home-sales-finale-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 6vw, 6.3rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.ona-home-sales-finale-copy h2 em {
+  color: #ead7c6;
+  font-weight: 400;
+}
+
+.ona-home-sales-finale-copy > p {
+  max-width: 620px;
+  margin: 1.4rem auto 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.98rem;
+  line-height: 1.78;
+  text-align: center;
+}
+
+.ona-home-sales-finale-facts {
+  margin-top: 1.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.ona-home-sales-finale-facts span {
+  padding: 0.56rem 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(8px);
+  font-size: 0.74rem;
+}
+
+.ona-home-sales-finale-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.ona-home-sales-finale-button {
+  min-height: 48px;
+  padding: 0.85rem 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-home-sales-finale-button--primary {
+  color: #302a26;
+  border-color: #ead7c6;
+  background: #ead7c6;
+}
+
+.ona-home-sales-finale-button:hover {
+  transform: translateY(-2px);
+}
+
+.ona-home-sales-finale-button--primary:hover {
+  color: #fff;
+  border-color: #fff;
+  background: transparent;
+}
+
+.ona-home-sales-finale-button--secondary:hover {
+  color: #302a26;
+  border-color: #fff;
+  background: #fff;
+}
+
+/* =========================================================
+   LIFE & COMMUNITY — CLEAN V2
+   Uses dedicated class names so old hero rules cannot create
+   blank reserved space.
+   ========================================================= */
+
+.ona-life2-page {
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-life2-kicker {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: #a58a71;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ona-life2-script {
+  display: block;
+  margin-bottom: 1rem;
+  color: #d4b99f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.ona-life2-hero {
+  padding: clamp(8rem, 11vw, 9.5rem) 0 clamp(4rem, 7vw, 6rem);
+  background: #302a26;
+}
+
+.ona-life2-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.ona-life2-hero-copy {
+  max-width: 610px;
+}
+
+.ona-life2-hero-copy h1 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 5.4vw, 5.7rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.ona-life2-hero-copy h1 em {
+  color: #d9c7b7;
+  font-weight: 400;
+}
+
+.ona-life2-hero-copy > p {
+  max-width: 560px;
+  margin: 1.3rem 0 0;
+  color: #cfc2b7;
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.ona-life2-highlights {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.ona-life2-highlights span {
+  padding: 0.56rem 0.75rem;
+  border: 1px solid rgba(245, 240, 234, 0.14);
+  border-radius: 999px;
+  color: #e5d9cf;
+  background: rgba(245, 240, 234, 0.025);
+  font-size: 0.72rem;
+}
+
+.ona-life2-hero-media {
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #38312c;
+}
+
+.ona-life2-hero-media > img,
+.ona-life2-hero-media-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-life2-hero-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ona-life2-hero-media-overlay {
+  background: linear-gradient(180deg, transparent 50%, rgba(18, 14, 11, 0.7));
+}
+
+.ona-life2-hero-caption {
+  position: absolute;
+  z-index: 2;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.ona-life2-hero-caption span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #d8b998;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ona-life2-hero-caption strong {
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.ona-life2-amenities {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background: #302a26;
+}
+
+.ona-life2-heading {
+  margin-bottom: 2.8rem;
+  display: grid;
+  grid-template-columns: 0.5fr 1.25fr 0.75fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.ona-life2-heading h2 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3vw, 3.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.ona-life2-heading h2 em {
+  color: #d9c7b7;
+  font-weight: 400;
+}
+
+.ona-life2-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.ona-life2-heading > p {
+  margin: 0;
+  color: #cfc2b7;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.ona-life2-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ona-life2-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #38312c;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 20px;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.ona-life2-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 138, 113, 0.36);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.ona-life2-card-media,
+.ona-life2-card-kids-visual {
+  aspect-ratio: 4 / 3;
+}
+
+.ona-life2-card-media {
+  position: relative;
+  overflow: hidden;
+  background: #2d2723;
+}
+
+.ona-life2-card-media img,
+.ona-life2-card-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-life2-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(.2, .7, 0, 1);
+}
+
+.ona-life2-card:hover .ona-life2-card-media img {
+  transform: scale(1.035);
+}
+
+.ona-life2-card-overlay {
+  background: linear-gradient(180deg, transparent 60%, rgba(18, 14, 11, 0.28));
+}
+
+.ona-life2-card-kids-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: #d8b998;
+  background:
+    radial-gradient(circle at 40% 35%, rgba(165, 138, 113, 0.18), transparent 32%),
+    linear-gradient(135deg, #403831, #302a26);
+}
+
+.ona-life2-card-kids-visual span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+}
+
+.ona-life2-card-content {
+  min-height: 178px;
+  padding: 1.1rem 1.15rem 1.3rem;
+}
+
+.ona-life2-card-icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #c8aa8d;
+  border: 1px solid rgba(200, 170, 141, 0.26);
+  border-radius: 50%;
+}
+
+.ona-life2-card-content h3 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.38rem;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.ona-life2-card-content p {
+  margin: 0.65rem 0 0;
+  color: #cfc2b7;
+  font-size: 0.84rem;
+  line-height: 1.62;
+}
+
+/* =========================================================
+   CONTACT / PRIVATE ENQUIRY — CLEAN V2
+   ========================================================= */
+
+.ona-contact2-page {
+  background: #302a26;
+  color: #f5f0ea;
+}
+
+.ona-contact2-shell {
+  padding: 7rem 0 4rem;
+}
+
+.ona-contact2-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.ona-contact2-visual {
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #211d1a;
+}
+
+.ona-contact2-visual > img,
+.ona-contact2-visual-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-contact2-visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ona-contact2-visual-overlay {
+  background:
+    linear-gradient(180deg, rgba(18, 14, 11, 0.08), rgba(18, 14, 11, 0.82)),
+    linear-gradient(90deg, rgba(18, 14, 11, 0.28), transparent 70%);
+}
+
+.ona-contact2-visual-copy {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1.5rem, 4vw, 3.2rem);
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: clamp(1.5rem, 4vw, 3.2rem);
+}
+
+.ona-contact2-kicker {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: #d4b99f;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ona-contact2-script {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: #c8aa8d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
+.ona-contact2-visual-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 5.5vw, 5.8rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+.ona-contact2-visual-copy h1 em {
+  color: #ead7c6;
+  font-weight: 400;
+}
+
+.ona-contact2-visual-copy > p {
+  max-width: 420px;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
+}
+
+.ona-contact2-facts {
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.ona-contact2-facts > div {
+  padding-top: 0.9rem;
+}
+
+.ona-contact2-facts > div + div {
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.ona-contact2-facts small,
+.ona-contact2-facts strong {
+  display: block;
+}
+
+.ona-contact2-facts small {
+  margin-bottom: 0.3rem;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ona-contact2-facts strong {
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.ona-contact2-form-panel {
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 234, 0.08);
+  border-radius: 24px;
+  background: #38312c;
+}
+
+.ona-contact2-form-inner {
+  width: min(760px, 100%);
+  padding: clamp(2rem, 4vw, 3.4rem);
+}
+
+.ona-contact2-heading h2 {
+  margin: 0;
+  color: #f5f0ea;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 4.5vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.ona-contact2-heading h2 em {
+  color: #d9c7b7;
+  font-weight: 400;
+}
+
+.ona-contact2-heading > p {
+  max-width: 580px;
+  margin: 1rem 0 0;
+  color: #cfc2b7;
+  font-size: 0.91rem;
+  line-height: 1.72;
+}
+
+.ona-contact2-services {
+  margin: 1.5rem 0 1.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ona-contact2-services span {
+  padding: 0.5rem 0.68rem;
+  border: 1px solid rgba(245, 240, 234, 0.1);
+  border-radius: 999px;
+  color: #d9cdc4;
+  background: rgba(245, 240, 234, 0.035);
+  font-size: 0.7rem;
+}
+
+.ona-contact2-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.1rem;
+}
+
+.ona-contact2-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.ona-contact2-field--full,
+.ona-contact2-consent,
+.ona-contact2-submit-row,
+.ona-contact2-notice {
+  grid-column: 1 / -1;
+}
+
+.ona-contact2-field label {
+  color: #b8aaa0;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.ona-contact2-field input,
+.ona-contact2-field select,
+.ona-contact2-field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(245, 240, 234, 0.12);
+  border-radius: 12px;
+  outline: none;
+  color: #f5f0ea;
+  background: #2f2925;
+  font: inherit;
+  font-size: 0.88rem;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.ona-contact2-field textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.ona-contact2-field input::placeholder,
+.ona-contact2-field textarea::placeholder {
+  color: #7f746c;
+}
+
+.ona-contact2-field input:focus,
+.ona-contact2-field select:focus,
+.ona-contact2-field textarea:focus {
+  border-color: rgba(165, 138, 113, 0.82);
+  background: #332c27;
+}
+
+.ona-contact2-field select {
+  color-scheme: dark;
+}
+
+.ona-contact2-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.68rem;
+  color: #a99b91;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.ona-contact2-consent input {
+  margin-top: 0.2rem;
+  accent-color: #a58a71;
+}
+
+.ona-contact2-submit-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.ona-contact2-submit-row button {
+  min-height: 50px;
+  padding: 0.82rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  border: 1px solid #ead7c6;
+  border-radius: 999px;
+  color: #302a26;
+  background: #ead7c6;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+}
+
+.ona-contact2-submit-row button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #f5e8dc;
+}
+
+.ona-contact2-submit-row button:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+.ona-contact2-submit-row p {
+  max-width: 430px;
+  margin: 0;
+  color: #81756c;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.ona-contact2-notice {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.ona-contact2-notice--success {
+  color: #dce7da;
+  background: rgba(87, 112, 82, 0.25);
+}
+
+.ona-contact2-notice--error {
+  color: #f2d5cc;
+  background: rgba(126, 71, 58, 0.25);
+}
+
+/* react-phone-input-2 */
+.ona-contact2-field .react-tel-input {
+  width: 100%;
+  font-family: inherit;
+}
+
+.ona-contact2-field .react-tel-input .form-control {
+  width: 100% !important;
+  height: 48px !important;
+  padding-left: 58px !important;
+  border: 1px solid rgba(245, 240, 234, 0.12) !important;
+  border-radius: 12px !important;
+  color: #f5f0ea !important;
+  background: #2f2925 !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 0.88rem !important;
+}
+
+.ona-contact2-field .react-tel-input .flag-dropdown {
+  width: 49px;
+  border: 1px solid rgba(245, 240, 234, 0.12) !important;
+  border-right: 0 !important;
+  border-radius: 12px 0 0 12px !important;
+  background: #2f2925 !important;
+}
+
+.ona-contact2-field .react-tel-input .selected-flag {
+  width: 48px !important;
+  padding-left: 11px !important;
+  border-radius: 12px 0 0 12px !important;
+  background: transparent !important;
+}
+
+.ona-contact2-field .react-tel-input .selected-flag:hover,
+.ona-contact2-field .react-tel-input .selected-flag:focus,
+.ona-contact2-field .react-tel-input .flag-dropdown.open .selected-flag {
+  background: rgba(245, 240, 234, 0.04) !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list {
+  width: min(370px, calc(100vw - 48px)) !important;
+  max-height: 310px !important;
+  margin-top: 8px !important;
+  padding: 0.3rem 0 !important;
+  border: 1px solid rgba(245, 240, 234, 0.1) !important;
+  border-radius: 12px !important;
+  color: #f5f0ea !important;
+  background: #2f2925 !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list .search {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2;
+  margin: 0 !important;
+  padding: 0.65rem !important;
+  background: #2f2925 !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list .search-box {
+  width: 100% !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0.55rem 0.7rem !important;
+  border: 1px solid rgba(245, 240, 234, 0.12) !important;
+  border-radius: 9px !important;
+  color: #f5f0ea !important;
+  background: #38312c !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list .country {
+  min-height: 40px;
+  padding: 0.55rem 0.7rem !important;
+  color: #f5f0ea !important;
+  background: transparent !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list .country:hover,
+.ona-contact2-field .react-tel-input .country-list .country.highlight {
+  background: #3d352f !important;
+}
+
+.ona-contact2-field .react-tel-input .country-list .country .dial-code {
+  color: #b99676 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .ona-life2-heading {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ona-life2-hero-grid,
+  .ona-contact2-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life2-hero-media {
+    min-height: 460px;
+  }
+
+  .ona-life2-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ona-contact2-visual {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-home-sales-finale {
+    min-height: 620px;
+    margin-top: 2.5rem;
+  }
+
+  .ona-home-sales-finale-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(18, 14, 11, 0.16) 0%,
+        rgba(18, 14, 11, 0.44) 34%,
+        rgba(18, 14, 11, 0.9) 100%
+      );
+  }
+
+  .ona-home-sales-finale-inner {
+    min-height: 620px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ona-home-sales-finale-copy {
+    width: min(100%, 620px);
+    margin-inline: auto;
+    padding: 3.5rem 0;
+    align-items: center;
+  }
+
+  .ona-home-sales-finale-actions {
+    flex-direction: column;
+  }
+
+  .ona-home-sales-finale-actions {
+    width: min(100%, 360px);
+    align-items: stretch;
+  }
+
+
+  .ona-home-sales-finale-button {
+    width: 100%;
+  }
+
+  .ona-life2-hero {
+    padding-top: 7rem;
+  }
+
+  .ona-life2-hero-media {
+    min-height: 380px;
+    border-radius: 18px;
+  }
+
+  .ona-life2-heading {
+    margin-bottom: 2rem;
+  }
+
+  .ona-life2-heading h2 {
+    font-size: clamp(1.55rem, 7vw, 2.4rem);
+  }
+
+  .ona-life2-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-life2-card-content {
+    min-height: 0;
+  }
+
+
+
+
+
+  .ona-contact2-shell {
+    padding: 6rem 0 3rem;
+  }
+
+  .ona-contact2-visual {
+    min-height: 520px;
+    border-radius: 18px;
+  }
+
+  .ona-contact2-form-panel {
+    border-radius: 18px;
+  }
+
+  .ona-contact2-form-inner {
+    padding: 1.35rem;
+  }
+
+  .ona-contact2-form {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact2-field--full,
+  .ona-contact2-consent,
+  .ona-contact2-submit-row,
+  .ona-contact2-notice {
+    grid-column: auto;
+  }
+
+  .ona-contact2-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact2-facts > div + div {
+    padding-left: 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 0;
+  }
+
+  .ona-contact2-submit-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact2-submit-row button {
+    width: 100%;
+  }
+}
+
+/* ========================================================================
+   CONTACT — FULL-BACKGROUND PRIVATE SALES EXPERIENCE
+   Scoped under .ona-contact3-* to avoid collisions with older contact styles.
+   ======================================================================== */
+
+.ona-contact3-page {
+  background: #211d1a;
+}
+
+.ona-contact3-hero {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #ffffff;
+  background: #211d1a;
+}
+
+.ona-contact3-background,
+.ona-contact3-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.ona-contact3-background {
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ona-contact3-overlay {
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 16, 13, 0.82) 0%,
+      rgba(20, 16, 13, 0.55) 42%,
+      rgba(20, 16, 13, 0.38) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(17, 14, 12, 0.46) 0%,
+      rgba(17, 14, 12, 0.2) 28%,
+      rgba(17, 14, 12, 0.62) 100%
+    );
+}
+
+.ona-contact3-layout {
+  min-height: 100svh;
+  padding-top: clamp(7.5rem, 10vw, 9rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  display: grid;
+  grid-template-columns: minmax(320px, 0.75fr) minmax(560px, 1.05fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.ona-contact3-brand {
+  max-width: 600px;
+}
+
+.ona-contact3-kicker {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #d9bda3;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+}
+
+.ona-contact3-brand h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.8rem, 6.2vw, 7rem);
+  font-weight: 400;
+  line-height: 0.91;
+  letter-spacing: -0.045em;
+}
+
+.ona-contact3-brand h1 em {
+  color: #ead7c6;
+  font-weight: 400;
+}
+
+.ona-contact3-brand-copy {
+  max-width: 520px;
+  margin: 1.35rem 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.72;
+}
+
+.ona-contact3-facts {
+  max-width: 540px;
+  margin-top: 1.8rem;
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.ona-contact3-facts small,
+.ona-contact3-facts strong {
+  display: block;
+}
+
+.ona-contact3-facts small {
+  margin-bottom: 0.32rem;
+  color: rgba(255, 255, 255, 0.56);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ona-contact3-facts strong {
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.03rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.ona-contact3-panel {
+  width: 100%;
+  max-width: 760px;
+  justify-self: end;
+  padding: clamp(1.55rem, 3vw, 2.35rem);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 26px;
+  background: rgba(34, 29, 25, 0.78);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.ona-contact3-heading-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.7rem 1rem;
+}
+
+.ona-contact3-heading-topline .ona-contact3-kicker {
+  margin-bottom: 0;
+}
+
+.ona-contact3-script {
+  color: #cbb096;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.ona-contact3-heading h2 {
+  margin: 0.85rem 0 0;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.45rem, 4vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.ona-contact3-heading h2 em {
+  color: #ead7c6;
+  font-weight: 400;
+}
+
+.ona-contact3-heading > p {
+  max-width: 620px;
+  margin: 0.9rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.68;
+}
+
+.ona-contact3-services {
+  margin: 1.15rem 0 1.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.ona-contact3-services span {
+  padding: 0.48rem 0.66rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.83);
+  background: rgba(255, 255, 255, 0.045);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+}
+
+.ona-contact3-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 0.9rem;
+}
+
+.ona-contact3-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.ona-contact3-field--full,
+.ona-contact3-consent,
+.ona-contact3-submit-row,
+.ona-contact3-notice {
+  grid-column: 1 / -1;
+}
+
+.ona-contact3-field label {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.025em;
+}
+
+.ona-contact3-field input,
+.ona-contact3-field select,
+.ona-contact3-field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  outline: none;
+  color: #ffffff;
+  background: rgba(16, 13, 11, 0.42);
+  font: inherit;
+  font-size: 0.86rem;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ona-contact3-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.ona-contact3-field input::placeholder,
+.ona-contact3-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.ona-contact3-field input:focus,
+.ona-contact3-field select:focus,
+.ona-contact3-field textarea:focus {
+  border-color: rgba(217, 189, 163, 0.88);
+  background: rgba(16, 13, 11, 0.55);
+  box-shadow: 0 0 0 3px rgba(217, 189, 163, 0.07);
+}
+
+.ona-contact3-field select {
+  color-scheme: dark;
+}
+
+.ona-contact3-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.62rem;
+  margin-top: 0.1rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.ona-contact3-consent input {
+  margin-top: 0.18rem;
+  accent-color: #d9bda3;
+}
+
+.ona-contact3-submit-row {
+  margin-top: 0.2rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.ona-contact3-submit-row button {
+  min-height: 48px;
+  padding: 0.78rem 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid #ead7c6;
+  border-radius: 999px;
+  color: #302a26;
+  background: #ead7c6;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-contact3-submit-row button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  color: #ffffff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+.ona-contact3-submit-row button:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+.ona-contact3-submit-row p {
+  max-width: 410px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.47);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.ona-contact3-notice {
+  margin: 0;
+  padding: 0.72rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.ona-contact3-notice--success {
+  color: #e4efe2;
+  background: rgba(74, 104, 69, 0.35);
+}
+
+.ona-contact3-notice--error {
+  color: #f2d8d0;
+  background: rgba(122, 61, 48, 0.35);
+}
+
+/* react-phone-input-2 */
+.ona-contact3-field .react-tel-input {
+  width: 100%;
+  font-family: inherit;
+}
+
+.ona-contact3-field .react-tel-input .form-control {
+  width: 100% !important;
+  height: 46px !important;
+  padding-left: 58px !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  background: rgba(16, 13, 11, 0.42) !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: 0.86rem !important;
+}
+
+.ona-contact3-field .react-tel-input .form-control:focus {
+  border-color: rgba(217, 189, 163, 0.88) !important;
+  background: rgba(16, 13, 11, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(217, 189, 163, 0.07) !important;
+}
+
+.ona-contact3-field .react-tel-input .flag-dropdown {
+  width: 49px;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-right: 0 !important;
+  border-radius: 12px 0 0 12px !important;
+  background: rgba(16, 13, 11, 0.42) !important;
+}
+
+.ona-contact3-field .react-tel-input .selected-flag {
+  width: 48px !important;
+  padding-left: 11px !important;
+  border-radius: 12px 0 0 12px !important;
+  background: transparent !important;
+}
+
+.ona-contact3-field .react-tel-input .selected-flag:hover,
+.ona-contact3-field .react-tel-input .selected-flag:focus,
+.ona-contact3-field .react-tel-input .flag-dropdown.open .selected-flag {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list {
+  width: min(380px, calc(100vw - 40px)) !important;
+  max-height: 310px !important;
+  margin-top: 8px !important;
+  padding: 0.3rem 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  color: #f5f0ea !important;
+  background: #2f2925 !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35) !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list .search {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2;
+  margin: 0 !important;
+  padding: 0.65rem !important;
+  background: #2f2925 !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list .search-box {
+  width: 100% !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0.55rem 0.7rem !important;
+  border: 1px solid rgba(245, 240, 234, 0.12) !important;
+  border-radius: 9px !important;
+  color: #f5f0ea !important;
+  background: #38312c !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list .country {
+  min-height: 40px;
+  padding: 0.55rem 0.7rem !important;
+  color: #f5f0ea !important;
+  background: transparent !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list .country:hover,
+.ona-contact3-field .react-tel-input .country-list .country.highlight {
+  background: #3d352f !important;
+}
+
+.ona-contact3-field .react-tel-input .country-list .country .dial-code {
+  color: #c7a584 !important;
+}
+
+@media (max-width: 1080px) {
+  .ona-contact3-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .ona-contact3-brand {
+    max-width: 720px;
+    padding-top: 1rem;
+  }
+
+  .ona-contact3-panel {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .ona-contact3-overlay {
+    background:
+      linear-gradient(180deg, rgba(18, 14, 11, 0.58) 0%, rgba(18, 14, 11, 0.5) 42%, rgba(18, 14, 11, 0.8) 100%);
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-contact3-layout {
+    min-height: auto;
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+    gap: 1.5rem;
+  }
+
+  .ona-contact3-brand h1 {
+    font-size: clamp(3.1rem, 15vw, 5.2rem);
+  }
+
+  .ona-contact3-brand-copy {
+    font-size: 0.9rem;
+  }
+
+  .ona-contact3-facts {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .ona-contact3-panel {
+    padding: 1.25rem;
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .ona-contact3-heading-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ona-contact3-heading h2 {
+    font-size: clamp(2.25rem, 11vw, 3.7rem);
+  }
+
+  .ona-contact3-services {
+    margin-bottom: 1.2rem;
+  }
+
+  .ona-contact3-form {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact3-field--full,
+  .ona-contact3-consent,
+  .ona-contact3-submit-row,
+  .ona-contact3-notice {
+    grid-column: auto;
+  }
+
+  .ona-contact3-submit-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact3-submit-row button {
+    width: 100%;
+  }
+
+  .ona-contact3-submit-row p {
+    text-align: center;
+  }
+}
+
+/* ========================================================================
+   CONTACT — ONIRIA SALES OFFICE DETAILS
+   Compact contact information below Collection / Address.
+   ======================================================================== */
+
+.ona-contact3-layout {
+  grid-template-columns: minmax(340px, 0.82fr) minmax(540px, 1.05fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.ona-contact3-brand {
+  max-width: 590px;
+}
+
+.ona-contact3-brand h1 {
+  font-size: clamp(3.45rem, 5.6vw, 6.2rem);
+}
+
+.ona-contact3-brand-copy {
+  max-width: 560px;
+  margin-top: 1.1rem;
+  line-height: 1.66;
+}
+
+.ona-contact3-facts {
+  max-width: 560px;
+  margin-top: 1.25rem;
+  padding-top: 0.9rem;
+  gap: 0.8rem 1rem;
+}
+
+.ona-contact3-company {
+  max-width: 560px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ona-contact3-company-head {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ona-contact3-company-mark {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ead7c6;
+  border: 1px solid rgba(234, 215, 198, 0.32);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ona-contact3-company-head strong {
+  display: block;
+  margin: 0;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.ona-contact3-company-address {
+  margin-top: 0.28rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.ona-contact3-company-address svg {
+  flex: 0 0 auto;
+  color: #cbb096;
+}
+
+.ona-contact3-company-grid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.ona-contact3-company-link {
+  min-width: 0;
+  padding: 0.7rem 0.75rem;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(29, 24, 20, 0.32);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-contact3-company-link--website {
+  grid-column: 1 / -1;
+}
+
+.ona-contact3-company-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(234, 215, 198, 0.38);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ona-contact3-company-link-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ead7c6;
+  border-radius: 50%;
+  background: rgba(234, 215, 198, 0.09);
+}
+
+.ona-contact3-company-link > span:last-child {
+  min-width: 0;
+}
+
+.ona-contact3-company-link small {
+  display: block;
+  margin-bottom: 0.14rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.53rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ona-contact3-company-link strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 1100px) {
+  .ona-contact3-layout {
+    grid-template-columns: minmax(300px, 0.78fr) minmax(500px, 1.05fr);
+    gap: 2rem;
+  }
+
+  .ona-contact3-brand h1 {
+    font-size: clamp(3.2rem, 5vw, 5rem);
+  }
+
+  .ona-contact3-company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact3-company-link--website {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .ona-contact3-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact3-brand,
+  .ona-contact3-facts,
+  .ona-contact3-company {
+    max-width: 100%;
+  }
+
+  .ona-contact3-company-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ona-contact3-company-link--website {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .ona-contact3-company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-contact3-company-link--website {
+    grid-column: auto;
+  }
+
+  .ona-contact3-company-link {
+    padding: 0.72rem;
+  }
+
+  .ona-contact3-company-head strong {
+    font-size: 1rem;
+  }
+}
+
+/* ========================================================================
+   LOCATION — PREMIUM FULL-BLEED 3D SATELLITE EXPERIENCE
+   New isolated namespace: .ona-location2-*
+   ======================================================================== */
+
+.ona-location2-page {
+  min-height: 100svh;
+  background: #171411;
+  color: #ffffff;
+}
+
+.ona-location2-map-shell {
+  min-height: 100svh;
+  background: #171411;
+}
+
+.ona-location2-map {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(71, 91, 79, 0.3), transparent 36%),
+    linear-gradient(145deg, #292722 0%, #11100e 100%);
+}
+
+.ona-location2-map gmp-map-3d {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ona-location2-map-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 12, 10, 0.82) 0%,
+      rgba(15, 12, 10, 0.53) 32%,
+      rgba(15, 12, 10, 0.16) 60%,
+      rgba(15, 12, 10, 0.03) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(15, 12, 10, 0.3) 0%,
+      rgba(15, 12, 10, 0.02) 36%,
+      rgba(15, 12, 10, 0.34) 100%
+    );
+}
+
+.ona-location2-content {
+  min-height: 100svh;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.ona-location2-copy {
+  width: min(660px, 52vw);
+  padding: clamp(8rem, 12vw, 10rem) 0 clamp(4rem, 7vw, 6rem);
+  pointer-events: auto;
+}
+
+.ona-location2-kicker {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #d9bda3;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.ona-location2-copy h1 {
+  max-width: 650px;
+  margin: 0;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.5rem, 6.7vw, 7.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.ona-location2-copy h1 em {
+  color: #ead7c6;
+  font-weight: 400;
+}
+
+.ona-location2-copy > p {
+  max-width: 530px;
+  margin: 1.45rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.ona-location2-place {
+  width: fit-content;
+  margin-top: 1.45rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.ona-location2-place svg {
+  color: #d9bda3;
+}
+
+.ona-location2-earth-link {
+  width: fit-content;
+  min-height: 48px;
+  margin-top: 1.8rem;
+  padding: 0.82rem 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgba(24, 20, 17, 0.24);
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.ona-location2-earth-link:hover {
+  transform: translateY(-2px);
+  color: #2b251f;
+  border-color: #ead7c6;
+  background: #ead7c6;
+}
+
+.ona-location2-coordinate {
+  position: absolute;
+  right: clamp(1.4rem, 3vw, 3rem);
+  bottom: clamp(1.5rem, 3vw, 2.7rem);
+  z-index: 5;
+  display: flex;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.ona-location2-coordinate span + span::before {
+  margin-right: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  content: "/";
+}
+
+.ona-location2-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  background:
+    radial-gradient(circle at 70% 35%, rgba(79, 95, 81, 0.33), transparent 30%),
+    linear-gradient(145deg, #302d27 0%, #171512 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: opacity 350ms ease;
+}
+
+.ona-location2-loader-ring {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ead7c6;
+  border-radius: 50%;
+  animation: ona-location2-spin 0.9s linear infinite;
+}
+
+@keyframes ona-location2-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ona-location2-map-message {
+  width: min(430px, calc(100% - 40px));
+  padding: 1.35rem 1.45rem;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 0.25rem 0.8rem;
+  align-items: start;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  color: #ffffff;
+  background: rgba(31, 26, 22, 0.72);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ona-location2-map-message svg {
+  grid-row: 1 / span 2;
+  margin-top: 0.15rem;
+  color: #d9bda3;
+}
+
+.ona-location2-map-message strong {
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.ona-location2-map-message p {
+  margin: 0.28rem 0 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.ona-location2-map-message code {
+  color: #ead7c6;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .ona-location2-map-shade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(15, 12, 10, 0.7) 0%,
+        rgba(15, 12, 10, 0.22) 40%,
+        rgba(15, 12, 10, 0.72) 100%
+      );
+  }
+
+  .ona-location2-content {
+    align-items: flex-end;
+  }
+
+  .ona-location2-copy {
+    width: min(760px, 100%);
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+  }
+
+  .ona-location2-copy h1 {
+    font-size: clamp(3.4rem, 10vw, 6.2rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .ona-location2-map,
+  .ona-location2-content,
+  .ona-location2-map-shell {
+    min-height: 780px;
+  }
+
+  .ona-location2-copy {
+    padding-bottom: 5.5rem;
+  }
+
+  .ona-location2-copy h1 {
+    font-size: clamp(3.1rem, 15vw, 5rem);
+  }
+
+  .ona-location2-copy > p {
+    max-width: 100%;
+    font-size: 0.92rem;
+  }
+
+  .ona-location2-earth-link {
+    width: 100%;
+  }
+
+  .ona-location2-coordinate {
+    right: auto;
+    left: 18px;
+    bottom: 18px;
+    gap: 0.4rem;
+    font-size: 0.52rem;
+  }
+
+  .ona-location2-coordinate span + span::before {
+    margin-right: 0.4rem;
+  }
+}
+
+/* =========================================================
+   ONA STORY + LIFESTYLE PREMIUM OVERRIDES
+   ========================================================= */
+
+/* --- Lifestyle hero image refresh --- */
+.ona-life2-hero-media {
+  min-height: 560px;
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+}
+
+.ona-life2-hero-media > img {
+  object-position: center center;
+  transform: scale(1.01);
+}
+
+.ona-life2-hero-media-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 16, 12, 0.05) 0%,
+      rgba(20, 16, 12, 0.12) 36%,
+      rgba(20, 16, 12, 0.56) 100%
+    );
+}
+
+.ona-life2-hero-caption {
+  left: 1.75rem;
+  right: auto;
+  bottom: 1.75rem;
+  width: min(420px, calc(100% - 3.5rem));
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  background: rgba(26, 21, 18, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ona-life2-hero-caption strong {
+  line-height: 1.15;
+}
+
+/* --- Our Story hero: full-bleed image, no heavy page-color block --- */
+.ona-story-hero {
+  min-height: 860px;
+  background: #15110e;
+}
+
+.ona-story-hero-media {
+  inset: 0;
+  z-index: -3;
+}
+
+.ona-story-hero-media img {
+  object-position: center center;
+  transform: scale(1.02);
+}
+
+.ona-story-hero-fade {
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(22, 17, 14, 0.82) 0%,
+      rgba(22, 17, 14, 0.68) 26%,
+      rgba(22, 17, 14, 0.44) 46%,
+      rgba(22, 17, 14, 0.16) 68%,
+      rgba(22, 17, 14, 0.10) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18, 14, 11, 0.22) 0%,
+      rgba(18, 14, 11, 0.10) 38%,
+      rgba(18, 14, 11, 0.50) 100%
+    );
+}
+
+.ona-story-hero-inner {
+  min-height: 860px;
+  padding-top: 142px;
+  padding-bottom: 72px;
+  align-items: center;
+}
+
+.ona-story-hero-copy {
+  width: min(740px, 100%);
+  padding: 1.35rem 0;
+}
+
+.ona-story-hero-copy h1 {
+  max-width: 700px;
+  text-wrap: balance;
+}
+
+.ona-story-hero-lead {
+  max-width: 640px;
+  color: rgba(245, 240, 234, 0.90);
+}
+
+.ona-story-gold-button {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Our Story architecture / landscape / life section refresh --- */
+.ona-story-place {
+  padding: 6.4rem 0 5.8rem;
+}
+
+.ona-story-place-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr) minmax(300px, 0.72fr);
+  gap: clamp(1.6rem, 3vw, 3.2rem);
+}
+
+.ona-story-place-intro > p {
+  max-width: 620px;
+  font-size: 0.92rem;
+}
+
+.ona-story-place-main-image {
+  height: 470px;
+  overflow: hidden;
+  border: 1px solid var(--story-line);
+  border-radius: 26px;
+  box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14);
+}
+
+.ona-story-place-main-image img,
+.ona-story-perspective-image img {
+  object-position: center center;
+}
+
+.ona-story-place-copy {
+  padding-top: 1.3rem;
+  align-self: center;
+}
+
+.ona-story-place-copy h3 {
+  font-size: clamp(1.75rem, 2.4vw, 2.65rem);
+}
+
+.ona-story-place-copy > p {
+  font-size: 0.88rem;
+  line-height: 1.72;
+}
+
+.ona-story-place-details {
+  margin-top: 1.4rem;
+}
+
+.ona-story-place-details p {
+  font-size: 0.78rem;
+  line-height: 1.52;
+}
+
+.ona-story-perspective-card {
+  padding: 1rem;
+  border: 1px solid var(--story-line);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(48, 42, 38, 0.52), rgba(48, 42, 38, 0.92));
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.10);
+}
+
+.ona-story-perspective-image {
+  height: 330px;
+  overflow: hidden;
+  border: 1px solid var(--story-line);
+  border-radius: 18px;
+}
+
+.ona-story-perspective-copy {
+  padding: 1.2rem 0.35rem 0.2rem;
+}
+
+.ona-story-perspective-copy h3 {
+  font-size: clamp(1.55rem, 2vw, 2.15rem);
+}
+
+.ona-story-perspective-copy p {
+  font-size: 0.8rem;
+  line-height: 1.68;
+}
+
+@media (max-width: 1050px) {
+  .ona-story-place-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ona-story-place-copy {
+    padding-top: 0;
+  }
+
+  .ona-story-perspective-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 920px) {
+  .ona-story-hero {
+    min-height: 820px;
+  }
+
+  .ona-story-hero-media {
+    inset: 0;
+  }
+
+  .ona-story-hero-fade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(22, 17, 14, 0.64) 0%,
+        rgba(22, 17, 14, 0.44) 32%,
+        rgba(22, 17, 14, 0.64) 100%
+      );
+  }
+
+  .ona-story-hero-inner {
+    min-height: 820px;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-life2-hero-media {
+    min-height: 400px;
+    border-radius: 20px;
+  }
+
+  .ona-life2-hero-caption {
+    left: 1rem;
+    bottom: 1rem;
+    width: min(360px, calc(100% - 2rem));
+    padding: 0.9rem 0.95rem;
+  }
+
+  .ona-story-hero {
+    min-height: 720px;
+  }
+
+  .ona-story-hero-inner {
+    min-height: 720px;
+    padding-top: 104px;
+    padding-bottom: 2.4rem;
+    align-items: flex-end;
+  }
+
+  .ona-story-hero-copy {
+    width: 100%;
+  }
+
+  .ona-story-place-main-image {
+    height: 360px;
+    border-radius: 20px;
+  }
+
+  .ona-story-perspective-card {
+    display: block;
+    padding: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .ona-story-perspective-image {
+    height: 280px;
+    border-radius: 14px;
+  }
+
+  .ona-story-perspective-copy {
+    padding: 1rem 0.1rem 0.1rem;
+  }
+}
+
+/* =========================================================
+   GENERATED PREMIUM SALES VISUALS
+   People & Relationships · ONA House · 02 Bedroom Residence
+   ========================================================= */
+
+.ona-story-people-image img {
+  object-position: center 44%;
+  filter: saturate(1) contrast(1.01);
+}
+
+.ona-residences-page .ona-discover-card-image img {
+  object-position: center;
+}
+
+.ona-residences-page .ona-portfolio-image--lifestyle {
+  min-height: 520px;
+  padding: 0;
+  background: #2d2723;
+}
+
+.ona-residences-page .ona-portfolio-image--lifestyle img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 740px) {
+  .ona-residences-page .ona-portfolio-image--lifestyle {
+    min-height: 360px;
+  }
+}

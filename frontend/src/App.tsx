@@ -1,25 +1,27 @@
 import React, { useEffect } from 'react';
 import { AdminApp } from './admin/AdminApp';
 import { recordPageVisit } from './api/analytics';
-import { Footer } from './components/Footer';
-import { Header } from './components/Header';
-import { CommercialPage } from './pages/CommercialPage';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import CommercialPage from './pages/CommercialPage';
+import BrochurePage from './pages/BrochurePage';
 import { DevelopmentPage } from './pages/DevelopmentPage';
-import { EnquirePage } from './pages/EnquirePage';
+import EnquirePage from './pages/EnquirePage';
 import { HomePage } from './pages/HomePage';
-import { LifestylePage } from './pages/LifestylePage';
+import LifestylePage from './pages/LifestylePage';
 import { LocationPage } from './pages/LocationPage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { ResidencesPage } from './pages/ResidencesPage';
+import ResidencesPage from './pages/ResidencesPage';
 import { usePathname } from './routing';
 
 const pageTitles: Record<string, string> = {
-  '/': 'ONA Towers — Zanzibar | Ishii juu. Ona zaidi.',
+  '/': 'ONA Towers — Zanzibar | Live above. See beyond.',
   '/residences': 'Residences | ONA Towers Zanzibar',
-  '/development': 'Development | ONA Towers Zanzibar',
+  '/development': 'Our Story | ONA Towers Zanzibar',
   '/lifestyle': 'Life at ONA | ONA Towers Zanzibar',
   '/commercial': 'Commercial | ONA Towers Zanzibar',
   '/location': 'Location | ONA Towers Zanzibar',
+  '/brochure': 'Project Brochure | ONA Towers Zanzibar',
   '/enquire': 'Enquire | ONA Towers Zanzibar',
 };
 
@@ -57,6 +59,9 @@ export function App() {
       break;
     case '/location':
       page = <LocationPage />;
+      break;
+    case '/brochure':
+      page = <BrochurePage />;
       break;
     case '/enquire':
       page = <EnquirePage />;

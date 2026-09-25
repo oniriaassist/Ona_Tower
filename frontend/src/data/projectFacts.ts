@@ -1,24 +1,65 @@
-/** Central verified source of truth for ONA Towers. */
-export const ONA_FACTS = {
-  projectName: 'ONA Towers', location: 'Zanzibar', tagline: 'Ishii juu. Ona zaidi.',
-  developmentSummary: { residentialTowersCount: 2, commercialBuildingsCount: 1, description: 'A contemporary mixed-use development in Zanzibar comprising two residential towers and a separate commercial and lifestyle building.' },
-  residential: {
-    towersCount: 2, towerNames: ['Residential Tower A', 'Residential Tower B'],
-    structurePerTower: { groundLevel: 'Ground level with parking and building services', residentialFloors: 11, penthouseLevel: 1, approximateApartmentsPerTower: 46 },
-    typicalFloor: { residencesPerFloor: 4, twoBedroomUnits: 2, threeBedroomUnits: 2 },
-    twoBedroom: { name: '02 Bedroom Residence', bedrooms: 2, approximateAreaSqm: 203, areaDisplay: 'Approx. 203 sqm', description: 'Two-bedroom residence shown in the supplied project drawing.' },
-    threeBedroom: { name: '03 Bedroom Residence', bedrooms: 3, approximateAreaSqm: 236, areaDisplay: 'Approx. 236 sqm', description: 'Three-bedroom residence shown in the supplied project drawing.' },
-    penthouses: [
-      { id: 'penthouse-3bed', name: '03 Bedroom Signature Penthouse', bedrooms: 3, approximateAreaSqm: 416, areaDisplay: 'Approx. 416 sqm', description: 'Three-bedroom residence on the penthouse level.' },
-      { id: 'penthouse-4bed', name: '04 Bedroom Signature Penthouse', bedrooms: 4, approximateAreaSqm: 482, areaDisplay: 'Approx. 482 sqm', description: 'Four-bedroom residence on the penthouse level.' },
-    ],
+export const projectFacts = {
+  name: "ÔNA Towers",
+  company: "ONA Towers Limited",
+  location: "Mazizini, Zanzibar, Tanzania",
+  shortLocation: "Mazizini · Zanzibar",
+  tagline: "Live above. See beyond.",
+
+  googleEarthUrl:
+    "https://earth.google.com/web/@0,-0.54754995,0a,22251752.77375655d,35y,0h,0t,0r/data=CgRCAggBQgIIAEoNCP___________wEQAA",
+
+  locationMap: {
+    latitude: -6.191499264128815,
+    longitude: 39.21269416809082,
+    altitude: 80,
+    range: 3400,
+    tilt: 58,
+    heading: 325,
   },
-  commercialBuilding: {
-    title: 'Commercial / Service Building', description: 'A separate building containing confirmed commercial, service and lifestyle functions.',
-    levels: [
-      { level: 'Ground Floor', functions: ['Supermarket', 'Coffee / work area', 'Reception / waiting / display area', 'Entrance / office / supporting spaces'] },
-      { level: 'Parking Levels', functions: ['2 parking levels'] }, { level: 'Office Level', functions: ['Office level'] },
-      { level: 'Terrace / Lifestyle Level', functions: ['Restaurant', 'Outdoor restaurant', 'Pool', 'Gym'] },
-    ],
+
+  travelTimes: [
+    {
+      time: "02",
+      unit: "min",
+      destination: "ZNZ Airport",
+    },
+    {
+      time: "07",
+      unit: "min",
+      destination: "Stone Town",
+    },
+    {
+      time: "10",
+      unit: "min",
+      destination: "Ferry Port",
+    },
+    {
+      time: "15",
+      unit: "min",
+      destination: "Fumba",
+    },
+  ],
+
+  development: {
+    towerA: {
+      title: "Tower A",
+      floors: "Ground + 11 residential floors + 1 penthouse level",
+      typicalFloor: "4 residences per typical floor",
+      mix: "2 × two-bedroom + 2 × three-bedroom",
+      apartments: "46 apartments",
+    },
+
+    towerB: {
+      title: "Tower B",
+      floors: "Residential floors + signature penthouse level",
+      typicalFloor: "4 residences per typical floor",
+      mix: "Two- and three-bedroom residences",
+    },
+
+    onaHouse: {
+      title: "ONA House",
+      description:
+        "Commercial offices, meeting spaces, everyday services and convenience within the wider ONA development.",
+    },
   },
 } as const;

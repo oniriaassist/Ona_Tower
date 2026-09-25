@@ -1,198 +1,289 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { CheckCircle2, Loader2 } from 'lucide-react';
-import { submitEnquiry, type EnquiryPayload, type EnquiryType } from '../api/enquiries';
-import { ONA_IMAGES } from '../data/images';
-import { listResidences, type ResidenceSummaryApi } from '../api/residences';
+import { FormEvent, useMemo, useState } from "react";
 
-const initialForm: EnquiryPayload = {
-  name: '',
-  phone: '',
-  email: '',
-  residence_interest: '',
-  enquiry_type: 'general',
-  message: '',
-  consent: false,
-  source: 'website',
-  company_website: '',
-};
+import { submitEnquiry, type EnquiryType } from "../api/enquiries";
+import { projectImages } from "../data/images";
+import "../styles/ona-redesign.css";
 
-const fallbackResidenceOptions: ResidenceSummaryApi[] = [
-  { id: '2-bedroom', slug: '2-bedroom', name: '02 Bedroom Residence', type: '2 Bedroom', bedrooms: 2, size_m2: 203, status: 'active', display_order: 1 },
-  { id: '3-bedroom', slug: '3-bedroom', name: '03 Bedroom Residence', type: '3 Bedroom', bedrooms: 3, size_m2: 236, status: 'active', display_order: 2 },
-  { id: 'penthouse-3bed', slug: 'penthouse-3bed', name: '03 Bedroom Signature Penthouse', type: 'Penthouse', bedrooms: 3, size_m2: 416, status: 'active', display_order: 3 },
-  { id: 'penthouse-4bed', slug: 'penthouse-4bed', name: '04 Bedroom Signature Penthouse', type: 'Penthouse', bedrooms: 4, size_m2: 482, status: 'active', display_order: 4 },
+const countryCodes = [
+  { value: "+255", label: "Tanzania +255" },
+  { value: "+254", label: "Kenya +254" },
+  { value: "+971", label: "UAE +971" },
+  { value: "+966", label: "Saudi Arabia +966" },
+  { value: "+974", label: "Qatar +974" },
+  { value: "+968", label: "Oman +968" },
+  { value: "+91", label: "India +91" },
+  { value: "+44", label: "United Kingdom +44" },
+  { value: "+1", label: "US / Canada +1" },
+  { value: "+27", label: "South Africa +27" },
+  { value: "+49", label: "Germany +49" },
+  { value: "+33", label: "France +33" },
 ];
 
-export const EnquirySection: React.FC = () => {
-  const [form, setForm] = useState<EnquiryPayload>(initialForm);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [reference, setReference] = useState('');
-  const [residenceOptions, setResidenceOptions] = useState<ResidenceSummaryApi[]>(fallbackResidenceOptions);
+type EnquiryForm = {
+  fullName: string;
+  countryCode: string;
+  phone: string;
+  email: string;
+  residenceInterest: string;
+  enquiryType: EnquiryType;
+  message: string;
+  consent: boolean;
+};
 
-  useEffect(() => {
-    let active = true;
-    listResidences()
-      .then((items) => {
-        if (active && items.length) setResidenceOptions(items);
-      })
-      .catch(() => {
-        // Keep the verified residence options available if the content service is offline.
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+const initialForm: EnquiryForm = {
+  fullName: "",
+  countryCode: "+255",
+  phone: "",
+  email: "",
+  residenceInterest: "",
+  enquiryType: "general",
+  message: "",
+  consent: false,
+};
 
-  const updateField = <K extends keyof EnquiryPayload>(key: K, value: EnquiryPayload[K]) => {
-    setForm((current) => ({ ...current, [key]: value }));
-  };
+function cleanPhone(value: string) {
+  return value.replace(/[^\d]/g, "").replace(/^0+/, "");
+}
+
+export default function EnquirySection() {
+  const [form, setForm] = useState<EnquiryForm>(initialForm);
+  const [state, setState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
+
+  const fullPhone = useMemo(() => {
+    const number = cleanPhone(form.phone);
+    return number ? `${form.countryCode}${number}` : "";
+  }, [form.countryCode, form.phone]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError('');
-    setReference('');
-    setSubmitting(true);
+
+    if (!form.consent) {
+      setState("error");
+      setFeedback("Please confirm that your details may be used to respond to your enquiry.");
+      return;
+    }
+
+    setState("submitting");
+    setFeedback("");
 
     try {
-      const response = await submitEnquiry({
-        ...form,
-        email: form.email?.trim() || undefined,
-        residence_interest: form.residence_interest?.trim() || undefined,
-        message: form.message?.trim() || undefined,
+      const result = await submitEnquiry({
+        name: form.fullName,
+        phone: fullPhone,
+        email: form.email || undefined,
+        residence_interest: form.residenceInterest || undefined,
+        enquiry_type: form.enquiryType,
+        message: form.message || undefined,
+        consent: form.consent,
+        source: "website",
+        company_website: "",
       });
-      setReference(response.reference_number);
+
+      const reference = result.reference_number;
+      setState("success");
+      setFeedback(
+        reference
+          ? `Thank you. Your private enquiry has been received. Reference: ${reference}`
+          : "Thank you. Your enquiry has been received by the ONA Towers team.",
+      );
       setForm(initialForm);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unable to submit your enquiry. Please try again.');
-    } finally {
-      setSubmitting(false);
+    } catch (error) {
+      setState("error");
+      setFeedback(error instanceof Error ? error.message : "Unable to submit your enquiry. Please try again.");
     }
   };
 
   return (
-    <section id="enquiry" className="relative w-full bg-[#302A26] text-[#E7DED6] pt-36 sm:pt-44 pb-24 sm:pb-36 lg:pb-48 border-t border-[#403832] overflow-hidden" aria-label="Register interest for ONA Towers">
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <img src={ONA_IMAGES.enquiryBackground.url} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[#302A26]/80" />
+    <section className="ona-enquiry">
+      <div className="ona-enquiry-visual">
+        <img
+          src={projectImages.residences.threeBedroomLiving}
+          alt="ONA Towers residence with elevated ocean outlook"
+        />
+        <div className="ona-enquiry-visual-overlay" />
+
+        <div className="ona-enquiry-visual-copy">
+          <p>Private sales · ONA Towers</p>
+          <h2>
+            Live above.
+            <br />
+            <em>See beyond.</em>
+          </h2>
+          <span>Mazizini · Zanzibar</span>
+
+          <div className="ona-enquiry-visual-facts">
+            <div>
+              <small>Collection</small>
+              <strong>2–3 BR + Penthouses</strong>
+            </div>
+            <div>
+              <small>Address</small>
+              <strong>Mazizini, Zanzibar</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
-        <div className="flex items-center space-x-3 mb-6">
-          <span className="w-8 h-px bg-[#A58A71]" />
-          <span className="font-sans text-xs font-semibold tracking-[0.24em] uppercase text-[#A58A71]">Enquire</span>
-        </div>
+      <div className="ona-enquiry-form-wrap">
+        <div className="ona-enquiry-form-inner">
+          <div className="ona-enquiry-heading">
+            <p className="ona-eyebrow">Private enquiry</p>
+            <p className="ona-script-label">Your ONA journey starts here</p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5 lg:sticky lg:top-32">
-            <span className="font-script text-3xl sm:text-4xl text-[#A58A71] block mb-2">Connect with ONIRIA</span>
-            <h2 className="font-display text-section-headline font-light leading-none uppercase mb-4 tracking-tight text-[#F5F0EA]">EXPERIENCE ONA.</h2>
-            <p className="font-sans text-sm sm:text-base text-[#E7DED6] leading-relaxed max-w-md font-light">
-              Register your interest with our dedicated sales and client advisory team. Receive official floor plans, availability schedules, and private consultation details.
+            <h1>
+              Begin your
+              <br />
+              <em>ONA journey.</em>
+            </h1>
+
+            <p className="ona-enquiry-intro">
+              Register your interest for residence information, floor-plan material
+              and a direct conversation with the ONA Towers team.
             </p>
-            <div className="mt-10 grid grid-cols-2 gap-6 border-t border-[#403832] pt-8 max-w-md">
-              <div>
-                <span className="block font-sans text-[10px] tracking-[0.18em] uppercase text-[#CFC2B7]">Residence</span>
-                <span className="mt-2 block font-display text-xl text-[#F5F0EA] font-light">2, 3 & Penthouse</span>
-              </div>
-              <div>
-                <span className="block font-sans text-[10px] tracking-[0.18em] uppercase text-[#CFC2B7]">Location</span>
-                <span className="mt-2 block font-display text-xl text-[#F5F0EA] font-light">Mazizini, Zanzibar</span>
-              </div>
+          </div>
+
+          <div className="ona-enquiry-service-strip">
+            <div>
+              <span>01</span>
+              <strong>Residence details</strong>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Floor-plan material</strong>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Sales conversation</strong>
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-[#38312C]/95 border border-[#403832] p-7 sm:p-10 lg:p-12 backdrop-blur-md shadow-2xl rounded-sm">
-            {reference ? (
-              <div className="min-h-[480px] flex flex-col items-start justify-center" role="status" aria-live="polite">
-                <CheckCircle2 className="w-10 h-10 text-[#A58A71] mb-6" aria-hidden="true" />
-                <p className="font-sans text-[11px] font-semibold tracking-[0.22em] uppercase text-[#A58A71] mb-3">Enquiry received</p>
-                <h3 className="font-display text-4xl sm:text-5xl text-[#F5F0EA] font-light mb-5">Thank you.</h3>
-                <p className="font-sans text-sm text-[#E7DED6] leading-relaxed max-w-lg mb-7 font-light">
-                  Your enquiry has been recorded successfully. An ONA client advisor will reach out to you shortly.
-                </p>
-                <div className="border border-[#A58A71]/50 bg-[#302A26]/70 px-5 py-4 mb-8 rounded-sm">
-                  <span className="block text-[10px] uppercase tracking-[0.18em] text-[#CFC2B7] mb-1">Reference Number</span>
-                  <strong className="font-sans text-sm tracking-[0.12em] text-[#F5F0EA]">{reference}</strong>
-                </div>
-                <button type="button" onClick={() => setReference('')} className="font-sans text-xs font-semibold tracking-[0.18em] uppercase text-[#A58A71] border-b border-[#A58A71] pb-1 hover:text-[#FFFFFF] transition-colors cursor-pointer">
-                  Send another enquiry
-                </button>
+          <form className="ona-enquiry-form" onSubmit={handleSubmit}>
+            <div className="ona-form-field ona-form-field--full">
+              <label htmlFor="fullName">Full name *</label>
+              <input
+                id="fullName"
+                value={form.fullName}
+                autoComplete="name"
+                required
+                placeholder="Your name"
+                onChange={(event) => setForm({ ...form, fullName: event.target.value })}
+              />
+            </div>
+
+            <div className="ona-form-phone">
+              <div className="ona-form-field">
+                <label htmlFor="countryCode">Country code *</label>
+                <select
+                  id="countryCode"
+                  value={form.countryCode}
+                  onChange={(event) => setForm({ ...form, countryCode: event.target.value })}
+                >
+                  {countryCodes.map((item) => (
+                    <option key={item.label} value={item.value}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field label="Full Name" required>
-                    <input required minLength={2} maxLength={100} autoComplete="name" value={form.name} onChange={(e) => updateField('name', e.target.value)} className="form-input" placeholder="Your full name" />
-                  </Field>
-                  <Field label="Phone Number" required>
-                    <input required minLength={7} maxLength={30} inputMode="tel" autoComplete="tel" value={form.phone} onChange={(e) => updateField('phone', e.target.value)} className="form-input" placeholder="+255 ..." />
-                  </Field>
-                </div>
 
-                <Field label="Email Address">
-                  <input type="email" maxLength={254} autoComplete="email" value={form.email || ''} onChange={(e) => updateField('email', e.target.value)} className="form-input" placeholder="name@example.com" />
-                </Field>
+              <div className="ona-form-field">
+                <label htmlFor="phone">Phone / WhatsApp *</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  required
+                  autoComplete="tel-national"
+                  value={form.phone}
+                  placeholder="7XX XXX XXX"
+                  onChange={(event) => setForm({ ...form, phone: event.target.value })}
+                />
+              </div>
+            </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <Field label="Residence Interest">
-                    <select value={form.residence_interest || ''} onChange={(e) => updateField('residence_interest', e.target.value)} className="form-input appearance-none cursor-pointer">
-                      <option value="">Select residence</option>
-                      {residenceOptions.map((residence) => (
-                        <option key={residence.slug} value={residence.slug}>{residence.name}</option>
-                      ))}
-                    </select>
-                  </Field>
-                  <Field label="I Would Like To">
-                    <select value={form.enquiry_type} onChange={(e) => updateField('enquiry_type', e.target.value as EnquiryType)} className="form-input appearance-none cursor-pointer">
-                      <option value="general">Make a general enquiry</option>
-                      <option value="enquire_about_residence">Enquire about a residence</option>
-                      <option value="request_floor_plans">Request floor plans</option>
-                      <option value="schedule_viewing">Schedule a viewing</option>
-                      <option value="talk_to_sales">Talk to sales</option>
-                    </select>
-                  </Field>
-                </div>
+            <div className="ona-form-field ona-form-field--full">
+              <label htmlFor="email">Email address *</label>
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={form.email}
+                placeholder="name@example.com"
+                onChange={(event) => setForm({ ...form, email: event.target.value })}
+              />
+            </div>
 
-                <Field label="Message">
-                  <textarea rows={5} maxLength={2000} value={form.message || ''} onChange={(e) => updateField('message', e.target.value)} className="form-input resize-y min-h-32" placeholder="Tell us what you would like to know..." />
-                </Field>
+            <div className="ona-form-field ona-form-field--full">
+              <label htmlFor="residence">Residence interest</label>
+              <select
+                id="residence"
+                value={form.residenceInterest}
+                onChange={(event) => setForm({ ...form, residenceInterest: event.target.value })}
+              >
+                <option value="">Select residence</option>
+                <option value="02 Bedroom Residence">02 Bedroom Residence</option>
+                <option value="03 Bedroom Residence">03 Bedroom Residence</option>
+                <option value="03 Bedroom Signature Penthouse">03 Bedroom Signature Penthouse</option>
+                <option value="04 Bedroom Signature Penthouse">04 Bedroom Signature Penthouse</option>
+              </select>
+            </div>
 
-                <div className="hidden" aria-hidden="true">
-                  <label>Company website<input tabIndex={-1} autoComplete="off" value={form.company_website} onChange={(e) => updateField('company_website', e.target.value)} /></label>
-                </div>
+            <div className="ona-form-field ona-form-field--full">
+              <label htmlFor="enquiryType">I would like to</label>
+              <select
+                id="enquiryType"
+                value={form.enquiryType}
+                onChange={(event) =>
+                  setForm({ ...form, enquiryType: event.target.value as EnquiryType })
+                }
+              >
+                <option value="general">Make a general enquiry</option>
+                <option value="enquire_about_residence">Enquire about a residence</option>
+                <option value="request_floor_plans">Request floor plans</option>
+                <option value="schedule_viewing">Schedule a viewing</option>
+                <option value="talk_to_sales">Talk to sales</option>
+              </select>
+            </div>
 
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <input required type="checkbox" checked={form.consent} onChange={(e) => updateField('consent', e.target.checked)} className="mt-1 h-4 w-4 accent-[#A58A71]" />
-                  <span className="font-sans text-xs leading-relaxed text-[#E7DED6] group-hover:text-[#FFFFFF] transition-colors">
-                    I agree that my details may be used to respond to this enquiry.
-                  </span>
-                </label>
+            <div className="ona-form-field ona-form-field--full">
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                rows={4}
+                value={form.message}
+                placeholder="Tell us what you would like to know."
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+              />
+            </div>
 
-                {error && (
-                  <div role="alert" className="border border-red-400/40 bg-red-950/40 px-4 py-3 font-sans text-sm text-red-100 rounded-sm">
-                    {error}
-                  </div>
-                )}
+            <label className="ona-consent">
+              <input
+                type="checkbox"
+                checked={form.consent}
+                onChange={(event) => setForm({ ...form, consent: event.target.checked })}
+              />
+              <span>I agree that my details may be used to respond to this enquiry.</span>
+            </label>
 
-                <button disabled={submitting} type="submit" className="w-full min-h-14 flex items-center justify-center gap-3 py-4 bg-[#A58A71] text-[#FFFFFF] hover:bg-[#917860] disabled:opacity-60 disabled:cursor-wait transition-colors font-sans text-xs font-semibold tracking-[0.2em] uppercase shadow-lg cursor-pointer rounded-xs">
-                  {submitting && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
-                  <span>{submitting ? 'Sending enquiry' : 'Submit enquiry'}</span>
-                </button>
-              </form>
+            {feedback && (
+              <div className={`ona-form-status ona-form-status--${state}`} role="status">
+                {feedback}
+              </div>
             )}
-          </div>
+
+            <button type="submit" className="ona-enquiry-submit" disabled={state === "submitting"}>
+              <span>{state === "submitting" ? "Submitting..." : "Send private enquiry"}</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <p className="ona-enquiry-privacy-note">
+            Your details are used only to respond to your enquiry and support your
+            conversation with the ONA Towers team.
+          </p>
         </div>
       </div>
     </section>
   );
-};
-
-const Field: React.FC<{ label: string; required?: boolean; children: React.ReactNode }> = ({ label, required, children }) => (
-  <label className="block">
-    <span className="block font-sans text-[11px] font-semibold tracking-widest text-[#E7DED6] uppercase mb-2">
-      {label}{required ? <span className="text-[#A58A71]"> *</span> : null}
-    </span>
-    {children}
-  </label>
-);
+}

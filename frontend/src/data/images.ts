@@ -1,53 +1,130 @@
-export interface ImageAsset { url: string; alt: string; caption?: string; location?: string }
+export const projectImages = {
+  /*
+   * Main Home hero.
+   * The Private Sales finale intentionally uses heroOceanView instead,
+   * so these two high-value home moments do not repeat the same image.
+   */
+  hero: "/ona-assets/hero/towers-sunset.webp",
+  heroOceanView: "/ona-assets/hero/hero-ocean-view.jpg",
+
+  development: {
+    aerial: "/ona-assets/hero/towers-sunset.webp",
+    towersOverview: "/ona-assets/hero/towers-sunset.webp",
+    verticalFacade: "/ona-assets/architecture/tower-a-vertical.webp",
+    landscape: "/ona-assets/development/landscape-gardens.webp",
+    landscapePlan: "/ona-assets/development/masterplan.png",
+    gardens: "/ona-assets/development/outdoor-work-garden.webp",
+  },
+
+  residences: {
+    exterior: "/ona-assets/residences/residences-exterior.png",
+    twoBedroomLiving: "/ona-assets/residences/2br-living.webp",
+    twoBedroomPremium: "/ona-assets/residences/2br-premium-living.webp",
+    threeBedroomLiving: "/ona-assets/residences/3br-living-ocean.webp",
+    threeBedroomLivingWide: "/ona-assets/residences/3br-living-wide.webp",
+    threeBedroomLivingTv: "/ona-assets/residences/3br-living-tv.webp",
+    threeBedroomBedroom: "/ona-assets/residences/3br-bedroom.webp",
+    kitchenDining: "/ona-assets/penthouses/kitchen-dining.webp",
+    dining: "/ona-assets/penthouses/dining-01.webp",
+    penthouseLiving: "/ona-assets/penthouses/living-01.webp",
+    penthouseLivingAlt: "/ona-assets/penthouses/living-02.webp",
+    penthouseDining: "/ona-assets/penthouses/dining-01.webp",
+    penthouseKitchenDining: "/ona-assets/penthouses/kitchen-dining.webp",
+    penthouseBedroom: "/ona-assets/penthouses/bedroom.webp",
+  },
+
+  amenities: {
+    cafe: "/ona-assets/lifestyle/cafe-bakery.webp",
+    socialLounge: "/ona-assets/lifestyle/social-lounge.webp",
+    beautyStudio: "/ona-assets/lifestyle/beauty-studio.webp",
+    miniMarket: "/ona-assets/lifestyle/mini-market.webp",
+    artSalon: "/ona-assets/lifestyle/art-salon.webp",
+    studyLounge: "/ona-assets/lifestyle/study-lounge.webp",
+    concierge: "/ona-assets/lifestyle/concierge.webp",
+    kidsClub: "/ona-assets/lifestyle/kids-club.webp",
+    pool: "/ona-assets/lifestyle/pool.png",
+    gym: "/ona-assets/lifestyle/gym.png",
+    coffeeCorner: "/ona-assets/lifestyle/coffee-corner.png",
+  },
+
+  commercial: {
+    officePlan: "/ona-assets/commercial/office-level-plan.png",
+    onaHouseExterior: "/ona-assets/commercial/ona-house-exterior.png",
+    workspacePremium: "/ona-assets/commercial/office-workspace-premium.png",
+    boardroom: "/ona-assets/commercial/boardroom.png",
+    supermarket: "/ona-assets/lifestyle/mini-market.webp",
+  },
+
+  story: {
+    peopleRelationships: "/ona-assets/story/people-relationships.webp",
+  },
+
+  architecture: {
+    closeup: "/ona-assets/architecture/tower-a-vertical.webp",
+    aerial: "/ona-assets/architecture/single-tower-aerial.png",
+  },
+
+  floorPlans: {
+    // The brochure supplies one layout per type, not per tower/orientation.
+    towerA2West: "/ona-assets/floorplans/brochure-2br.png",
+    towerA2East: "/ona-assets/floorplans/brochure-2br.png",
+    towerA3West: "/ona-assets/floorplans/brochure-3br.png",
+    towerA3East: "/ona-assets/floorplans/brochure-3br.png",
+    towerAPenthouse3: "/ona-assets/floorplans/brochure-penthouse-3br.png",
+    towerAPenthouse4: "/ona-assets/floorplans/brochure-penthouse-4br.png",
+    towerB2West: "/ona-assets/floorplans/brochure-2br.png",
+    towerB2East: "/ona-assets/floorplans/brochure-2br.png",
+    towerB3West: "/ona-assets/floorplans/brochure-3br.png",
+    towerB3East: "/ona-assets/floorplans/brochure-3br.png",
+    towerBPenthouse3: "/ona-assets/floorplans/brochure-penthouse-3br.png",
+    towerBPenthouse4: "/ona-assets/floorplans/brochure-penthouse-4br.png",
+  },
+} as const;
+
+/* =========================================================
+   BACKWARD-COMPATIBLE IMAGE MAP
+========================================================= */
 
 export const ONA_IMAGES = {
-  heroArrival: { url: '/ona-assets/hero/hero-ocean-view.jpg', alt: 'ONA Towers panoramic ocean-view terrace over Zanzibar waters and horizon', caption: 'ONA Towers — Live above. See beyond.', location: 'Mazizini, Zanzibar' },
-  heroAerial: { url: '/ona-assets/hero/hero-aerial.png', alt: 'ONA Towers development overview showing Tower A, ONA House, and Tower B', caption: 'Two towers, ONA House, and ocean horizons', location: 'Mazizini, Zanzibar' },
-  livePreview: { url: '/ona-assets/residences/residences-exterior.png', alt: 'ONA Towers residential facade and flowing terraces', caption: 'Live — Residences shaped by light and horizon' },
-  lifePreview: { url: '/ona-assets/lifestyle/pool.png', alt: 'ONA Towers landscape gardens, shaded pathways, and courtyard', caption: 'Life — Green by design, calm by nature' },
-  workPreview: { url: '/ona-assets/commercial/boardroom.png', alt: 'ONA Towers study lounge and contemplative spaces', caption: 'Work & Culture — Study Lounge & Art Salon' },
-  masterplan: { url: '/ona-assets/development/masterplan.png', alt: 'ONA Towers development masterplan', caption: 'Development masterplan' },
-  groundServicesPlan: { url: '/ona-assets/development/ground-services-plan.png', alt: 'ONA Towers ground-level and services plan', caption: 'Ground level and services plan' },
-  residencesExterior: { url: '/ona-assets/residences/residences-exterior.png', alt: 'ONA Towers residential exterior facade with expansive balconies', caption: 'Residential towers' },
-  residenceInteriorTeaser: { url: '/ona-assets/interiors/living-main.png', alt: 'Interior visualization of residential living space', caption: 'Interior visualization' },
-  twoBedroomPlan: { url: '/ona-assets/residences/two-bedroom-plan-approx-203sqm.png', alt: 'Two-bedroom residence plan, approx. 203 sqm', caption: 'Two-bedroom residence plan — approx. 203 sqm' },
-  threeBedroomPlan: { url: '/ona-assets/residences/three-bedroom-plan-approx-236sqm.jpg', alt: 'Three-bedroom residence plan, approx. 236 sqm', caption: 'Three-bedroom residence plan — approx. 236 sqm' },
-  typicalFloorPlan: { url: '/ona-assets/residences/typical-floorplan.png', alt: 'Typical residential floor plan showing four residences', caption: 'Typical floor — only four residences per floor' },
-  penthouseLevelOverview: { url: '/ona-assets/residences/penthouse-level-overview.png', alt: 'ONA Towers penthouse level overview plan', caption: 'Penthouse level overview — two penthouses per tower' },
-  penthouseThreeBedroomPlan: { url: '/ona-assets/residences/penthouse-3-bedroom-approx-416sqm.jpg', alt: 'Three-bedroom penthouse plan, approx. 416 sqm', caption: 'Three-bedroom penthouse — approx. 416 sqm' },
-  penthouseFourBedroomPlan: { url: '/ona-assets/residences/penthouse-4-bedroom-approx-482sqm.png', alt: 'Four-bedroom penthouse plan, approx. 482 sqm', caption: 'Four-bedroom penthouse — approx. 482 sqm' },
-  penthousePlan: { url: '/ona-assets/residences/penthouse-3-bedroom-approx-416sqm.jpg', alt: 'Three-bedroom penthouse plan, approx. 416 sqm', caption: 'Three-bedroom penthouse — approx. 416 sqm' },
-  penthouseTerrace: { url: '/ona-assets/interiors/living-ocean-view.png', alt: 'ONA Towers penthouse terrace and living space', caption: 'Penthouse panoramic living and terrace' },
-  penthouseMaster: { url: '/ona-assets/interiors/primary-bedroom.png', alt: 'ONA Towers penthouse master bedroom with panoramic views', caption: 'Penthouse Master Bedroom' },
-  interiorLiving: { url: '/ona-assets/interiors/living-main.png', alt: 'Interior visualization of 2-bedroom living space', caption: '2-Bedroom Living Area' },
-  interiorOceanView: { url: '/ona-assets/interiors/living-ocean-view.png', alt: 'Interior visualization of 3-bedroom living space with ocean horizon', caption: '3-Bedroom Living Area' },
-  interiorKitchen: { url: '/ona-assets/interiors/kitchen-dining.png', alt: 'Interior visualization of contemporary open living and kitchen', caption: 'Contemporary Living & Kitchen' },
-  interiorBedroom: { url: '/ona-assets/interiors/primary-bedroom.png', alt: 'Interior visualization of primary bedroom retreat', caption: '3-Bedroom Primary Suite' },
-  interiorDining: { url: '/ona-assets/interiors/dining.png', alt: 'Interior visualization of dining and entertainment area', caption: 'Dining & Entertaining Area' },
-  penthouseLiving: { url: '/ona-assets/interiors/living-ocean-view.png', alt: 'Penthouse living salon with soaring ceilings and floor-to-ceiling glass', caption: 'Penthouse Living Salon' },
-  penthouseDining: { url: '/ona-assets/interiors/dining.png', alt: 'Penthouse dining salon framed by ocean skies', caption: 'Penthouse Dining Area' },
-  penthouseBedroom: { url: '/ona-assets/interiors/primary-bedroom.png', alt: 'Penthouse bedroom suite with horizon vistas', caption: 'Penthouse Bedroom' },
-  lifestylePool: { url: '/ona-assets/lifestyle/pool.png', alt: 'ONA Towers pool visualization', caption: 'Pool' },
-  lifestyleRestaurant: { url: '/ona-assets/lifestyle/rooftop-restaurant.png', alt: 'ONA Towers restaurant and outdoor dining visualization', caption: 'Restaurant & Outdoor Dining' },
-  lifestyleGym: { url: '/ona-assets/lifestyle/gym.png', alt: 'ONA Towers gym visualization', caption: 'Gym' },
-  lifestyleCoffee: { url: '/ona-assets/canva/amenity_cafe_bakery.png', alt: 'ONA Towers Cafe & Bakery visualization', caption: 'Coffee & Bakery' },
-  amenitySocialLounge: { url: '/ona-assets/commercial/boardroom.png', alt: 'Tower A Social Lounge', caption: 'Social Lounge' },
-  amenityBeautyStudio: { url: '/ona-assets/canva/amenity_beauty_studio.png', alt: 'Tower A Beauty Studio', caption: 'Beauty Studio' },
-  amenityMiniMarket: { url: '/ona-assets/commercial/supermarket.png', alt: 'Tower A Mini Market', caption: 'Mini Market' },
-  amenityArtSalon: { url: '/ona-assets/canva/amenity_art_salon.png', alt: 'Tower B Art Salon', caption: 'Art Salon' },
-  amenityStudyLounge: { url: '/ona-assets/commercial/boardroom.png', alt: 'Tower B Study Lounge', caption: 'Study Lounge' },
-  amenityConcierge: { url: '/ona-assets/canva/amenity_concierge_desk.png', alt: 'Tower B Concierge Desk', caption: 'Concierge Desk' },
-  amenityKidsClub: { url: '/ona-assets/lifestyle/pool.png', alt: 'Tower B Kids Club', caption: 'Kids’ Club' },
-  commercialOffice: { url: '/ona-assets/commercial/office-level-plan.png', alt: 'Commercial office level plan', caption: 'Office level plan' },
-  commercialBoardroom: { url: '/ona-assets/commercial/boardroom.png', alt: 'ONA Towers study lounge and executive space', caption: 'Study Lounge & Executive Room' },
-  commercialMarket: { url: '/ona-assets/commercial/supermarket.png', alt: 'ONA Towers market visualization', caption: 'Mini Market' },
-  commercialGroundFloorPlan: { url: '/ona-assets/commercial/ground-floor-plan.png', alt: 'Commercial building ground-floor plan', caption: 'Ground-floor plan' },
-  commercialTerracePlan: { url: '/ona-assets/commercial/terrace-lifestyle-plan.png', alt: 'Commercial building terrace lifestyle plan', caption: 'Terrace lifestyle plan' },
-  architectureFacade: { url: '/ona-assets/architecture/architecture-closeup.png', alt: 'ONA Towers architecture facade render', caption: 'Architecture facade' },
-  architectureMaterial: { url: '/ona-assets/architecture/single-tower-aerial.png', alt: 'ONA Towers twin towers architecture render', caption: 'Residential towers in Mazizini' },
-  enquiryBackground: { url: '/ona-assets/hero/hero-arrival.png', alt: 'ONA Towers arrival view', caption: 'ONA Towers' },
-  locationMap: { url: '/ona-assets/hero/hero-aerial.png', alt: 'Official Zanzibar location and transit map for ONA Towers', caption: 'Location Map — Mazizini, Zanzibar' },
-  zanzibarHorizon: { url: '/ona-assets/hero/hero-aerial.png', alt: 'Zanzibar turquoise Indian Ocean coast', caption: 'Zanzibar — Where tomorrow begins' },
+  heroOceanView: projectImages.heroOceanView,
+  developmentAerial: projectImages.development.aerial,
+  towersOverview: projectImages.development.towersOverview,
+  towersVerticalFacade: projectImages.development.verticalFacade,
+  outdoorLandscape: projectImages.development.landscape,
+  siteLandscapePlan: projectImages.development.landscapePlan,
+  landscapeGardens: projectImages.development.gardens,
+  residence2BrLiving: projectImages.residences.twoBedroomLiving,
+  residence3BrLiving: projectImages.residences.threeBedroomLiving,
+  residence3BrBedroom: projectImages.residences.threeBedroomBedroom,
+  amenityCafeBakery: projectImages.amenities.cafe,
+  amenitySocialLounge: projectImages.amenities.socialLounge,
+  amenityBeautyStudio: projectImages.amenities.beautyStudio,
+  amenityMiniMarket: projectImages.amenities.miniMarket,
+  amenityArtSalon: projectImages.amenities.artSalon,
+  amenityStudyLounge: projectImages.amenities.studyLounge,
+  amenityConcierge: projectImages.amenities.concierge,
+  amenityKidsClub: projectImages.amenities.kidsClub,
+  officeFloorPlan: projectImages.commercial.officePlan,
+  architectureCloseup: projectImages.architecture.closeup,
+  singleTowerAerial: projectImages.architecture.aerial,
+  towerA2West: projectImages.floorPlans.towerA2West,
+  towerA2East: projectImages.floorPlans.towerA2East,
+  towerA3West: projectImages.floorPlans.towerA3West,
+  towerA3East: projectImages.floorPlans.towerA3East,
+  towerAPenthouse3: projectImages.floorPlans.towerAPenthouse3,
+  towerAPenthouse4: projectImages.floorPlans.towerAPenthouse4,
+  towerB2West: projectImages.floorPlans.towerB2West,
+  towerB2East: projectImages.floorPlans.towerB2East,
+  towerB3West: projectImages.floorPlans.towerB3West,
+  towerB3East: projectImages.floorPlans.towerB3East,
+  towerBPenthouse3: projectImages.floorPlans.towerBPenthouse3,
+  towerBPenthouse4: projectImages.floorPlans.towerBPenthouse4,
 } as const;
 
 export type ImageKey = keyof typeof ONA_IMAGES;
+
+export function getOnaImage(key: ImageKey): string {
+  return ONA_IMAGES[key];
+}
+
+export default projectImages;

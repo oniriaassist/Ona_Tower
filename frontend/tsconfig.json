@@ -11,8 +11,8 @@
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "types": ["vite/client", "node"],
-    "baseUrl": ".",
+    "types": ["vite/client", "node", "react", "react-dom"],
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["./src/*"]
     }

@@ -1,17 +1,13 @@
-import React from 'react';
-import { ArchitectureSection } from '../components/ArchitectureSection';
-import { Development } from '../components/Development';
-import { OnaIdea } from '../components/OnaIdea';
-import { navigate } from '../routing';
+import React from "react";
+import ArchitectureSection from "../components/ArchitectureSection";
+import Development from "../components/Development";
+import OnaIdea from "../components/OnaIdea";
+import "../styles/ona-redesign.css";
 
 export const DevelopmentPage: React.FC = () => (
-  <>
-    <OnaIdea
-      onExploreResidences={() => navigate('/residences')}
-      onExploreLifestyle={() => navigate('/lifestyle')}
-      onExploreCommercial={() => navigate('/commercial')}
-    />
+  <div className="ona-story-page">
+    <OnaIdea />
     <Development />
     <ArchitectureSection />
-  </>
+  </div>
 );

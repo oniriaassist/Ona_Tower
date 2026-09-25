@@ -1,37 +1,466 @@
-import { ResidenceTypology, MasterplanHotspot, LifestyleScene, CommercialModule } from '../types';
-import { ONA_FACTS } from './projectFacts';
+import {
+  projectImages,
+  type ImageKey,
+} from "./images";
 
-const { twoBedroom, threeBedroom, penthouses, typicalFloor, structurePerTower } = ONA_FACTS.residential;
+export type ResidenceVariant = {
+  id: string;
 
-export const RESIDENCE_TYPOLOGIES: ResidenceTypology[] = [
-  { id: '2-bedroom', code: 'TYPOLOGY 02', name: twoBedroom.name, tagline: 'Two-bedroom residence', bedrooms: twoBedroom.bedrooms, approxAreaSqm: twoBedroom.approximateAreaSqm, areaDisplay: twoBedroom.areaDisplay, description: twoBedroom.description, features: ['2 Bedrooms', twoBedroom.areaDisplay, `${typicalFloor.twoBedroomUnits} units per typical residential floor`], imageKey: 'twoBedroomPlan', planKey: 'twoBedroomPlan' },
-  { id: '3-bedroom', code: 'TYPOLOGY 03', name: threeBedroom.name, tagline: 'Three-bedroom residence', bedrooms: threeBedroom.bedrooms, approxAreaSqm: threeBedroom.approximateAreaSqm, areaDisplay: threeBedroom.areaDisplay, description: threeBedroom.description, features: ['3 Bedrooms', threeBedroom.areaDisplay, `${typicalFloor.threeBedroomUnits} units per typical residential floor`], imageKey: 'threeBedroomPlan', planKey: 'threeBedroomPlan' },
-  { id: 'penthouse-3bed', code: 'PENTHOUSE 01', name: penthouses[0].name, tagline: 'Penthouse level', bedrooms: penthouses[0].bedrooms, approxAreaSqm: penthouses[0].approximateAreaSqm, areaDisplay: penthouses[0].areaDisplay, description: penthouses[0].description, features: ['3 Bedrooms', penthouses[0].areaDisplay, 'Penthouse level'], imageKey: 'penthouseThreeBedroomPlan', planKey: 'penthouseThreeBedroomPlan' },
-  { id: 'penthouse-4bed', code: 'PENTHOUSE 02', name: penthouses[1].name, tagline: 'Penthouse level', bedrooms: penthouses[1].bedrooms, approxAreaSqm: penthouses[1].approximateAreaSqm, areaDisplay: penthouses[1].areaDisplay, description: penthouses[1].description, features: ['4 Bedrooms', penthouses[1].areaDisplay, 'Penthouse level'], imageKey: 'penthouseFourBedroomPlan', planKey: 'penthouseFourBedroomPlan' },
+  tower:
+    | "Tower A"
+    | "Tower B";
+
+  orientation: string;
+
+  suiteArea: number;
+
+  balconyArea: number;
+
+  totalArea: number;
+
+  floorPlan: string;
+
+  imageKey?: ImageKey;
+};
+
+export type ResidenceType = {
+  id: string;
+
+  label: string;
+
+  shortLabel: string;
+
+  bedrooms: number;
+
+  range: string;
+
+  description: string;
+
+  variants: ResidenceVariant[];
+};
+
+export const residences: ResidenceType[] = [
+  {
+    id: "two-bedroom",
+
+    label:
+      "02 Bedroom Residence",
+
+    shortLabel:
+      "02 Bedroom",
+
+    bedrooms: 2,
+
+    range:
+      "202–206 sqm",
+
+    description:
+      "Generous two-bedroom residences with open living spaces, private terraces and elevated views across Zanzibar.",
+
+    variants: [
+      {
+        id:
+          "tower-a-2-west",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "West",
+
+        suiteArea:
+          146,
+
+        balconyArea:
+          56,
+
+        totalArea:
+          202,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerA2West,
+
+        imageKey:
+          "towerA2West",
+      },
+
+      {
+        id:
+          "tower-a-2-east",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "East",
+
+        suiteArea:
+          146,
+
+        balconyArea:
+          60,
+
+        totalArea:
+          206,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerA2East,
+
+        imageKey:
+          "towerA2East",
+      },
+
+      {
+        id:
+          "tower-b-2-west",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "West",
+
+        suiteArea:
+          146,
+
+        balconyArea:
+          60,
+
+        totalArea:
+          206,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerB2West,
+
+        imageKey:
+          "towerB2West",
+      },
+
+      {
+        id:
+          "tower-b-2-east",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "East",
+
+        suiteArea:
+          146,
+
+        balconyArea:
+          60,
+
+        totalArea:
+          206,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerB2East,
+
+        imageKey:
+          "towerB2East",
+      },
+    ],
+  },
+
+  {
+    id:
+      "three-bedroom",
+
+    label:
+      "03 Bedroom Residence",
+
+    shortLabel:
+      "03 Bedroom",
+
+    bedrooms:
+      3,
+
+    range:
+      "236–240 sqm",
+
+    description:
+      "Expansive three-bedroom residences created around generous living, entertaining and private retreat spaces.",
+
+    variants: [
+      {
+        id:
+          "tower-a-3-west",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "West",
+
+        suiteArea:
+          169,
+
+        balconyArea:
+          67,
+
+        totalArea:
+          236,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerA3West,
+
+        imageKey:
+          "towerA3West",
+      },
+
+      {
+        id:
+          "tower-a-3-east",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "East",
+
+        suiteArea:
+          173,
+
+        balconyArea:
+          67,
+
+        totalArea:
+          240,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerA3East,
+
+        imageKey:
+          "towerA3East",
+      },
+
+      {
+        id:
+          "tower-b-3-west",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "West",
+
+        suiteArea:
+          173,
+
+        balconyArea:
+          67,
+
+        totalArea:
+          240,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerB3West,
+
+        imageKey:
+          "towerB3West",
+      },
+
+      {
+        id:
+          "tower-b-3-east",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "East",
+
+        suiteArea:
+          170,
+
+        balconyArea:
+          70,
+
+        totalArea:
+          240,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerB3East,
+
+        imageKey:
+          "towerB3East",
+      },
+    ],
+  },
+
+  {
+    id:
+      "three-bedroom-penthouse",
+
+    label:
+      "03 Bedroom Signature Penthouse",
+
+    shortLabel:
+      "03 BR Penthouse",
+
+    bedrooms:
+      3,
+
+    range:
+      "419–423 sqm",
+
+    description:
+      "A limited signature residence combining expansive living spaces, generous terraces and panoramic ocean and sunrise outlooks.",
+
+    variants: [
+      {
+        id:
+          "tower-a-penthouse-3",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "Supreme Ocean & Sunrise Views",
+
+        suiteArea:
+          303,
+
+        balconyArea:
+          116,
+
+        totalArea:
+          419,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerAPenthouse3,
+
+        imageKey:
+          "towerAPenthouse3",
+      },
+
+      {
+        id:
+          "tower-b-penthouse-3",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "Supreme Ocean & Sunrise Views",
+
+        suiteArea:
+          303,
+
+        balconyArea:
+          120,
+
+        totalArea:
+          423,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerBPenthouse3,
+
+        imageKey:
+          "towerBPenthouse3",
+      },
+    ],
+  },
+
+  {
+    id:
+      "four-bedroom-penthouse",
+
+    label:
+      "04 Bedroom Signature Penthouse",
+
+    shortLabel:
+      "04 BR Penthouse",
+
+    bedrooms:
+      4,
+
+    range:
+      "487–491 sqm",
+
+    description:
+      "The largest signature residences at ONA Towers, conceived for privacy, entertaining and elevated island living.",
+
+    variants: [
+      {
+        id:
+          "tower-a-penthouse-4",
+
+        tower:
+          "Tower A",
+
+        orientation:
+          "Supreme Ocean & Sunrise Views",
+
+        suiteArea:
+          347,
+
+        balconyArea:
+          140,
+
+        totalArea:
+          487,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerAPenthouse4,
+
+        imageKey:
+          "towerAPenthouse4",
+      },
+
+      {
+        id:
+          "tower-b-penthouse-4",
+
+        tower:
+          "Tower B",
+
+        orientation:
+          "Supreme Ocean & Sunrise Views",
+
+        suiteArea:
+          357,
+
+        balconyArea:
+          134,
+
+        totalArea:
+          491,
+
+        floorPlan:
+          projectImages
+            .floorPlans
+            .towerBPenthouse4,
+
+        imageKey:
+          "towerBPenthouse4",
+      },
+    ],
+  },
 ];
 
-const residentialDetails = [`${structurePerTower.residentialFloors} residential floors + ${structurePerTower.penthouseLevel} penthouse level`, `${typicalFloor.residencesPerFloor} residences per typical floor (2 × 2-bed, 2 × 3-bed)`, `Approx. ${structurePerTower.approximateApartmentsPerTower} apartments`];
-export const MASTERPLAN_HOTSPOTS: MasterplanHotspot[] = [
-  { id: 'tower-a', number: '01', title: 'Residential Tower A', category: 'LIVE', description: 'Residential tower with ground-level parking and building services, 11 residential floors and one penthouse level.', xPercent: 0, yPercent: 0, keyDetails: residentialDetails },
-  { id: 'tower-b', number: '02', title: 'Residential Tower B', category: 'LIVE', description: 'Residential tower with ground-level parking and building services, 11 residential floors and one penthouse level.', xPercent: 0, yPercent: 0, keyDetails: residentialDetails },
-  { id: 'commercial-building', number: '03', title: 'Commercial / Service Building', category: 'WORK', description: ONA_FACTS.commercialBuilding.description, xPercent: 0, yPercent: 0, keyDetails: ['Ground floor: supermarket, coffee / work area, reception / waiting / display and supporting spaces', '2 parking levels', 'Office level', 'Terrace: restaurant, outdoor restaurant, pool and gym'] },
-];
-
-export const LIFESTYLE_SCENES: LifestyleScene[] = [
-  { id: 'coffee', number: '01', title: 'Coffee & Bakery', subtitle: 'Everyday Rituals', description: 'Morning espresso and fresh artisanal bakery right within Tower A.', imageKey: 'lifestyleCoffee', highlight: 'TOWER A · LIVE' },
-  { id: 'social-lounge', number: '02', title: 'Social Lounge', subtitle: 'Connection & Pleasure', description: 'An elegant gathering space shaped around the rituals of connection and hospitality.', imageKey: 'amenitySocialLounge', highlight: 'TOWER A · LIVE' },
-  { id: 'beauty-studio', number: '03', title: 'Beauty Studio', subtitle: 'Dedicated Wellbeing', description: 'Afternoon treatments and self-care thoughtfully placed close to home.', imageKey: 'amenityBeautyStudio', highlight: 'TOWER A · LIVE' },
-  { id: 'mini-market', number: '04', title: 'Mini Market', subtitle: 'Effortless Convenience', description: 'Curated daily essentials and fresh provisions right at your doorstep.', imageKey: 'amenityMiniMarket', highlight: 'TOWER A · LIVE' },
-  { id: 'art-salon', number: '05', title: 'Art Salon', subtitle: 'Culture & Thought', description: 'Art becomes part of daily life in Tower B with curated exhibitions and salon spaces.', imageKey: 'amenityArtSalon', highlight: 'TOWER B · BEYOND' },
-  { id: 'study-lounge', number: '06', title: 'Study Lounge', subtitle: 'Curiosity & Focus', description: 'Quiet spaces inviting reading, deep thought, and executive focus.', imageKey: 'amenityStudyLounge', highlight: 'TOWER B · BEYOND' },
-  { id: 'concierge', number: '07', title: 'Concierge Desk', subtitle: 'Seamless Hospitality', description: 'Personalized resident assistance, travel services, and welcoming reception.', imageKey: 'amenityConcierge', highlight: 'TOWER B · BEYOND' },
-  { id: 'kids-club', number: '08', title: 'Kids’ Club', subtitle: 'Family & Growth', description: 'Dedicated playful spaces giving families room to connect, learn, and grow.', imageKey: 'amenityKidsClub', highlight: 'TOWER B · BEYOND' },
-  { id: 'pool', number: '09', title: 'Terrace Pool', subtitle: 'Space to slow down', description: 'Reflecting pools and swimming terrace overlooking the Zanzibar horizon.', imageKey: 'lifestylePool', highlight: 'ONA HOUSE' },
-  { id: 'dining', number: '10', title: 'Restaurant & Outdoor Dining', subtitle: 'Dining above the everyday', description: 'Panoramic dining experience framed by ocean light and breezes.', imageKey: 'lifestyleRestaurant', highlight: 'ONA HOUSE' },
-];
-
-export const COMMERCIAL_MODULES: CommercialModule[] = [
-  { id: 'work', label: '01 / WORK', title: 'Office Level', lead: 'Work within the development.', description: 'A confirmed office level in the separate commercial / service building.', imageKey: 'commercialOffice', highlights: ['Office level', 'Separate commercial / service building'] },
-  { id: 'coffee-work', label: '02 / MEET', title: 'Coffee & Work Area', lead: 'A place to meet, work or pause.', description: 'A coffee / work area is shown on the ground floor.', imageKey: 'commercialBoardroom', highlights: ['Ground-floor coffee / work area', 'Reception / waiting / display area'] },
-  { id: 'convenience', label: '03 / SERVICES', title: 'Supermarket', lead: 'Everyday convenience.', description: 'A supermarket is shown on the ground floor of the commercial / service building.', imageKey: 'commercialMarket', highlights: ['Ground-floor supermarket', '2 parking levels', 'Entrance / office / supporting spaces'] },
-];
+export default residences;

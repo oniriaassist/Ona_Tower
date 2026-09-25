@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       port: 3010,
+      strictPort: true,
       allowedHosts: true,
       proxy: {
         '/api': {
@@ -29,6 +30,7 @@ export default defineConfig(({ mode }) => {
     preview: {
       host: '0.0.0.0',
       port: 3010,
+      strictPort: true,
     },
   };
 });

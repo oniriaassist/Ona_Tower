@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
- <defs><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#839c9b"/><stop offset="1" stop-color="#c8b89e"/></linearGradient><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e7ded0"/><stop offset="1" stop-color="#746e62"/></linearGradient></defs>
- <rect width="1600" height="1000" fill="url(#s)"/><circle cx="1290" cy="180" r="90" fill="#eee3ca" opacity=".7"/><path d="M0 780Q400 670 830 770t770-30v260H0z" fill="#395e61" opacity=".75"/>
- <path d="M600 230h610v600H600z" fill="url(#g)"/><path d="M550 305h740v52H550zm0 135h740v38H550zm0 127h740v38H550zm0 127h740v38H550z" fill="#292c29"/><path d="M635 357h150v83H635zm195 0h150v83H830zm195 0h150v83h-150zM635 478h150v89H635zm195 0h150v89H830zm195 0h150v89h-150zM635 605h150v89H635zm195 0h150v89H830zm195 0h150v89h-150z" fill="#789294"/><path d="M510 830h850v28H510z" fill="#292c29"/><g fill="#213f38"><ellipse cx="400" cy="830" rx="170" ry="30"/><path d="M380 830q-60-210 10-390 65 170 15 390z"/></g>
-</svg>

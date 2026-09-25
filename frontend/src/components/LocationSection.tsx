@@ -1,66 +1,197 @@
-import React, { useEffect, useState } from 'react';
-import { MapPin } from 'lucide-react';
-import { listLocationPoints, type LocationPointApi } from '../api/content';
+import { createElement, useEffect, useRef, useState } from "react";
+import { ExternalLink, MapPin } from "lucide-react";
 
-const fallbackPoints: LocationPointApi[] = [
-  {
-    id: 'zanzibar-fallback',
-    name: 'Zanzibar',
-    category: 'Location',
-    distance_or_travel_note: 'ONA Towers development location',
-    display_order: 1,
-  },
-];
+import { projectFacts } from "../data/projectFacts";
+import "../styles/ona-redesign.css";
 
-export const LocationSection: React.FC = () => {
-  const [points, setPoints] = useState<LocationPointApi[]>(fallbackPoints);
+const MAPS_3D_SCRIPT_ID = "ona-google-maps-3d-script";
+
+type MapState = "loading" | "ready" | "missing-key" | "error";
+
+function loadGoogleMaps3D(apiKey: string) {
+  return new Promise<void>((resolve, reject) => {
+    if (customElements.get("gmp-map-3d")) {
+      resolve();
+      return;
+    }
+
+    const existingScript = document.getElementById(
+      MAPS_3D_SCRIPT_ID,
+    ) as HTMLScriptElement | null;
+
+    if (existingScript) {
+      customElements.whenDefined("gmp-map-3d").then(() => resolve()).catch(reject);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = MAPS_3D_SCRIPT_ID;
+    script.async = true;
+    script.src = `https://maps.googleapis.com/maps/api/js?loading=async&key=${encodeURIComponent(
+      apiKey,
+    )}&libraries=maps3d&v=weekly`;
+
+    script.addEventListener("error", () => {
+      reject(new Error("Unable to load Google Maps 3D."));
+    });
+
+    document.head.appendChild(script);
+
+    customElements.whenDefined("gmp-map-3d").then(() => resolve()).catch(reject);
+  });
+}
+
+export default function LocationSection() {
+  const mapRef = useRef<HTMLElement | null>(null);
+  const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? "").trim();
+  const [mapState, setMapState] = useState<MapState>(
+    apiKey ? "loading" : "missing-key",
+  );
 
   useEffect(() => {
-    let active = true;
-    listLocationPoints()
-      .then((items) => {
-        if (active && items.length) setPoints(items);
+    if (!apiKey) {
+      setMapState("missing-key");
+      return;
+    }
+
+    let cancelled = false;
+    let readyTimer: number | undefined;
+
+    loadGoogleMaps3D(apiKey)
+      .then(() => {
+        if (cancelled) return;
+
+        const mapElement = mapRef.current;
+
+        const markReady = () => {
+          if (!cancelled) setMapState("ready");
+        };
+
+        mapElement?.addEventListener("gmp-steadystate", markReady, {
+          once: true,
+        });
+
+        // The component is usable as soon as the custom element is defined.
+        // Keep a small fallback timer because some browser/GPU combinations
+        // do not dispatch gmp-steadystate immediately.
+        readyTimer = window.setTimeout(markReady, 1400);
       })
       .catch(() => {
-        // Keep the verified Zanzibar fallback visible if the backend is unavailable.
+        if (!cancelled) setMapState("error");
       });
+
     return () => {
-      active = false;
+      cancelled = true;
+      if (readyTimer) window.clearTimeout(readyTimer);
     };
-  }, []);
+  }, [apiKey]);
+
+  const { latitude, longitude, altitude, range, tilt, heading } =
+    projectFacts.locationMap;
+
+  const map3d = apiKey
+    ? createElement(
+        "gmp-map-3d",
+        {
+          ref: (node: HTMLElement | null) => {
+            mapRef.current = node;
+          },
+          center: `${latitude},${longitude},${altitude}`,
+          range: String(range),
+          tilt: String(tilt),
+          heading: String(heading),
+          mode: "satellite",
+          "gesture-handling": "cooperative",
+          description: "Satellite 3D view of Mazizini, Zanzibar",
+        } as any,
+        createElement("gmp-marker-3d", {
+          position: `${latitude},${longitude},24`,
+          label: "ONA Towers · Mazizini",
+          "size-preserved": true,
+          "draws-when-occluded": true,
+        } as any),
+      )
+    : null;
 
   return (
-    <section id="location" className="relative w-full bg-[#302A26] text-[#E7DED6] pt-36 sm:pt-44 pb-24 sm:pb-36 lg:pb-48 border-t border-[#403832]" aria-label="ONA Towers location">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <div className="flex items-center space-x-3 mb-6">
-          <span className="w-8 h-px bg-[#A58A71]" />
-          <span className="font-sans text-xs font-semibold tracking-[0.24em] uppercase text-[#A58A71]">Location</span>
-        </div>
+    <main className="ona-location2-page">
+      <section className="ona-location2-map-shell">
+        <div className="ona-location2-map" aria-label="3D satellite map of Mazizini, Zanzibar">
+          {map3d}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end border-y border-[#403832] py-14 sm:py-20">
-          <div className="lg:col-span-7">
-            <span className="font-script text-3xl sm:text-4xl text-[#A58A71] block mb-2">Mazizini & Stone Town</span>
-            <h2 className="font-display text-section-headline font-light text-[#F5F0EA] leading-none uppercase mb-8 tracking-tight">ZANZIBAR.</h2>
-            <p className="font-sans text-base sm:text-lg text-[#E7DED6] leading-relaxed max-w-xl font-light">ONA Towers is ideally situated in Mazizini, Zanzibar — combining tranquility with direct proximity to Abeid Amani Karume International Airport and historic Stone Town.</p>
-          </div>
+          <div className="ona-location2-map-shade" aria-hidden="true" />
 
-          <div className="lg:col-span-5 grid gap-3">
-            {points.map((point) => (
-              <div key={point.id} className="border border-[#403832] bg-[#38312C] p-5 flex items-start gap-4 rounded-sm shadow-lg">
-                <MapPin className="w-5 h-5 text-[#A58A71] shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#A58A71]">{point.category}</p>
-                  <h3 className="font-display text-2xl font-light text-[#F5F0EA] mt-1">{point.name}</h3>
-                  {point.distance_or_travel_note && <p className="font-sans text-xs text-[#E7DED6] mt-2 leading-relaxed font-light">{point.distance_or_travel_note}</p>}
-                  {point.map_url && (
-                    <a href={point.map_url} target="_blank" rel="noreferrer" className="inline-block mt-3 font-sans text-[11px] font-semibold tracking-widest uppercase text-[#A58A71] border-b border-[#A58A71]/50 pb-0.5 hover:text-[#FFFFFF]">Open map</a>
-                  )}
+          {mapState !== "ready" && (
+            <div className="ona-location2-loader" role="status">
+              {mapState === "loading" && (
+                <>
+                  <span className="ona-location2-loader-ring" aria-hidden="true" />
+                  <span>Loading satellite view</span>
+                </>
+              )}
+
+              {mapState === "missing-key" && (
+                <div className="ona-location2-map-message">
+                  <MapPin size={20} strokeWidth={1.5} aria-hidden="true" />
+                  <strong>3D satellite map ready to connect.</strong>
+                  <p>
+                    Add <code>VITE_GOOGLE_MAPS_API_KEY</code> to the frontend
+                    environment to enable the live Google 3D map.
+                  </p>
                 </div>
+              )}
+
+              {mapState === "error" && (
+                <div className="ona-location2-map-message">
+                  <MapPin size={20} strokeWidth={1.5} aria-hidden="true" />
+                  <strong>Satellite view could not load.</strong>
+                  <p>
+                    You can still open the supplied Google Earth view using the
+                    button below.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="ona-section-shell ona-location2-content">
+            <div className="ona-location2-copy">
+              <span className="ona-location2-kicker">The location</span>
+
+              <h1>
+                At the heart of
+                <br />
+                <em>Zanzibar.</em>
+              </h1>
+
+              <p>
+                ONA Towers is set in Mazizini — an urban Zanzibar address that
+                keeps home connected to the city, the coast and the wider island.
+              </p>
+
+              <div className="ona-location2-place">
+                <MapPin size={16} strokeWidth={1.6} aria-hidden="true" />
+                <span>Mazizini · Zanzibar</span>
               </div>
-            ))}
+
+              <a
+                className="ona-location2-earth-link"
+                href={projectFacts.googleEarthUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Open in Google Earth</span>
+                <ExternalLink size={15} strokeWidth={1.6} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="ona-location2-coordinate" aria-hidden="true">
+            <span>06°11′29″ S</span>
+            <span>39°12′46″ E</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
-};
+}

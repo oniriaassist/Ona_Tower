@@ -1,101 +1,129 @@
-import React from 'react';
-import { ONA_IMAGES } from '../data/images';
+import { projectImages } from "../data/images";
+import { SiteLink } from "../routing";
+import "../styles/ona-redesign.css";
 
-export const ResidencesIntro: React.FC = () => {
+const experiences = [
+  {
+    label: "LIVE",
+    title: "Residences",
+    description:
+      "Two- and three-bedroom homes shaped by natural light, generous terraces and elevated views across Zanzibar.",
+    image: projectImages.residences.twoBedroomLiving,
+    alt: "ONA Towers residence living interior",
+    to: "#residence-portfolio",
+    anchor: true,
+    cta: "Explore residences",
+  },
+  {
+    label: "LIFE",
+    title: "Life & Community",
+    description:
+      "Landscape, social spaces and everyday convenience create more room to live well beyond the front door.",
+    image: projectImages.amenities.pool,
+    alt: "ONA Towers pool and community lifestyle",
+    to: "/lifestyle",
+    anchor: false,
+    cta: "Explore life",
+  },
+  {
+    label: "WORK",
+    title: "ONA House",
+    description:
+      "A contemporary commercial address bringing work, meetings and useful services into one connected development.",
+    image: projectImages.commercial.boardroom,
+    alt: "ONA House contemporary boardroom",
+    to: "/commercial",
+    anchor: false,
+    cta: "Discover ONA House",
+  },
+];
+
+export default function ResidencesIntro() {
   return (
-    <section
-      id="residences"
-      className="relative w-full bg-[#302A26] text-[#E7DED6] overflow-hidden"
-      aria-label="ONA Residences Overview"
-    >
-      {/* 01: Outdoor Architecture Atmosphere — LIVE ABOVE */}
-      <div className="relative py-28 sm:py-36 lg:py-48 border-t border-[#403832]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
-          {/* Label */}
-          <div className="flex items-center space-x-3 mb-6">
-            <span className="w-8 h-[1px] bg-[#A58A71]" />
-            <span className="font-sans text-xs font-semibold tracking-[0.24em] uppercase text-[#A58A71]">
-              Residences
-            </span>
-          </div>
+    <>
+      <section className="ona-residences-hero">
+        <img
+          className="ona-residences-hero-image"
+          src={projectImages.residences.exterior}
+          alt="ONA Towers residential architecture"
+        />
+        <div className="ona-residences-hero-overlay" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-baseline mb-16 sm:mb-20">
-            <div className="lg:col-span-8">
-              <h2
-                id="residences-headline"
-                className="font-display text-section-headline font-light text-[#F5F0EA] leading-none uppercase tracking-tight"
-              >
-                LIVE ABOVE.
-              </h2>
-            </div>
-            <div className="lg:col-span-4">
-              <p className="font-script text-3xl sm:text-4xl text-[#A58A71] font-normal">
-                Homes shaped around light, space and the horizon.
-              </p>
-            </div>
-          </div>
+        <div className="ona-section-shell ona-residences-hero-inner">
+          <div className="ona-residences-hero-copy">
+            <p className="ona-eyebrow">Discover ONA</p>
+            <p className="ona-script-label">Live above. See beyond.</p>
 
-          {/* Full-Bleed Residential Tower Façade Visual */}
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden bg-[#38312C] rounded-sm border border-[#403832] group shadow-2xl">
-            <img
-              src={ONA_IMAGES.residencesExterior.url}
-              alt={ONA_IMAGES.residencesExterior.alt}
-              loading="lazy"
-              className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-103"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#302A26]/85 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-10 z-10">
-              <p className="font-sans text-xs tracking-[0.2em] uppercase text-[#A58A71] font-semibold text-shadow-image">
-                Sculptural Towers
-              </p>
-              <p className="font-sans text-sm sm:text-base text-[#FFFFFF] font-light text-shadow-image">
-                Two dedicated residential towers offering contemporary living in Mazizini, Zanzibar
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <h1>
+              A home shaped around
+              <br />
+              <em>light, space & horizon.</em>
+            </h1>
 
-      {/* 02: Interior Teaser */}
-      <div className="relative py-28 sm:py-36 lg:py-44 bg-[#38312C] border-t border-[#403832]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <span className="font-sans text-xs font-semibold tracking-[0.24em] text-[#A58A71] uppercase block mb-4">
-              Inside ONA
-            </span>
-            <h3
-              id="interior-teaser-headline"
-              className="font-display text-editorial-statement font-light text-[#F5F0EA] leading-none uppercase mb-4 tracking-tight"
-            >
-              SPACE TO BREATHE.
-            </h3>
-            <p className="font-sans text-sm sm:text-base text-[#E7DED6] font-light">
-              Open-plan living layouts designed for natural light, ventilation, and effortless connection between indoor and outdoor spaces.
+            <p>
+              ONA brings residence, landscape, community and everyday
+              convenience together in one considered address in Mazizini — with
+              generous homes designed to feel open, calm and connected to
+              Zanzibar.
             </p>
-          </div>
 
-          {/* Panoramic Interior View */}
-          <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] overflow-hidden bg-[#302A26] rounded-sm border border-[#403832] group shadow-2xl">
-            <img
-              src={ONA_IMAGES.residenceInteriorTeaser.url}
-              alt={ONA_IMAGES.residenceInteriorTeaser.alt}
-              loading="lazy"
-              className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-102"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#302A26]/80 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 z-10 text-right">
-              <span className="font-script text-2xl sm:text-3xl text-[#A58A71] block text-shadow-image">
-                Living Space Concept
-              </span>
-              <span className="font-sans text-[11px] tracking-widest text-[#F7F2EC] uppercase text-shadow-image">
-                Contemporary Residential Design
-              </span>
+            <div className="ona-residences-hero-actions">
+              <a href="#residence-portfolio" className="ona-button ona-button--sand">
+                Choose your residence <span aria-hidden="true">↓</span>
+              </a>
+              <SiteLink to="/enquire" className="ona-button ona-button--glass">
+                Register interest <span aria-hidden="true">→</span>
+              </SiteLink>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="ona-residences-world">
+        <div className="ona-section-shell">
+          <header className="ona-residences-world-heading">
+            <p className="ona-eyebrow">One connected address</p>
+            <h2>
+              Home is only the
+              <br />
+              <em>beginning.</em>
+            </h2>
+            <p>
+              Three expressions of ONA bring together how you live, how you
+              spend your time and how the wider address works around you.
+            </p>
+          </header>
+
+          <div className="ona-residences-world-grid">
+            {experiences.map((item) => {
+              const content = (
+                <>
+                  <img src={item.image} alt={item.alt} loading="lazy" />
+                  <div className="ona-residences-world-overlay" />
+                  <span className="ona-residences-world-label">{item.label}</span>
+                  <div className="ona-residences-world-content">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <span className="ona-text-link">
+                      {item.cta} <span aria-hidden="true">↗</span>
+                    </span>
+                  </div>
+                </>
+              );
+
+              return item.anchor ? (
+                <a key={item.label} href={item.to} className="ona-residences-world-card">
+                  {content}
+                </a>
+              ) : (
+                <SiteLink key={item.label} to={item.to} className="ona-residences-world-card">
+                  {content}
+                </SiteLink>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
-};
+}

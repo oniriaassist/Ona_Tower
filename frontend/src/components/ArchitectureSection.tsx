@@ -1,92 +1,94 @@
-import React from 'react';
-import { ONA_IMAGES } from '../data/images';
+import { projectImages } from "../data/images";
+import "../styles/ona-redesign.css";
 
-export const ArchitectureSection: React.FC = () => {
+const storyDetails = [
+  "Two sculptural residential towers",
+  "ONA House woven into the everyday address",
+  "Landscape connecting arrival, life and movement",
+  "Homes shaped by light, terraces and outward views",
+];
+
+export default function ArchitectureSection() {
   return (
-    <section
-      id="architecture"
-      className="relative w-full bg-[#302A26] text-[#E7DED6] py-24 sm:py-36 lg:py-48 border-t border-[#403832]"
-      aria-label="Architecture and Design Principles"
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        {/* Section Header */}
-        <div className="flex items-center space-x-3 mb-6">
-          <span className="w-8 h-[1px] bg-[#A58A71]" />
-          <span className="font-sans text-xs font-semibold tracking-[0.24em] uppercase text-[#A58A71]">
-            Architecture
-          </span>
-        </div>
+    <section className="ona-story-place">
+      <div className="ona-section-shell">
+        <header className="ona-story-place-heading">
+          <p className="ona-story-overline">From idea to place</p>
+          <span className="ona-story-rule" aria-hidden="true" />
+          <p className="ona-story-script">The story becomes physical</p>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-baseline mb-16 sm:mb-24">
-          <div className="lg:col-span-8">
-            <span className="font-script text-3xl sm:text-4xl text-[#A58A71] block mb-2">Sculpted Coastal Form</span>
-            <h2
-              id="architecture-headline"
-              className="font-display text-section-headline font-light text-[#F5F0EA] leading-none uppercase tracking-tight"
-            >
-              DESIGNED WITH PURPOSE.
+        <div className="ona-story-place-grid">
+          <div className="ona-story-place-intro">
+            <h2>
+              One vision.
+              <br />
+              <em>Three expressions.</em>
             </h2>
-          </div>
-          <div className="lg:col-span-4">
-            <p className="font-sans text-base sm:text-lg text-[#E7DED6] font-light leading-relaxed">
-              A contemporary architectural landmark harmonizing sweeping Indian Ocean panoramas with refined sustainable engineering.
-            </p>
-          </div>
-        </div>
 
-        {/* 2-Column Architectural Focus */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left Column: Balcony & Façade Detail */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="relative aspect-[4/3] overflow-hidden bg-[#38312C] rounded-sm border border-[#403832] group shadow-2xl">
-              <img
-                src={ONA_IMAGES.architectureFacade.url}
-                alt={ONA_IMAGES.architectureFacade.alt}
-                loading="lazy"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#302A26]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-6 left-6 z-10">
-                <span className="font-sans text-xs font-semibold tracking-widest uppercase text-[#A58A71] text-shadow-image">
-                  Architecture &middot; Façade
-                </span>
-                <p className="font-display text-xl text-[#FFFFFF] font-light mt-1 text-shadow-image">
-                  Cantilevered Balconies & Terraces
-                </p>
-              </div>
-            </div>
-            <p className="font-sans text-sm text-[#E7DED6] leading-relaxed font-light">
-              Continuous wrap-around balconies provide natural solar shading while framing uninterrupted views of the turquoise ocean and lush island palms.
+            <p>
+              Home, landscape and work each have their own character, but every
+              part of ONA is designed to feel like one complete address — refined,
+              welcoming and unmistakably rooted in Zanzibar.
             </p>
+
+            <div className="ona-story-place-main-image">
+              <img
+                src={projectImages.hero}
+                alt="Sunset aerial view of ONA Towers in Zanzibar"
+                loading="lazy"
+              />
+            </div>
           </div>
 
-          {/* Right Column: Coastal Materiality */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="relative aspect-[4/3] overflow-hidden bg-[#38312C] rounded-sm border border-[#403832] group shadow-2xl">
-              <img
-                src={ONA_IMAGES.architectureMaterial.url}
-                alt={ONA_IMAGES.architectureMaterial.alt}
-                loading="lazy"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#302A26]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-6 left-6 z-10">
-                <span className="font-sans text-xs font-semibold tracking-widest uppercase text-[#A58A71] text-shadow-image">
-                  Residential Architecture
-                </span>
-                <p className="font-display text-xl text-[#FFFFFF] font-light mt-1 text-shadow-image">
-                  Tower Silhouette & Elevation
-                </p>
-              </div>
-            </div>
-            <p className="font-sans text-sm text-[#E7DED6] leading-relaxed font-light">
-              Designed by ONIRIA to redefine coastal luxury living in East Africa, merging world-class hospitality finishes with authentic island serenity.
+          <div className="ona-story-place-copy">
+            <span className="ona-story-place-kicker">
+              Architecture · Landscape · Life
+            </span>
+
+            <h3>A presence shaped by the way island life unfolds.</h3>
+
+            <p>
+              Sculptural architecture, generous terraces, natural shade and
+              garden-led spaces give ONA its identity — open to the horizon,
+              yet grounded in the rhythm of everyday life.
             </p>
+
+            <div className="ona-story-place-details">
+              {storyDetails.map((detail) => (
+                <p key={detail}>
+                  <span aria-hidden="true">✓</span>
+                  {detail}
+                </p>
+              ))}
+            </div>
           </div>
+
+          <aside className="ona-story-perspective-card">
+            <div className="ona-story-perspective-image">
+              <img
+                src={projectImages.development.gardens}
+                alt="Outdoor work garden and landscaped social space at ONA Towers"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="ona-story-perspective-copy">
+              <span>The perspective</span>
+              <h3>
+                Open to the horizon.
+                <br />
+                Rooted in everyday life.
+              </h3>
+              <p>
+                From skyline views to shaded outdoor work gardens, ONA balances
+                premium outlooks with a sense of ease — contemporary in ambition,
+                distinctly Zanzibar in character.
+              </p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
   );
-};
+}

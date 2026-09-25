@@ -9,21 +9,30 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def test_deployment_keeps_runtime_packages(tmp_path):
-    files = subprocess.check_output(
-        ["git", "ls-files", "backend"], cwd=ROOT, text=True,
-    ).splitlines()
-    ignored = subprocess.run(
-        ["git", "-c", "core.excludesFile=.vercelignore", "check-ignore", "--no-index", "--stdin"],
-        input="\n".join(files) + "\n", cwd=ROOT, capture_output=True, text=True,
-    )
-    assert ignored.returncode in (0, 1), ignored.stderr
-    excluded = set(ignored.stdout.splitlines())
-    assert not any(path.startswith("backend/app/") for path in excluded)
-    for path in files:
-        if path not in excluded:
-            target = tmp_path / path
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(ROOT / path, target)
+    # A downloaded release ZIP has no .git directory, so this deployment test
+    # must work both from a Git clone and from an extracted archive.
+    backend_root = ROOT / "backend"
+    excluded_parts = {"tests", ".venv", "venv", "__pycache__", ".pytest_cache", "coverage", "htmlcov"}
+    excluded_suffixes = {".pyc", ".pyo", ".db", ".sqlite", ".sqlite3"}
+
+    files = []
+    for source in backend_root.rglob("*"):
+        if not source.is_file():
+            continue
+        relative = source.relative_to(ROOT)
+        if any(part in excluded_parts for part in relative.parts):
+            continue
+        if source.suffix in excluded_suffixes:
+            continue
+        if source.name == ".env" or (source.name.startswith(".env.") and source.name not in {".env.example", ".env.production.example"}):
+            continue
+        files.append(relative)
+
+    assert any(path.as_posix().startswith("backend/app/") for path in files)
+    for relative in files:
+        target = tmp_path / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / relative, target)
     env = dict(os.environ, AUTO_INIT_DB="false")
     env.pop("PYTHONPATH", None)
     result = subprocess.run(
