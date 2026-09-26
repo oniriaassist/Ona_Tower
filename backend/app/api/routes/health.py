@@ -1,79 +1,83 @@
-import logging
-
-from fastapi import APIRouter, HTTPException, status
-from sqlalchemy import text
+from fastapi import APIRouter
 
 from app.core.config import (
     get_settings,
     production_configuration_errors,
+    runtime_configuration_snapshot,
 )
 
 
-router = APIRouter(tags=["Health"])
+router = APIRouter(
+    tags=["Health"],
+)
 
-logger = logging.getLogger(__name__)
 
-
-@router.get("/health")
+@router.get(
+    "/health",
+    summary="API health check",
+)
 async def health():
-    """
-    Pure liveness endpoint.
+    settings = (
+        get_settings()
+    )
 
-    Must not require PostgreSQL or Supabase to answer.
-    """
-    return {
-        "status": "ok",
-        "service": "ona-towers-api",
-    }
-
-
-@router.get("/health/config")
-async def configuration_health():
-    try:
-        settings = get_settings()
-        errors = production_configuration_errors(settings)
-    except Exception as exc:
-        logger.exception("Production configuration check failed")
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail={"status": "misconfigured", "error_type": type(exc).__name__},
-        ) from exc
-
-    if errors:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail={
-                "status": "misconfigured",
-                "error_type": "RuntimeError",
-                "errors": errors,
-            },
+    errors = (
+        production_configuration_errors(
+            settings
         )
+    )
 
     return {
-        "status": "ok",
-        "environment": settings.app_env,
-        "database_configured": True,
+        "service":
+            "ona-towers-api",
+
+        "status":
+            (
+                "ok"
+                if not errors
+                else "misconfigured"
+            ),
+
+        "environment":
+            settings.app_env,
+
+        "production_config_valid":
+            len(errors) == 0,
     }
 
 
-@router.get("/health/database")
-def database_health():
-    try:
-        from app.database.session import get_engine
+@router.get(
+    "/health/config",
+    summary=(
+        "Safe production "
+        "configuration status"
+    ),
+)
+async def health_config():
+    settings = (
+        get_settings()
+    )
 
-        with get_engine().connect() as connection:
-            connection.execute(text("SELECT 1"))
-
-    except Exception as exc:
-        logger.exception("Database health check failed")
-
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Database connection unavailable",
-        ) from exc
+    snapshot = (
+        runtime_configuration_snapshot(
+            settings
+        )
+    )
 
     return {
-        "status": "ok",
-        "service": "ona-towers-api",
-        "database": "connected",
+        "service":
+            "ona-towers-api",
+
+        "status":
+            (
+                "ok"
+                if snapshot[
+                    "production_configuration_valid"
+                ]
+                else
+                "misconfigured"
+            ),
+
+        "configuration":
+            snapshot,
     }
