@@ -1,123 +1,124 @@
+from __future__ import annotations
+
+import importlib
 import os
 import sys
-from pathlib import Path
 from logging.config import fileConfig
-
-from sqlalchemy import create_engine
-from sqlalchemy import inspect
-from sqlalchemy import pool
-from sqlalchemy import text
+from pathlib import Path
+from typing import Any
 
 from alembic import context
+from dotenv import load_dotenv
+from sqlalchemy import engine_from_config, pool
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-BACKEND_DIR = PROJECT_ROOT / "backend"
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+BACKEND_DIR = ROOT_DIR / "backend"
+
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
-from app.core.config import get_settings, normalize_database_url
-from app.database.base import Base
-from app.database import models
+load_dotenv(ROOT_DIR / ".env", override=False)
+load_dotenv(BACKEND_DIR / ".env", override=False)
 
-
-# Alembic Config object
 config = context.config
 
-# Load the runtime database URL, with an optional migration-only override.
-settings = get_settings()
-database_url = normalize_database_url(os.environ.get("MIGRATION_DATABASE_URL") or settings.database_url)
-config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"),)
-
-# Configure Python logging
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Metadata used by Alembic for autogenerate
-target_metadata = Base.metadata
-INITIAL_REVISION = "05b4c32881e1"
-HEAD_REVISION = "c4f2a31b7d90"
-INITIAL_TABLES = {
-    "amenities",
-    "enquiries",
-    "floor_plans",
-    "location_points",
-    "residence_media",
-    "residences",
-    "smart_features",
-}
-ADMIN_TABLES = {"admin_settings", "admin_team_members"}
-ADMIN_ENQUIRY_COLUMNS = {"assigned_to", "internal_notes", "updated_at"}
-ADMIN_ACCOUNT_COLUMNS = {"department", "password_hash", "is_super_admin", "last_login_at", "password_reset_requested_at"}
+
+def normalize_database_url(value: str | None) -> str:
+    url = (value or "").strip()
+
+    if not url:
+        return ""
+
+    if url.startswith("postgres://"):
+        return "postgresql+psycopg://" + url[len("postgres://") :]
+
+    if url.startswith("postgresql://"):
+        return "postgresql+psycopg://" + url[len("postgresql://") :]
+
+    if url.startswith("postgresql+psycopg2://"):
+        return "postgresql+psycopg://" + url[len("postgresql+psycopg2://") :]
+
+    return url
 
 
-def stamp_existing_sqlite_schema(connection) -> None:
-    """Mark legacy local SQLite schemas that were created before Alembic.
+def _settings_database_url() -> str:
+    try:
+        from app.core.config import get_settings
 
-    Earlier local setup could create tables via SQLAlchemy bootstrap without
-    writing an Alembic version. Running `alembic upgrade head` against that
-    database should preserve data and continue from the matching revision.
-    """
-    if connection.dialect.name != "sqlite":
-        return
+        settings = get_settings()
+        migration_url = getattr(settings, "migration_database_url", None)
+        database_url = getattr(settings, "database_url", None)
+        return str(migration_url or database_url or "").strip()
+    except Exception:
+        return ""
 
-    inspector = inspect(connection)
-    tables = set(inspector.get_table_names())
-    if not INITIAL_TABLES.issubset(tables):
-        return
 
-    connection.execute(
-        text("CREATE TABLE IF NOT EXISTS alembic_version (version_num VARCHAR(32) NOT NULL)")
-    )
-    existing_version = connection.execute(text("SELECT version_num FROM alembic_version LIMIT 1")).scalar()
-
-    enquiry_columns = {column["name"] for column in inspector.get_columns("enquiries")}
-    admin_columns = (
-        {column["name"] for column in inspector.get_columns("admin_team_members")}
-        if "admin_team_members" in tables
-        else set()
+def get_migration_database_url() -> str:
+    raw_url = (
+        os.getenv("MIGRATION_DATABASE_URL")
+        or os.getenv("DATABASE_URL")
+        or _settings_database_url()
     )
 
-    if (
-        ADMIN_TABLES.issubset(tables)
-        and ADMIN_ENQUIRY_COLUMNS.issubset(enquiry_columns)
-        and ADMIN_ACCOUNT_COLUMNS.issubset(admin_columns)
-        and "site_visits" in tables
-    ):
-        detected_revision = HEAD_REVISION
-    elif ADMIN_TABLES.issubset(tables) and ADMIN_ENQUIRY_COLUMNS.issubset(enquiry_columns):
-        detected_revision = "9b6a7f0f3e12"
-    else:
-        detected_revision = INITIAL_REVISION
+    url = normalize_database_url(raw_url)
 
-    if not existing_version:
-        connection.execute(
-            text("INSERT INTO alembic_version (version_num) VALUES (:revision)"),
-            {"revision": detected_revision},
+    if not url:
+        raise RuntimeError(
+            "No database URL is configured. Set MIGRATION_DATABASE_URL in the "
+            "current shell or in the project-root .env file."
         )
-    elif existing_version == "9b6a7f0f3e12" and detected_revision == HEAD_REVISION:
-        # A prior development bootstrap may already have created the head
-        # columns/tables while Alembic still records the previous revision.
-        # Align the version marker with the schema rather than replaying
-        # additive DDL and raising duplicate-column errors.
-        connection.execute(
-            text("UPDATE alembic_version SET version_num = :revision"),
-            {"revision": HEAD_REVISION},
+
+    placeholders = (
+        "YOUR_PROJECT_REF",
+        "PROJECT_REF",
+        "POOLER_HOST",
+        "YOUR-PASSWORD",
+        "[YOUR-PASSWORD]",
+        "[PROJECT-REF]",
+    )
+
+    if any(token in url for token in placeholders):
+        raise RuntimeError(
+            "MIGRATION_DATABASE_URL still contains a placeholder. Copy the exact "
+            "Session pooler or Direct connection string from Supabase -> Connect."
         )
-    elif existing_version == INITIAL_REVISION and detected_revision in {"9b6a7f0f3e12", HEAD_REVISION}:
-        connection.execute(
-            text("UPDATE alembic_version SET version_num = :revision"),
-            {"revision": detected_revision},
-        )
-    connection.commit()
+
+    return url
+
+
+def _load_target_metadata() -> Any:
+    candidates = (
+        ("app.database.base", "Base"),
+        ("app.database.models", "Base"),
+        ("app.models", "Base"),
+    )
+
+    for module_name, attribute_name in candidates:
+        try:
+            module = importlib.import_module(module_name)
+            base = getattr(module, attribute_name, None)
+            metadata = getattr(base, "metadata", None)
+            if metadata is not None:
+                return metadata
+        except Exception:
+            continue
+
+    return None
+
+
+target_metadata = _load_target_metadata()
+database_url = get_migration_database_url()
+
+config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
 
 
 def run_migrations_offline() -> None:
-    """Run migrations in offline mode."""
-
-    url = config.get_main_option("sqlalchemy.url")
-
     context.configure(
-        url=url,
+        url=database_url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -129,20 +130,17 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    """Run migrations in online mode."""
+    configuration = config.get_section(config.config_ini_section) or {}
+    configuration["sqlalchemy.url"] = database_url
 
-    engine_kwargs = {"poolclass": pool.NullPool}
-    if database_url.startswith(("postgresql", "postgres")):
-        engine_kwargs["connect_args"] = {"prepare_threshold": None}
-
-    connectable = create_engine(database_url, **engine_kwargs)
+    connectable = engine_from_config(
+        configuration,
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
+        future=True,
+    )
 
     with connectable.connect() as connection:
-        stamp_existing_sqlite_schema(connection)
-        # SQLAlchemy 2.x inspections can autobegin a transaction. Close that
-        # transaction before handing control to Alembic so migration/version
-        # changes are committed reliably, especially on SQLite.
-        connection.commit()
         context.configure(
             connection=connection,
             target_metadata=target_metadata,
