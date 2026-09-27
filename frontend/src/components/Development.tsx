@@ -21,12 +21,20 @@ const values = [
 
 const partners = [
   {
-    eyebrow: "Project vision",
-    name: "ONIRIA Investments",
-    text: "A Zanzibar-born investment and development platform creating distinctive places, experiences and new ways of living.",
+    eyebrow: "Housing-sector institution",
+    name: "Zanzibar Housing Corporation",
+    text: "A public institution responsible for managing and developing Zanzibar's housing sector and supporting its continued evolution.",
+    href: "http://www.zhc.go.tz/about/about_us",
+    logo: "/ona-assets/partners/zhc-logo-transparent.png",
+    logoClass: "ona-story-partner-logo--zhc",
+  },
+  {
+    eyebrow: "Builder",
+    name: "BUILDER VIGSTERN",
+    text: "A Zanzibar-based construction company delivering ONA Towers from vision to built reality, with a focus on quality, precision and long-term value.",
     href: "https://oniriainvestments.com/",
     logo: "/ona-assets/partners/oniria-investments.png",
-    logoClass: "ona-story-partner-logo--oniria",
+    logoClass: "ona-story-partner-logo--vigstern",
   },
   {
     eyebrow: "Wider business ecosystem",
@@ -35,14 +43,6 @@ const partners = [
     href: "https://turkysgroup.co.tz/",
     logo: "/ona-assets/partners/vigor-group.png",
     logoClass: "ona-story-partner-logo--vigor",
-  },
-  {
-    eyebrow: "Housing-sector institution",
-    name: "Zanzibar Housing Corporation",
-    text: "A public institution responsible for managing and developing Zanzibar's housing sector and supporting its continued evolution.",
-    href: "http://www.zhc.go.tz/about/about_us",
-    logo: "/ona-assets/partners/zanzibar-housing-corporation.png",
-    logoClass: "ona-story-partner-logo--zhc",
   },
 ];
 

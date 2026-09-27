@@ -35,7 +35,7 @@ export default function ArchitectureSection() {
             <div className="ona-story-place-main-image">
               <img
                 src={projectImages.hero}
-                alt="Sunset aerial view of ONA Towers in Zanzibar"
+                alt="Aerial view of ONA Towers and ONA House in Zanzibar"
                 loading="lazy"
               />
             </div>

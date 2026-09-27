@@ -1,15 +1,15 @@
 export const projectImages = {
   /*
-   * Main Home hero.
-   * The Private Sales finale intentionally uses heroOceanView instead,
-   * so these two high-value home moments do not repeat the same image.
+   * Main Home hero and premium aerial sales visual.
+   * heroOceanView remains the original Story hero background.
    */
-  hero: "/ona-assets/hero/towers-sunset.webp",
+  hero: "/ona-assets/hero/ona-aerial-premium.png",
   heroOceanView: "/ona-assets/hero/hero-ocean-view.jpg",
+  premiumAerial: "/ona-assets/hero/hero-ocean-view.jpg",
 
   development: {
-    aerial: "/ona-assets/hero/towers-sunset.webp",
-    towersOverview: "/ona-assets/hero/towers-sunset.webp",
+    aerial: "/ona-assets/hero/ona-aerial-premium.png",
+    towersOverview: "/ona-assets/hero/ona-aerial-premium.png",
     verticalFacade: "/ona-assets/architecture/tower-a-vertical.webp",
     landscape: "/ona-assets/development/landscape-gardens.webp",
     landscapePlan: "/ona-assets/development/masterplan.png",
@@ -49,7 +49,7 @@ export const projectImages = {
 
   commercial: {
     officePlan: "/ona-assets/commercial/office-level-plan.png",
-    onaHouseExterior: "/ona-assets/commercial/ona-house-exterior.png",
+    onaHouseExterior: "/ona-assets/commercial/ona-house-gate-premium.png",
     workspacePremium: "/ona-assets/commercial/office-workspace-premium.png",
     boardroom: "/ona-assets/commercial/boardroom.png",
     supermarket: "/ona-assets/lifestyle/mini-market.webp",

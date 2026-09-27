@@ -29,7 +29,7 @@ const residenceContent: Record<
     title: "02 Bedroom Residence",
     description:
       "Generous two-bedroom residences with open living spaces, private terraces and elevated views across Zanzibar.",
-    image: projectImages.residences.twoBedroomPremium,
+    image: projectImages.residences.twoBedroomLiving,
     internal: "146 sqm",
     terrace: "56 sqm",
     towers: ["Tower A · West", "Tower A · East", "Tower B · West", "Tower B · East"],
@@ -243,7 +243,7 @@ export default function ResidencesPage() {
                   <strong>{selectedResidence.internal}</strong>
                 </div>
                 <div>
-                  <small>Terrace / balcony</small>
+                  <small>Terrace</small>
                   <strong>{selectedResidence.terrace}</strong>
                 </div>
               </div>

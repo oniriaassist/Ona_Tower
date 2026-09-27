@@ -131,7 +131,7 @@ export default function EnquirePage() {
               <div className="ona-contact3-company-grid">
                 <a
                   className="ona-contact3-company-link"
-                  href="mailto:oniriaassist@gmail.com"
+                  href="mailto:onatowers@proton.me"
                 >
                   <span
                     className="ona-contact3-company-link-icon"
@@ -142,13 +142,13 @@ export default function EnquirePage() {
 
                   <span>
                     <small>Email</small>
-                    <strong>oniriaassist@gmail.com</strong>
+                    <strong>onatowers@proton.me</strong>
                   </span>
                 </a>
 
                 <a
                   className="ona-contact3-company-link"
-                  href="tel:+255705321121"
+                  href="tel:+255771350890"
                 >
                   <span
                     className="ona-contact3-company-link-icon"
@@ -159,7 +159,7 @@ export default function EnquirePage() {
 
                   <span>
                     <small>Phone</small>
-                    <strong>+255 705 321 121</strong>
+                    <strong>+255 771 350 890</strong>
                   </span>
                 </a>
 

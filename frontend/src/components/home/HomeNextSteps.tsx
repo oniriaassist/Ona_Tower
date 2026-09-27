@@ -47,16 +47,14 @@ export default function HomeNextSteps() {
         <div className="ona-home-showcase-intro">
           <span className="ona-home-showcase-kicker">Explore</span>
 
-          <h2 className="ona-home-showcase-title">
-            Two towers. Two perspectives.
-            <br />
-            One unmistakable presence.
+          <h2 className="ona-home-showcase-title ona-home-showcase-title--single-line">
+            Two towers. One address.
           </h2>
 
           <p className="ona-home-showcase-copy">
-            Rising above Mazizini, ONA is shaped by light, ocean and horizon.
-            Two sculptural residential towers come together with ONA House and
-            a landscape designed around elevated living in Zanzibar.
+            Rising above Mazizini, ONA brings together two residential towers,
+            ONA House and a landscape-led setting designed for elevated living
+            in Zanzibar.
           </p>
         </div>
 
@@ -98,8 +96,8 @@ export default function HomeNextSteps() {
       >
         <img
           className="ona-home-sales-finale-image"
-          src={projectImages.heroOceanView}
-          alt="ONA Towers elevated ocean-view living"
+          src={projectImages.premiumAerial}
+          alt="Aerial view of ONA Towers and ONA House"
           loading="lazy"
         />
 

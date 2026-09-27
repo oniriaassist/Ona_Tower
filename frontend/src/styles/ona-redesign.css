@@ -7132,3 +7132,447 @@ span:last-child {
     min-height: 360px;
   }
 }
+
+/* =========================================================
+   2026-09-27 PREMIUM SALES REFRESH
+   ========================================================= */
+
+.ona-header-logo-sub,
+.ona-footer-logo-sub {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  text-align: center;
+}
+
+.ona-header-logo-sub {
+  letter-spacing: 0.38em;
+}
+
+.ona-footer-logo {
+  align-items: center;
+}
+
+.ona-footer-logo-sub {
+  letter-spacing: 0.36em;
+}
+
+.ona-home-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(10, 8, 6, 0.32) 0%, rgba(10, 8, 6, 0.18) 38%, rgba(10, 8, 6, 0.78) 100%),
+    linear-gradient(90deg, rgba(12, 10, 8, 0.52) 0%, rgba(12, 10, 8, 0.16) 42%, rgba(12, 10, 8, 0.04) 70%);
+}
+
+.ona-home-hero-copy {
+  width: min(920px, 82vw);
+}
+
+.ona-home-hero h1 {
+  font-family: "Mistrully", Georgia, "Times New Roman", serif;
+  font-size: clamp(4.4rem, 8.4vw, 9rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.ona-home-hero-title-script {
+  display: block;
+}
+
+.ona-home-hero-title-accent {
+  color: #f1deca;
+}
+
+.ona-story-script {
+  font-family: "Mistrully", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-style: normal;
+}
+
+.ona-home-showcase-title {
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  line-height: 1.08;
+}
+
+.ona-home-showcase-copy {
+  max-width: 780px;
+}
+
+.ona-home-showcase-card {
+  min-height: 470px;
+}
+
+.ona-home-sales-finale-image,
+.ona-commercial-page .ona-commercial-hero-image img,
+.ona-residences-page .ona-discover-card-image img,
+.ona-story-place-main-image img {
+  object-position: center center;
+}
+
+.ona-home-sales-finale-image {
+  object-position: center 52%;
+}
+
+.ona-footer-social-link--brand {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ona-footer-social-link--brand:hover {
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.ona-story-partner-logo-wrap {
+  min-height: 110px;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--story-line);
+  border-radius: 18px;
+}
+
+.ona-story-partner-logo--vigstern {
+  width: min(100%, 230px);
+  max-height: 86px;
+}
+
+.ona-story-partner-logo--zhc {
+  width: min(100%, 240px);
+  max-height: 118px;
+}
+
+.ona-story-place-main-image {
+  height: 430px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.ona-story-perspective-image {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+@media (max-width: 920px) {
+  .ona-home-hero h1 {
+    font-size: clamp(3.6rem, 14vw, 6.2rem);
+  }
+
+  .ona-home-showcase-card {
+    min-height: 420px;
+  }
+}
+
+
+/* =========================================================
+   2026-09-27 TARGETED TYPOGRAPHY CORRECTIONS
+   ========================================================= */
+
+.ona-home-hero-location {
+  margin-bottom: 0.9rem;
+  font-size: clamp(0.6rem, 0.72vw, 0.72rem);
+  letter-spacing: 0.24em;
+}
+
+.ona-home-hero h1 {
+  font-size: clamp(2.8rem, 4.4vw, 4.8rem);
+  line-height: 1;
+}
+
+.ona-home-showcase-title--single-line {
+  white-space: nowrap;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+}
+
+/* Restore Story script labels to the original restrained editorial style. */
+.ona-story-script {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  font-style: italic;
+  font-weight: 400;
+}
+
+@media (max-width: 760px) {
+  .ona-home-hero h1 {
+    font-size: clamp(2.45rem, 10vw, 3.8rem);
+  }
+
+  .ona-home-showcase-title--single-line {
+    white-space: nowrap;
+    font-size: clamp(1.5rem, 6.5vw, 2.2rem);
+  }
+}
+
+
+/* =========================================================
+   2026-09-27 HOME HERO PREMIUM SCRIPT REFINEMENT
+   ========================================================= */
+
+.ona-home-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(8, 7, 6, 0.24) 0%, rgba(8, 7, 6, 0.12) 32%, rgba(8, 7, 6, 0.76) 100%),
+    linear-gradient(90deg, rgba(10, 9, 7, 0.48) 0%, rgba(10, 9, 7, 0.16) 40%, rgba(10, 9, 7, 0.03) 72%);
+}
+
+.ona-home-hero-copy {
+  width: min(780px, 72vw);
+}
+
+.ona-home-hero-location {
+  margin-bottom: 0.7rem;
+  color: rgba(255, 248, 241, 0.92);
+  font-size: clamp(0.58rem, 0.68vw, 0.7rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+}
+
+.ona-home-hero h1 {
+  font-family: "Brittany Signature", "Mistrully", "Snell Roundhand", "Brush Script MT", cursive;
+  font-size: clamp(2.7rem, 4.7vw, 5.3rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: 0;
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+}
+
+.ona-home-hero-title-script {
+  display: block;
+}
+
+.ona-home-hero-title-accent {
+  margin-top: -0.08em;
+  color: #f3dfcd;
+}
+
+@media (max-width: 760px) {
+  .ona-home-hero-copy {
+    width: min(100%, 88vw);
+  }
+
+  .ona-home-hero h1 {
+    font-size: clamp(2.15rem, 10.4vw, 3.8rem);
+    line-height: 1;
+  }
+}
+
+/* =========================================================
+   2026-09-27 BRITTANY SIGNATURE HERO FINAL
+   ========================================================= */
+
+.ona-home-hero-media img {
+  object-position: center center;
+}
+
+.ona-home-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(7, 6, 5, 0.18) 0%, rgba(7, 6, 5, 0.08) 34%, rgba(7, 6, 5, 0.72) 100%),
+    linear-gradient(90deg, rgba(9, 8, 7, 0.43) 0%, rgba(9, 8, 7, 0.12) 42%, rgba(9, 8, 7, 0.02) 72%);
+}
+
+.ona-home-hero-copy {
+  width: min(700px, 68vw);
+}
+
+.ona-home-hero-location {
+  margin: 0 0 0.72rem;
+  color: rgba(255, 250, 245, 0.92);
+  font-size: clamp(0.56rem, 0.64vw, 0.68rem);
+  font-weight: 500;
+  letter-spacing: 0.23em;
+}
+
+.ona-home-hero h1.ona-home-hero-signature {
+  margin: 0;
+  display: block;
+  color: #fffaf5;
+  font-family: "Brittany Signature", "Mistrully", "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+  font-size: clamp(2.55rem, 4.15vw, 4.55rem);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
+  text-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+}
+
+.ona-home-hero-signature-line {
+  display: block;
+  width: fit-content;
+}
+
+.ona-home-hero-signature-line--accent {
+  margin-top: 0.04em;
+  margin-left: clamp(1rem, 2.6vw, 2.9rem);
+  color: #edd4bd;
+}
+
+.ona-home-hero-actions {
+  margin-top: 2rem;
+}
+
+@media (max-width: 920px) {
+  .ona-home-hero-copy {
+    width: min(100%, 82vw);
+  }
+
+  .ona-home-hero h1.ona-home-hero-signature {
+    font-size: clamp(2.35rem, 7vw, 3.7rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-home-hero-copy {
+    width: 100%;
+  }
+
+  .ona-home-hero-location {
+    font-size: 0.56rem;
+  }
+
+  .ona-home-hero h1.ona-home-hero-signature {
+    font-size: clamp(2.05rem, 10.8vw, 3.15rem);
+    line-height: 0.96;
+  }
+
+  .ona-home-hero-signature-line--accent {
+    margin-left: 0.65rem;
+  }
+
+  .ona-home-hero-actions {
+    margin-top: 1.65rem;
+  }
+}
+
+
+/* =========================================================
+   2026-09-27 HOME HERO — STORY TYPOGRAPHY MATCH
+   ========================================================= */
+
+.ona-home-hero-copy {
+  width: min(900px, 78vw);
+}
+
+.ona-home-hero h1.ona-home-hero-storyline {
+  margin: 0;
+  width: fit-content;
+  max-width: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.05rem, 3.45vw, 3.65rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.02;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+}
+
+.ona-home-hero-storyline-main,
+.ona-home-hero-storyline-accent {
+  display: block;
+  width: fit-content;
+}
+
+.ona-home-hero-storyline-main {
+  color: #fffaf5;
+}
+
+.ona-home-hero-storyline-accent {
+  margin-top: 0.12em;
+  margin-left: 0;
+  color: #d7b08b;
+}
+
+.ona-home-hero-actions {
+  margin-top: 1.8rem;
+}
+
+@media (max-width: 920px) {
+  .ona-home-hero-copy {
+    width: min(100%, 88vw);
+  }
+
+  .ona-home-hero h1.ona-home-hero-storyline {
+    font-size: clamp(1.85rem, 5.4vw, 2.85rem);
+  }
+
+  .ona-home-hero-storyline-accent {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .ona-home-hero-copy {
+    width: 100%;
+  }
+
+  .ona-home-hero h1.ona-home-hero-storyline {
+    font-size: clamp(1.6rem, 8.3vw, 2.35rem);
+    line-height: 1.05;
+  }
+
+  .ona-home-hero-storyline-accent {
+    margin-top: 0.08em;
+    margin-left: 0;
+  }
+
+  .ona-home-hero-actions {
+    margin-top: 1.45rem;
+  }
+}
+
+/* =========================================================
+   2026-09-27 ONA HOUSE + 02 BEDROOM IMAGE FIT
+   Removes empty bands while preserving the existing page layout.
+   ========================================================= */
+
+/* ONA House hero image: match the wide architectural render instead of
+   placing it inside a tall 5:4 contain frame. */
+.ona-commercial-page .ona-commercial-hero-image {
+  padding: 0;
+  aspect-ratio: 31 / 16;
+  background: #302a26;
+}
+
+.ona-commercial-page .ona-commercial-hero-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* 02 Bedroom lifestyle image: the source image is 16:9, so keep its
+   premium cinematic proportion instead of forcing a tall empty frame. */
+.ona-residences-page .ona-portfolio-image--lifestyle {
+  min-height: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  background: #2d2723;
+}
+
+.ona-residences-page .ona-portfolio-image--lifestyle img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 1100px) {
+  .ona-residences-page .ona-portfolio-image--lifestyle {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 740px) {
+  .ona-commercial-page .ona-commercial-hero-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ona-residences-page .ona-portfolio-image--lifestyle {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}

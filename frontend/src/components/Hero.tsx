@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="ona-home-hero-media">
         <img
           src={projectImages.hero}
-          alt="ONA Towers rising above Mazizini, Zanzibar"
+          alt="ONA Towers and ONA House rising above Mazizini, Zanzibar"
         />
       </div>
 
@@ -21,11 +21,12 @@ export default function Hero() {
             MAZIZINI <span>·</span> ZANZIBAR
           </p>
 
-          <h1>
-            <span>LIVE ABOVE.</span>
-            <span className="ona-home-hero-title-accent">
-              SEE BEYOND.
-            </span>
+          <h1
+            className="ona-home-hero-storyline"
+            aria-label="Live above. See beyond."
+          >
+            <span className="ona-home-hero-storyline-main">LIVE ABOVE.</span>
+            <span className="ona-home-hero-storyline-accent">SEE BEYOND.</span>
           </h1>
 
           <div className="ona-home-hero-actions">

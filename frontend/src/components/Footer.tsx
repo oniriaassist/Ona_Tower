@@ -22,23 +22,31 @@ const socialLinks = [
     label: "WhatsApp",
     href: "https://wa.me/",
     icon: WhatsAppIcon,
+    style: { background: "#25D366", borderColor: "#25D366", color: "#ffffff" },
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/",
     icon: Instagram,
+    style: {
+      background: "linear-gradient(135deg, #F58529 0%, #DD2A7B 45%, #8134AF 72%, #515BD4 100%)",
+      borderColor: "transparent",
+      color: "#ffffff",
+    },
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/",
     icon: Linkedin,
+    style: { background: "#0A66C2", borderColor: "#0A66C2", color: "#ffffff" },
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/",
     icon: Facebook,
+    style: { background: "#1877F2", borderColor: "#1877F2", color: "#ffffff" },
   },
-];
+] as const;
 
 export default function Footer() {
   return (
@@ -52,7 +60,7 @@ export default function Footer() {
               aria-label="ONA Towers home"
             >
               <span>ÔNA</span>
-              <small>TOWERS</small>
+              <small className="ona-footer-logo-sub">TOWERS</small>
             </SiteLink>
 
             <p className="ona-footer-tagline">Live above. See beyond.</p>
@@ -80,15 +88,16 @@ export default function Footer() {
               className="ona-footer-socials"
               aria-label="ONA Towers social media"
             >
-              {socialLinks.map(({ label, href, icon: Icon }) => (
+              {socialLinks.map(({ label, href, icon: Icon, style }) => (
                 <a
                   key={label}
                   href={href}
-                  className="ona-footer-social-link"
+                  className="ona-footer-social-link ona-footer-social-link--brand"
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
                   title={label}
+                  style={style}
                 >
                   <Icon size={17} />
                 </a>

@@ -33,7 +33,7 @@ export default function CommercialPage() {
           <div className="ona-commercial-hero-image">
             <img
               src={projectImages.commercial.onaHouseExterior}
-              alt="ONA House exterior and commercial arrival"
+              alt="ONA House arrival gate with ONA Towers in the background"
             />
           </div>
         </div>
