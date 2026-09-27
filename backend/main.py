@@ -23,6 +23,9 @@ except Exception as exc:
     @application.get("/health")
     @application.get("/health/config")
     @application.get("/health/database")
+    @application.get("/api/health")
+    @application.get("/api/health/config")
+    @application.get("/api/health/database")
     async def bootstrap_health():
         return JSONResponse(
             status_code=503,
