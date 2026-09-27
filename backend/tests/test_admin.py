@@ -181,3 +181,59 @@ def test_admin_can_read_and_update_customer_enquiry(client):
     )
     assert updated.status_code == 200
     assert updated.json()["status"] == "contacted"
+
+
+def test_primary_admin_can_recover_with_rotated_server_password(client):
+    from app.core.config import Settings, get_settings
+    from app.core.passwords import hash_password
+    from app.database.models import AdminTeamMember
+    from app.main import app
+    from sqlalchemy import select
+
+    rotated_password = "RotatedServerPass123!"
+    settings = Settings(
+        _env_file=None,
+        app_env="test",
+        app_debug=False,
+        database_url="sqlite+pysqlite:///:memory:",
+        admin_email="admin@onatowers.dev",
+        admin_password=rotated_password,
+        admin_session_secret="x" * 48,
+    )
+
+    app.dependency_overrides[get_settings] = lambda: settings
+    try:
+        response = client.post(
+            "/api/admin/login",
+            json={"email": "admin@onatowers.dev", "password": rotated_password},
+        )
+        assert response.status_code == 200, response.text
+    finally:
+        app.dependency_overrides.pop(get_settings, None)
+        with SessionLocal(bind=get_engine()) as db:
+            member = db.scalar(
+                select(AdminTeamMember).where(AdminTeamMember.email == "admin@onatowers.dev")
+            )
+            assert member is not None
+            member.password_hash = hash_password("ona-admin-local")
+            db.add(member)
+            db.commit()
+
+
+def test_production_admin_session_does_not_depend_on_bootstrap_password_length():
+    from app.core.admin_auth import validate_production_admin_config
+    from app.core.config import Settings
+
+    settings = Settings(
+        _env_file=None,
+        app_env="production",
+        app_debug=False,
+        database_url=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:6543/postgres"
+        ),
+        admin_email="admin@example.com",
+        admin_password="shortpass",
+        admin_session_secret="x" * 48,
+    )
+    validate_production_admin_config(settings)

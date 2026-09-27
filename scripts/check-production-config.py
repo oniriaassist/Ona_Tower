@@ -7,7 +7,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
 
 from pydantic import ValidationError
-from app.core.config import Settings, production_configuration_errors
+from app.core.config import Settings, production_configuration_errors, production_configuration_warnings
 
 
 def main() -> int:
@@ -28,8 +28,11 @@ def main() -> int:
         errors.insert(0, "APP_ENV must be set to production")
     if errors:
         for error in errors:
-            print(error)
+            print("ERROR: " + error)
         return 1
+    warnings = production_configuration_warnings(settings)
+    for warning in warnings:
+        print("WARNING: " + warning)
     print("Production configuration: PASS (database connectivity not checked)")
     return 0
 

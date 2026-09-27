@@ -6,25 +6,17 @@ from sqlalchemy import inspect, text
 from app.core.config import (
     get_settings,
     production_configuration_errors,
+    production_configuration_warnings,
 )
 
 
 router = APIRouter(tags=["Health"])
-
 logger = logging.getLogger(__name__)
 
 
 @router.get("/health")
 async def health():
-    """
-    Pure liveness endpoint.
-
-    Must not require PostgreSQL or Supabase to answer.
-    """
-    return {
-        "status": "ok",
-        "service": "ona-towers-api",
-    }
+    return {"status": "ok", "service": "ona-towers-api"}
 
 
 @router.get("/health/config")
@@ -32,6 +24,7 @@ async def configuration_health():
     try:
         settings = get_settings()
         errors = production_configuration_errors(settings)
+        warnings = production_configuration_warnings(settings)
     except Exception as exc:
         logger.exception("Production configuration check failed")
         raise HTTPException(
@@ -52,7 +45,9 @@ async def configuration_health():
     return {
         "status": "ok",
         "environment": settings.app_env,
-        "database_configured": True,
+        "database_configured": bool(settings.sqlalchemy_database_url),
+        "database_ssl_required": "sslmode=require" in settings.sqlalchemy_database_url.lower(),
+        "warnings": warnings,
     }
 
 
@@ -85,9 +80,20 @@ def database_health():
                     text("SELECT version_num FROM alembic_version LIMIT 1")
                 ).scalar()
 
+            residence_count = 0
+            admin_count = 0
+            if "residences" in existing_tables:
+                residence_count = int(connection.execute(text("SELECT COUNT(*) FROM residences")).scalar() or 0)
+            if "admin_team_members" in existing_tables:
+                admin_count = int(
+                    connection.execute(
+                        text("SELECT COUNT(*) FROM admin_team_members WHERE active = true")
+                    ).scalar()
+                    or 0
+                )
+
     except Exception as exc:
         logger.exception("Database health check failed")
-
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Database connection unavailable",
@@ -110,4 +116,6 @@ def database_health():
         "database": "connected",
         "schema": "ready",
         "alembic_revision": alembic_revision,
+        "residence_count": residence_count,
+        "active_admin_count": admin_count,
     }

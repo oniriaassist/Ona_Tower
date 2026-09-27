@@ -106,3 +106,73 @@ def test_vercel_production_guard(client, monkeypatch):
     response = client.post("/api/admin/login", json={})
     assert response.status_code == 503
     assert response.json()["code"] == "service_misconfigured"
+
+
+def test_configuration_health_keeps_hardening_warnings_non_fatal(client, monkeypatch):
+    from app.api.routes import health
+    from app.core.config import Settings
+
+    settings = Settings(
+        _env_file=None,
+        app_env="production",
+        app_debug=False,
+        auto_init_db=False,
+        database_url=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:5432/postgres"
+        ),
+        admin_email="admin@example.com",
+        admin_password="shortpass",
+        admin_session_secret="x" * 48,
+    )
+    monkeypatch.setattr(health, "get_settings", lambda: settings)
+
+    response = client.get("/health/config")
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+    assert response.json()["database_ssl_required"] is True
+    assert any("ADMIN_PASSWORD" in warning for warning in response.json()["warnings"])
+
+
+def test_production_hardening_warnings_do_not_block_customer_api():
+    import os
+    from pathlib import Path
+    import subprocess
+    import sys
+
+    env = dict(
+        os.environ,
+        APP_ENV="production",
+        VERCEL_ENV="production",
+        APP_DEBUG="false",
+        AUTO_INIT_DB="false",
+        DATABASE_URL=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:5432/postgres"
+        ),
+        ADMIN_EMAIL="admin@example.com",
+        ADMIN_PASSWORD="shortpass",
+        ADMIN_SESSION_SECRET="x" * 48,
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", (
+            "from app.main import app; "
+            "from app.repositories.dependencies import get_repository; "
+            "from app.repositories.memory import InMemoryRepository; "
+            "from fastapi.testclient import TestClient; "
+            "app.dependency_overrides[get_repository] = lambda: InMemoryRepository(); "
+            "client = TestClient(app); "
+            "cfg = client.get('/api/health/config'); "
+            "assert cfg.status_code == 200, cfg.text; "
+            "assert cfg.json()['database_ssl_required'] is True; "
+            "assert cfg.json()['warnings']; "
+            "response = client.get('/api/residences'); "
+            "assert response.status_code == 200, response.text"
+        )],
+        cwd=Path(__file__).resolve().parents[1],
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr

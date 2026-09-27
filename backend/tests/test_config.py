@@ -48,3 +48,43 @@ def test_production_postgres_uses_null_pool_and_disables_prepared_statements():
 
     assert options["poolclass"] is NullPool
     assert options["connect_args"]["prepare_threshold"] is None
+
+
+def test_supabase_sslmode_is_added_automatically():
+    settings = Settings(
+        _env_file=None,
+        app_env="production",
+        app_debug=False,
+        auto_init_db=False,
+        database_url=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:6543/postgres"
+        ),
+        admin_email="admin@example.com",
+        admin_password="shortpass",
+        admin_session_secret="x" * 48,
+    )
+
+    assert settings.sqlalchemy_database_url.endswith("?sslmode=require")
+    validate_production_settings(settings)
+
+
+def test_weak_bootstrap_password_is_not_a_global_service_error():
+    from app.core.config import production_configuration_errors, production_configuration_warnings
+
+    settings = Settings(
+        _env_file=None,
+        app_env="production",
+        app_debug=False,
+        auto_init_db=False,
+        database_url=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:6543/postgres"
+        ),
+        admin_email="admin@example.com",
+        admin_password="shortpass",
+        admin_session_secret="x" * 48,
+    )
+
+    assert production_configuration_errors(settings) == []
+    assert any("ADMIN_PASSWORD" in warning for warning in production_configuration_warnings(settings))

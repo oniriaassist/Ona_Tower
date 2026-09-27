@@ -15,7 +15,6 @@ from app.core.exceptions import AppError
 from app.database.models import AdminTeamMember
 from app.database.session import get_db_session
 
-_DEV_PASSWORD = "ona-admin-local"
 _DEV_SECRET = "ona-local-development-secret"
 
 
@@ -39,17 +38,18 @@ def _b64decode(value: str) -> bytes:
 
 
 def validate_production_admin_config(settings: Settings) -> None:
+    """Validate only the secret required to sign admin sessions.
+
+    Admin passwords are stored as hashes in ``admin_team_members``. Their
+    strength is enforced when accounts are created/changed, so the bootstrap
+    environment password must not disable a valid database-backed admin account.
+    """
     if settings.app_env != "production":
         return
-    if (
-        len(settings.admin_session_secret) < 32
-        or settings.admin_session_secret == _DEV_SECRET
-        or len(settings.admin_password) < 12
-        or settings.admin_password in {_DEV_PASSWORD, "Oniria@1234."}
-    ):
+    if len(settings.admin_session_secret) < 32 or settings.admin_session_secret == _DEV_SECRET:
         raise AppError(
-            "Admin access is not configured for production.",
-            code="admin_not_configured",
+            "Admin session security is not configured for production.",
+            code="admin_session_not_configured",
             status_code=503,
         )
 

@@ -63,7 +63,7 @@ DATABASE_URL=YOUR_SUPABASE_TRANSACTION_POOLER_URL
 MIGRATION_DATABASE_URL=YOUR_SUPABASE_SESSION_OR_DIRECT_URL
 
 ADMIN_EMAIL=YOUR_REAL_ADMIN_EMAIL
-ADMIN_PASSWORD=YOUR_UNIQUE_PASSWORD_OF_AT_LEAST_12_CHARACTERS
+ADMIN_PASSWORD=YOUR_ADMIN_BOOTSTRAP_OR_RECOVERY_PASSWORD
 ADMIN_NAME=ONA Administrator
 ADMIN_ROLE=Administrator
 ADMIN_DEPARTMENT=Administration
@@ -77,7 +77,7 @@ Generate a strong session secret with:
 python -c "import secrets; print(secrets.token_urlsafe(48))"
 ```
 
-The backend now fails fast in `APP_ENV=production` when the database/admin settings are missing or still use local-development defaults.
+The backend fails fast only for operationally fatal production settings such as a non-PostgreSQL/placeholder database URL. Admin password strength and other hardening recommendations are reported as non-fatal warnings so customer routes remain available.
 
 ## 3. Run migrations and seed once before first production use
 
@@ -175,10 +175,10 @@ names and requirements without printing secrets. It does not change Vercel
 settings or test database connectivity. Copy the validated values into the
 Vercel project's Production environment and redeploy.
 
-If `/health/config` reports `ADMIN_PASSWORD`, set a unique password with at
-least 12 characters in Vercel. Changing this environment variable does not
-reset a password already stored in Supabase. Use the account's existing password
-or the application's authenticated password-change workflow.
+If `/health/config` reports an `ADMIN_PASSWORD` warning, rotate it to a unique
+password of at least 12 characters when practical. This warning does not take the
+customer API offline. For the primary `ADMIN_EMAIL`, a successful login using the
+server-side bootstrap/recovery password can synchronize that account's stored hash.
 
 Push the connected Git branch, or deploy from the repository root with Vercel CLI:
 
@@ -211,10 +211,11 @@ Expected behavior:
 - `/` and public pages render the Vite frontend.
 - Refreshing a nested frontend route does not return a 404.
 - `/health` returns the FastAPI liveness response.
-- `/health/config` reports configuration errors without preventing startup.
-  When production settings are invalid, other routes return 503 with
-  `service_misconfigured`. This also applies when `VERCEL_ENV=production`
-  but `APP_ENV` was not set correctly.
+- `/health/config` returns HTTP 200 when the runtime is operational. Security
+  hardening recommendations are returned in `warnings` without blocking customer
+  or admin routes. Only fatal operational errors (for example a placeholder or
+  non-PostgreSQL production database URL, or a Vercel production deployment with
+  the wrong `APP_ENV`) cause `service_misconfigured`.
 - `/health/database` reports `database: connected`.
 - `/api/residences` returns seeded residence JSON.
 - `/admin` loads the admin UI and the configured production admin can sign in.
@@ -235,7 +236,7 @@ check alone does not verify migrations, administrator credentials, or enquiries.
 
 Keep `VITE_BACKEND_PROXY_TARGET` local; remove it from Vercel production.
 Use `VITE_API_BASE_URL=/api`. Keep the migration URL on the migration machine.
-Changing `ADMIN_PASSWORD` does not reset an existing seeded account's password.
+The primary `ADMIN_EMAIL` can use the server-side `ADMIN_PASSWORD` as a recovery credential; on successful recovery login the stored password hash is synchronized.
 
 ## 9. Future schema changes
 

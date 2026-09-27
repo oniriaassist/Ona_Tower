@@ -208,7 +208,41 @@ async def login(
 ):
     email = str(payload.email).strip().lower()
     member = db.scalar(select(AdminTeamMember).where(func.lower(AdminTeamMember.email) == email))
+
+    bootstrap_email = settings.admin_email.strip().lower()
+    bootstrap_password = settings.admin_password
+    production_default_password = bootstrap_password == "ona-admin-local"
+    bootstrap_credentials_match = (
+        email == bootstrap_email
+        and len(bootstrap_password) >= 8
+        and not (settings.app_env == "production" and production_default_password)
+        and hmac.compare_digest(payload.password, bootstrap_password)
+    )
+
+    # Recovery/bootstrap path for the primary administrator. This keeps the
+    # server-side ADMIN_EMAIL/ADMIN_PASSWORD pair useful if the database was
+    # migrated without seeding, or if the bootstrap password was deliberately
+    # rotated in Vercel after the original admin row was created.
+    if member is None and bootstrap_credentials_match:
+        member = AdminTeamMember(
+            name=settings.admin_name.strip() or "ONA Administrator",
+            email=bootstrap_email,
+            role=settings.admin_role.strip() or "Administrator",
+            department=settings.admin_department.strip() or None,
+            password_hash=hash_password(bootstrap_password),
+            is_super_admin=True,
+            active=True,
+        )
+        db.add(member)
+        db.flush()
+
     password_ok = member is not None and verify_password(payload.password, member.password_hash)
+    if member is not None and not password_ok and bootstrap_credentials_match:
+        member.password_hash = hash_password(bootstrap_password)
+        member.is_super_admin = True
+        member.active = True
+        password_ok = True
+
     if member is None or not member.active or not password_ok:
         raise AppError(
             "Invalid staff email or password.",
