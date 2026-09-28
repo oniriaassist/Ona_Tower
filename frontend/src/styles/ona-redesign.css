@@ -1706,10 +1706,6 @@ span:last-child {
   object-position: center;
 }
 
-.ona-story-partner-logo--oniria {
-  width: min(100%, 245px);
-  max-height: 82px;
-}
 
 .ona-story-partner-logo--vigor {
   width: min(100%, 185px);
@@ -2127,10 +2123,6 @@ span:last-child {
     object-position: left center;
   }
 
-  .ona-story-partner-logo--oniria {
-    width: min(235px, 70vw);
-    max-height: 78px;
-  }
 
   .ona-story-partner-logo--vigor {
     width: min(165px, 50vw);
@@ -7233,8 +7225,10 @@ span:last-child {
 }
 
 .ona-story-partner-logo--vigstern {
-  width: min(100%, 230px);
-  max-height: 86px;
+  width: min(100%, 300px);
+  max-height: 118px;
+  padding: 0.2rem 0;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16));
 }
 
 .ona-story-partner-logo--zhc {
@@ -7574,5 +7568,14 @@ span:last-child {
   .ona-residences-page .ona-portfolio-image--lifestyle {
     min-height: 0;
     aspect-ratio: 16 / 9;
+  }
+}
+
+
+/* VIGSTERN partner logo — transparent artwork, no white image background. */
+@media (max-width: 680px) {
+  .ona-story-partner-logo--vigstern {
+    width: min(280px, 78vw);
+    max-height: 108px;
   }
 }
