@@ -32,7 +32,6 @@ const partners = [
     eyebrow: "Builder",
     name: "BUILDER VIGSTERN",
     text: "A Zanzibar-based construction company delivering ONA Towers from vision to built reality, with a focus on quality, precision and long-term value.",
-    href: "https://oniriainvestments.com/",
     logo: "/ona-assets/partners/vigstern-company-limited.png",
     logoClass: "ona-story-partner-logo--vigstern",
   },
@@ -43,6 +42,14 @@ const partners = [
     href: "https://turkysgroup.co.tz/",
     logo: "/ona-assets/partners/vigor-group.png",
     logoClass: "ona-story-partner-logo--vigor",
+  },
+  {
+    eyebrow: "Project Promoter",
+    name: "ONIRIA Investments",
+    text: "The driving force behind ONA Towers' market presence, shaping its positioning, identity, commercialization, sales and buyer journey with a focus on exclusivity, experience and long-term value.",
+    href: "https://oniriainvestments.com/",
+    logo: "/ona-assets/partners/oniria-investments.png",
+    logoClass: "ona-story-partner-logo--oniria",
   },
 ];
 
@@ -137,34 +144,59 @@ export default function Development() {
           </header>
 
           <div className="ona-story-partners-list">
-            {partners.map((partner) => (
-              <a
-                key={partner.name}
-                className="ona-story-partner-row"
-                href={partner.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="ona-story-partner-logo-wrap">
-                  <img
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    className={`ona-story-partner-logo ${partner.logoClass}`}
-                    loading="lazy"
-                  />
-                </div>
+            {partners.map((partner) => {
+              const content = (
+                <>
+                  <div className="ona-story-partner-logo-wrap">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      className={`ona-story-partner-logo ${partner.logoClass}`}
+                      loading="lazy"
+                    />
+                  </div>
 
-                <div className="ona-story-partner-copy">
-                  <span>{partner.eyebrow}</span>
-                  <h3>{partner.name}</h3>
-                  <p>{partner.text}</p>
-                </div>
+                  <div className="ona-story-partner-copy">
+                    <span>{partner.eyebrow}</span>
+                    <h3>{partner.name}</h3>
+                    <p>{partner.text}</p>
+                  </div>
 
-                <span className="ona-story-partner-link">
-                  Visit website <span aria-hidden="true">↗</span>
-                </span>
-              </a>
-            ))}
+                  {"href" in partner && partner.href ? (
+                    <span className="ona-story-partner-link">
+                      Visit website <span aria-hidden="true">↗</span>
+                    </span>
+                  ) : (
+                    <span className="ona-story-partner-link ona-story-partner-link--static">
+                      Project partner
+                    </span>
+                  )}
+                </>
+              );
+
+              if ("href" in partner && partner.href) {
+                return (
+                  <a
+                    key={partner.name}
+                    className="ona-story-partner-row"
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={partner.name}
+                  className="ona-story-partner-row ona-story-partner-row--static"
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -3,13 +3,13 @@ export const projectImages = {
    * Main Home hero and premium aerial sales visual.
    * heroOceanView remains the original Story hero background.
    */
-  hero: "/ona-assets/hero/ona-aerial-premium.png",
+  hero: "/ona-assets/hero/ona-home-vision-premium.png",
   heroOceanView: "/ona-assets/hero/hero-ocean-view.jpg",
   premiumAerial: "/ona-assets/hero/hero-ocean-view.jpg",
 
   development: {
-    aerial: "/ona-assets/hero/ona-aerial-premium.png",
-    towersOverview: "/ona-assets/hero/ona-aerial-premium.png",
+    aerial: "/ona-assets/hero/ona-home-vision-premium.png",
+    towersOverview: "/ona-assets/hero/ona-home-vision-premium.png",
     verticalFacade: "/ona-assets/architecture/tower-a-vertical.webp",
     landscape: "/ona-assets/development/landscape-gardens.webp",
     landscapePlan: "/ona-assets/development/masterplan.png",
