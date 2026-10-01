@@ -1,0 +1,156 @@
+.ona-inventory-page { display: grid; gap: 18px; }
+.ona-inventory-toolbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 4px 2px 8px; }
+.ona-inventory-kicker { margin: 0 0 7px !important; color: #a38362 !important; font-size: 10px !important; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.ona-inventory-toolbar h2 { margin: 0; color: #2f2b27; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-weight: 400; }
+.ona-inventory-toolbar p { max-width: 720px; margin: 8px 0 0; color: #7a7169; font-size: 12px; line-height: 1.6; }
+.ona-inventory-toolbar > a { min-height: 42px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; color: #fff; border-radius: 4px; background: #a08463; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+.ona-inventory-metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.ona-inventory-metrics article { min-height: 106px; padding: 16px; display: flex; gap: 14px; align-items: flex-start; border: 1px solid rgba(67,58,50,.1); border-radius: 8px; background: rgba(255,255,255,.58); box-shadow: 0 6px 20px rgba(48,42,38,.025); }
+.ona-inventory-metric-icon { width: 46px; height: 46px; flex: 0 0 46px; display: grid; place-items: center; color: #fff; border-radius: 6px; }
+.ona-inventory-metric-icon.ona-inventory-status-available { background: rgba(78,137,92,.14) !important; color: #4e895c; }
+.ona-inventory-metric-icon.ona-inventory-status-on-hold { background: rgba(191,148,60,.13) !important; color: #b38a36; }
+.ona-inventory-metric-icon.ona-inventory-status-reserved { background: rgba(98,128,162,.13) !important; color: #6280a2; }
+.ona-inventory-metric-icon.ona-inventory-status-sold { background: rgba(160,102,91,.12) !important; color: #9a675f; }
+.ona-inventory-metric-icon.ona-inventory-leads { color: #967550; background: rgba(160,132,99,.12); }
+.ona-inventory-metrics article span { display: block; color: #6f665e; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.ona-inventory-metrics article strong { display: block; margin-top: 3px; color: #2e2925; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-weight: 400; line-height: 1; }
+.ona-inventory-metrics article small { display: block; margin-top: 8px; color: #8f857c; font-size: 9px; }
+.ona-inventory-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 14px; align-items: start; }
+.ona-inventory-table-card, .ona-inventory-detail-card { border: 1px solid rgba(67,58,50,.1); border-radius: 7px; background: rgba(255,255,255,.58); box-shadow: 0 8px 25px rgba(48,42,38,.025); }
+.ona-inventory-card-heading { padding: 18px 18px 12px; display: flex; justify-content: space-between; align-items: center; }
+.ona-inventory-card-heading h3, .ona-inventory-detail-heading h3 { margin: 0; color: #322d29; font-family: Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 400; }
+.ona-inventory-card-heading p { margin: 4px 0 0; color: #827970; font-size: 10px; }
+.ona-inventory-filters { padding: 0 14px 12px; display: grid; grid-template-columns: 1.2fr repeat(5, minmax(92px, .8fr)); gap: 7px; }
+.ona-inventory-search { min-width: 0; height: 36px; padding: 0 10px; display: flex; align-items: center; gap: 7px; border: 1px solid rgba(67,58,50,.12); border-radius: 4px; background: #faf8f4; }
+.ona-inventory-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: #3c3732; font-size: 10px; }
+.ona-inventory-filters > select { height: 36px; padding: 0 8px; border: 1px solid rgba(67,58,50,.12); border-radius: 4px; outline: 0; background: #faf8f4; color: #5d554e; font-size: 9px; }
+.ona-inventory-table-wrap { max-height: 520px; overflow: auto; border-top: 1px solid rgba(67,58,50,.08); border-bottom: 1px solid rgba(67,58,50,.08); }
+.ona-inventory-table-wrap table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.ona-inventory-table-wrap th { position: sticky; top: 0; z-index: 2; padding: 10px 9px; color: #756c64; background: #f1ede7; font-size: 8px; font-weight: 700; letter-spacing: .08em; text-align: left; text-transform: uppercase; }
+.ona-inventory-table-wrap td { padding: 8px 9px; color: #544e48; border-top: 1px solid rgba(67,58,50,.06); font-size: 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ona-inventory-table-wrap tr { cursor: pointer; transition: background .12s ease; }
+.ona-inventory-table-wrap tbody tr:hover, .ona-inventory-table-wrap tbody tr.is-selected { background: rgba(176,139,96,.11); }
+.ona-inventory-table-wrap td strong { color: #342e29; font-size: 10px; }
+.ona-inventory-status-control { position: relative; }
+.ona-inventory-status-control svg { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); pointer-events: none; color: rgba(255,255,255,.95); }
+.ona-inventory-status-select { width: 100%; height: 32px; padding: 0 30px 0 10px; border: 0; border-radius: 5px; outline: 0; appearance: none; -webkit-appearance: none; -moz-appearance: none; color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .06em; text-align: center; text-transform: uppercase; box-shadow: inset 0 -1px 0 rgba(0,0,0,.08); }
+.ona-inventory-status-select:disabled { opacity: .65; cursor: wait; }
+.ona-inventory-status-available { background: #7eae87 !important; }
+.ona-inventory-status-on-hold { background: #c5a154 !important; }
+.ona-inventory-status-reserved { background: #9eb5cf !important; }
+.ona-inventory-status-sold { background: #c7c2bc !important; color: #3e352d !important; }
+.ona-inventory-status-control.ona-inventory-status-sold svg { color: #4b433b; }
+.ona-inventory-table-footer { padding: 10px 14px; color: #8f867e; font-size: 9px; }
+.ona-inventory-detail-card { overflow: hidden; }
+.ona-inventory-detail-heading { padding: 18px 18px 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.ona-inventory-detail-heading > div > span { color: #9b7d5a; font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.ona-inventory-detail-heading h3 { margin-top: 4px; }
+.ona-inventory-detail-heading p { margin: 3px 0 0; color: #766d65; font-size: 10px; }
+.ona-inventory-status-pill { padding: 6px 8px; border-radius: 3px; color: #fff; font-size: 7px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.ona-inventory-plan { width: calc(100% - 28px); height: 208px; margin: 0 14px; display: block; object-fit: contain; border-radius: 6px; background: #fff; border: 1px solid rgba(67,58,50,.08); }
+.ona-inventory-detail-grid { margin: 12px 16px 0; padding-bottom: 14px; display: grid; grid-template-columns: repeat(2, 1fr); border-bottom: 1px solid rgba(67,58,50,.12); }
+.ona-inventory-detail-grid div { padding: 8px 7px; }
+.ona-inventory-detail-grid div:nth-child(even) { border-left: 1px solid rgba(67,58,50,.09); }
+.ona-inventory-detail-grid span { display: block; color: #9a8f85; font-size: 8px; }
+.ona-inventory-detail-grid strong { display: block; margin-top: 3px; color: #4d4640; font-size: 9px; font-weight: 600; }
+.ona-inventory-lead-panel { padding: 15px 17px 17px; }
+.ona-inventory-lead-title { display: flex; justify-content: space-between; gap: 8px; color: #504943; font-family: Georgia, 'Times New Roman', serif; font-size: 14px; }
+.ona-inventory-lead-title small { color: #a3988f; font-family: Montserrat, sans-serif; font-size: 7px; }
+.ona-inventory-lead-panel h4 { margin: 13px 0 8px; color: #312c28; font-size: 11px; }
+.ona-inventory-lead-panel dl { margin: 0; }
+.ona-inventory-lead-panel dl div { padding: 4px 0; display: grid; grid-template-columns: 70px 1fr; gap: 8px; }
+.ona-inventory-lead-panel dt { color: #9a9088; font-size: 8px; }
+.ona-inventory-lead-panel dd { margin: 0; color: #514a44; font-size: 8px; overflow-wrap: anywhere; }
+.ona-inventory-lead-panel button { width: 100%; min-height: 36px; margin-top: 12px; border: 1px solid #a08463; color: #7d6247; background: transparent; font-size: 8px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.ona-inventory-empty-lead { min-height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; color: #a08f7f; text-align: center; }
+.ona-inventory-empty-lead p { max-width: 220px; margin: 0; color: #8d8278; font-size: 9px; line-height: 1.55; }
+@media (max-width: 1280px) { .ona-inventory-metrics { grid-template-columns: repeat(3, 1fr); } .ona-inventory-layout { grid-template-columns: 1fr; } .ona-inventory-detail-card { display: grid; grid-template-columns: 260px 1fr; } .ona-inventory-detail-heading { grid-column: 1 / -1; } .ona-inventory-plan { width: calc(100% - 28px); } .ona-inventory-lead-panel { border-left: 1px solid rgba(67,58,50,.1); } .ona-inventory-filters { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .ona-inventory-toolbar { align-items: flex-start; flex-direction: column; } .ona-inventory-metrics { grid-template-columns: 1fr 1fr; } .ona-inventory-filters { grid-template-columns: 1fr 1fr; } .ona-inventory-detail-card { display: block; } .ona-inventory-lead-panel { border-left: 0; } .ona-inventory-table-wrap table { min-width: 780px; } }
+
+/* Premium status controls: full-box color treatment */
+.ona-inventory-status-control {
+  width: 100%;
+  min-width: 118px;
+  height: 34px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.06), 0 3px 10px rgba(63,51,40,.05);
+}
+
+.ona-inventory-status-control.ona-inventory-status-available {
+  background: #dcebdd !important;
+  color: #3f7c4b !important;
+}
+
+.ona-inventory-status-control.ona-inventory-status-on-hold {
+  background: #ead7a8 !important;
+  color: #81621e !important;
+}
+
+.ona-inventory-status-control.ona-inventory-status-reserved {
+  background: #dce7f3 !important;
+  color: #5d7796 !important;
+}
+
+.ona-inventory-status-control.ona-inventory-status-sold {
+  background: #efd8d2 !important;
+  color: #966057 !important;
+}
+
+.ona-inventory-status-control svg {
+  z-index: 2;
+  color: currentColor !important;
+}
+
+.ona-inventory-status-select,
+.ona-inventory-status-select.ona-inventory-status-available,
+.ona-inventory-status-select.ona-inventory-status-on-hold,
+.ona-inventory-status-select.ona-inventory-status-reserved,
+.ona-inventory-status-select.ona-inventory-status-sold {
+  position: relative;
+  z-index: 1;
+  height: 34px;
+  padding: 0 31px 0 12px;
+  color: currentColor !important;
+  background: transparent !important;
+  border: 0;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ona-inventory-status-select option {
+  color: #3d3833;
+  background: #fffaf4;
+}
+
+.ona-inventory-status-pill.ona-inventory-status-available {
+  color: #3f7c4b !important;
+  background: #dcebdd !important;
+}
+
+.ona-inventory-status-pill.ona-inventory-status-on-hold {
+  color: #81621e !important;
+  background: #ead7a8 !important;
+}
+
+.ona-inventory-status-pill.ona-inventory-status-reserved {
+  color: #5d7796 !important;
+  background: #dce7f3 !important;
+}
+
+.ona-inventory-status-pill.ona-inventory-status-sold {
+  color: #966057 !important;
+  background: #efd8d2 !important;
+}
+
+.ona-inventory-plan {
+  height: 240px;
+  padding: 8px;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(86,69,53,.04), 0 9px 22px rgba(65,52,40,.04);
+}

@@ -8,6 +8,7 @@ import Header from "./components/Header";
 
 import BrochurePage from "./pages/BrochurePage";
 import CommercialPage from "./pages/CommercialPage";
+import CityViewPage from "./pages/CityViewPage";
 import { DevelopmentPage } from "./pages/DevelopmentPage";
 import EnquirePage from "./pages/EnquirePage";
 import { HomePage } from "./pages/HomePage";
@@ -23,6 +24,7 @@ import "./styles/admin-premium.css";
 const pageTitles: Record<string, string> = {
   "/": "ONA Towers — Zanzibar | Live above. See beyond.",
   "/residences": "Residences | ONA Towers Zanzibar",
+  "/cityview": "City View | ONA Towers Zanzibar",
   "/development": "Our Story | ONA Towers Zanzibar",
   "/lifestyle": "Life at ONA | ONA Towers Zanzibar",
   "/commercial": "ONA House | ONA Towers Zanzibar",
@@ -48,6 +50,10 @@ export function App() {
       void recordPageVisit(pathname);
     }
   }, [pathname]);
+
+  if (pathname === "/cityview") {
+    return <CityViewPage />;
+  }
 
   if (
     pathname === "/admin" ||

@@ -7,6 +7,7 @@ import React, {
 import {
   ArrowLeft,
   ArrowRight,
+  Building2,
   Eye,
   EyeOff,
   Inbox,
@@ -39,6 +40,7 @@ import {
 
 import { OverviewView } from "./views/OverviewView";
 import { EnquiriesView } from "./views/EnquiriesView";
+import { InventoryView } from "./views/InventoryView";
 import { TeamView } from "./views/TeamView";
 import { SettingsView } from "./views/SettingsView";
 
@@ -46,6 +48,7 @@ import "../styles/admin-premium.css";
 
 type AdminSection =
   | "overview"
+  | "inventory"
   | "enquiries"
   | "team"
   | "settings";
@@ -53,6 +56,14 @@ type AdminSection =
 function sectionFromPath(
   pathname: string,
 ): AdminSection {
+  if (
+    pathname.startsWith(
+      "/admin/inventory",
+    )
+  ) {
+    return "inventory";
+  }
+
   if (
     pathname.startsWith(
       "/admin/enquiries",
@@ -88,9 +99,15 @@ const labels: Record<
   }
 > = {
   overview: {
-    title: "Overview",
+    title: "Sales Dashboard",
     subtitle:
-      "Customer activity, enquiries and team performance in one place.",
+      "Manage inventory, buyer enquiries and sales activity in one place.",
+  },
+
+  inventory: {
+    title: "Inventory",
+    subtitle:
+      "Manage City View residence availability and buyer interest.",
   },
 
   enquiries: {
@@ -120,9 +137,16 @@ const navItems: Array<{
 }> = [
   {
     key: "overview",
-    label: "Overview",
+    label: "Dashboard",
     path: "/admin",
     icon: LayoutDashboard,
+  },
+
+  {
+    key: "inventory",
+    label: "Inventory",
+    path: "/admin/inventory",
+    icon: Building2,
   },
 
   {
@@ -570,6 +594,11 @@ export function AdminApp({
           {section ===
           "overview" ? (
             <OverviewView />
+          ) : null}
+
+          {section ===
+          "inventory" ? (
+            <InventoryView />
           ) : null}
 
           {section ===

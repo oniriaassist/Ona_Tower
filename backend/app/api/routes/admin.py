@@ -43,6 +43,8 @@ from app.schemas.admin import (
     TeamPasswordReset,
     TopPage,
 )
+from app.schemas.cityview import CityViewInventory, CityViewStatusUpdate, CityViewUnit
+from app.services.cityview_inventory import cityview_inventory, update_cityview_status
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 SETTINGS_KEY = "workspace"
@@ -328,6 +330,27 @@ async def change_password(
     db.add(member)
     db.commit()
     return ApiMessage(message="Password updated successfully.")
+
+
+@router.get("/cityview", response_model=CityViewInventory)
+async def admin_cityview_inventory(
+    _: AdminPrincipal = Depends(require_admin),
+    db: Session = Depends(get_db_session),
+):
+    return cityview_inventory(db)
+
+
+@router.patch("/cityview/units/{unit_code}", response_model=CityViewUnit)
+async def admin_update_cityview_unit(
+    unit_code: str,
+    payload: CityViewStatusUpdate,
+    _: AdminPrincipal = Depends(require_admin),
+    db: Session = Depends(get_db_session),
+):
+    unit = update_cityview_status(db, unit_code.upper(), payload.status)
+    if unit is None:
+        raise NotFoundError("City View unit not found.")
+    return unit
 
 
 @router.get("/overview", response_model=AdminOverview)

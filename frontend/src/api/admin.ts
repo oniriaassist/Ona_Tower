@@ -1,5 +1,6 @@
 import { API_BASE_URL } from './client';
 import { getErrorMessage as parseError } from './errors';
+import type { CityViewInventory, CityViewStatus, CityViewUnit } from './cityview';
 
 export type AdminEnquiryStatus =
   | 'new'
@@ -208,6 +209,17 @@ export function changeMyPassword(payload: { current_password: string; new_passwo
 }
 
 export function getAdminOverview() { return adminRequest<AdminOverview>('/admin/overview'); }
+
+export function getAdminCityView() {
+  return adminRequest<CityViewInventory>('/admin/cityview');
+}
+
+export function updateAdminCityViewUnit(unitCode: string, status: CityViewStatus) {
+  return adminRequest<CityViewUnit>(`/admin/cityview/units/${encodeURIComponent(unitCode)}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  });
+}
 
 export function getAdminEnquiries(params: { search?: string; status?: string; page?: number; pageSize?: number } = {}) {
   const query = new URLSearchParams();

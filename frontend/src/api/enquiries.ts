@@ -15,7 +15,7 @@ export interface EnquiryPayload {
   enquiry_type: EnquiryType;
   message?: string;
   consent: boolean;
-  source: 'website';
+  source: string;
   company_website: string;
 }
 
