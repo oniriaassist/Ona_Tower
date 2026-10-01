@@ -199,6 +199,27 @@ class AdminSettingsRecord(BaseModel):
     updated_at: datetime | None = None
 
 
+class AdminEmailStatus(BaseModel):
+    enabled: bool
+    ready: bool
+    provider: str
+    from_configured: bool
+    staff_recipient_configured: bool
+    cityview_url_configured: bool
+    cityview_url: str
+    issues: list[str] = Field(default_factory=list)
+
+
+class AdminEmailTestRequest(BaseModel):
+    email: EmailStr
+
+
+class AdminEmailTestResponse(BaseModel):
+    success: bool = True
+    provider: str
+    message: str
+
+
 class ApiMessage(BaseModel):
     success: bool = True
     message: str

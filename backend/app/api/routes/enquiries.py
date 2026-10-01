@@ -31,4 +31,15 @@ async def create_enquiry(
     if record is None:
         return EnquiryCreated(reference_number="RECEIVED")
 
-    return EnquiryCreated(reference_number=record.reference_number)
+    result = service.last_notification_result
+    message = (
+        "Thank you. Your enquiry has been received and your City View link has been emailed to you."
+        if result.customer_sent
+        else "Thank you. Your enquiry has been received. Our sales team will follow up using the contact details you provided."
+    )
+    return EnquiryCreated(
+        reference_number=record.reference_number,
+        message=message,
+        customer_email_sent=result.customer_sent,
+        staff_email_sent=result.staff_sent,
+    )

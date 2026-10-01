@@ -8,6 +8,7 @@ from app.core.config import (
     production_configuration_errors,
     production_configuration_warnings,
 )
+from app.services.notification import NotificationService
 
 
 router = APIRouter(tags=["Health"])
@@ -25,6 +26,7 @@ async def configuration_health():
         settings = get_settings()
         errors = production_configuration_errors(settings)
         warnings = production_configuration_warnings(settings)
+        email_status = NotificationService(settings).configuration_status()
     except Exception as exc:
         logger.exception("Production configuration check failed")
         raise HTTPException(
@@ -47,6 +49,14 @@ async def configuration_health():
         "environment": settings.app_env,
         "database_configured": bool(settings.sqlalchemy_database_url),
         "database_ssl_required": "sslmode=require" in settings.sqlalchemy_database_url.lower(),
+        "email": {
+            "enabled": email_status["enabled"],
+            "ready": email_status["ready"],
+            "provider": email_status["provider"],
+            "from_configured": email_status["from_configured"],
+            "staff_recipient_configured": email_status["staff_recipient_configured"],
+            "cityview_url_configured": email_status["cityview_url_configured"],
+        },
         "warnings": warnings,
     }
 

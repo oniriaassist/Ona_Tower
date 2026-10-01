@@ -12,12 +12,12 @@ export const projectImages = {
     towersOverview: "/ona-assets/hero/ona-home-vision-premium.png",
     verticalFacade: "/ona-assets/architecture/tower-a-vertical.webp",
     landscape: "/ona-assets/development/landscape-gardens.webp",
-    landscapePlan: "/ona-assets/development/masterplan.png",
+    landscapePlan: "/ona-assets/development/landscape-gardens.webp",
     gardens: "/ona-assets/development/outdoor-work-garden.webp",
   },
 
   residences: {
-    exterior: "/ona-assets/residences/residences-exterior.png",
+    exterior: "/ona-assets/hero/ona-home-vision-premium.png",
     twoBedroomLiving: "/ona-assets/residences/2br-living.webp",
     twoBedroomPremium: "/ona-assets/residences/2br-premium-living.webp",
     threeBedroomLiving: "/ona-assets/residences/3br-living-ocean.webp",
@@ -42,16 +42,16 @@ export const projectImages = {
     studyLounge: "/ona-assets/lifestyle/study-lounge.webp",
     concierge: "/ona-assets/lifestyle/concierge.webp",
     kidsClub: "/ona-assets/lifestyle/kids-club.webp",
-    pool: "/ona-assets/lifestyle/pool.png",
-    gym: "/ona-assets/lifestyle/gym.png",
-    coffeeCorner: "/ona-assets/lifestyle/coffee-corner.png",
+    pool: "/ona-assets/hero/ona-home-vision-premium.png",
+    gym: "/ona-assets/lifestyle/social-lounge.webp",
+    coffeeCorner: "/ona-assets/lifestyle/cafe-bakery.webp",
   },
 
   commercial: {
-    officePlan: "/ona-assets/commercial/office-level-plan.png",
+    officePlan: "/ona-assets/commercial/office-workspace-premium.png",
     onaHouseExterior: "/ona-assets/commercial/ona-house-gate-premium.png",
     workspacePremium: "/ona-assets/commercial/office-workspace-premium.png",
-    boardroom: "/ona-assets/commercial/boardroom.png",
+    boardroom: "/ona-assets/commercial/office-workspace-premium.png",
     supermarket: "/ona-assets/lifestyle/mini-market.webp",
   },
 
@@ -61,19 +61,19 @@ export const projectImages = {
 
   architecture: {
     closeup: "/ona-assets/architecture/tower-a-vertical.webp",
-    aerial: "/ona-assets/architecture/single-tower-aerial.png",
+    aerial: "/ona-assets/hero/ona-home-vision-premium.png",
   },
 
   floorPlans: {
     // The brochure supplies one layout per type, not per tower/orientation.
-    towerA2West: "/ona-assets/floorplans/brochure-2br.png",
-    towerA2East: "/ona-assets/floorplans/brochure-2br.png",
+    towerA2West: "/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg",
+    towerA2East: "/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg",
     towerA3West: "/ona-assets/floorplans/brochure-3br.png",
     towerA3East: "/ona-assets/floorplans/brochure-3br.png",
     towerAPenthouse3: "/ona-assets/floorplans/brochure-penthouse-3br.png",
     towerAPenthouse4: "/ona-assets/floorplans/brochure-penthouse-4br.png",
-    towerB2West: "/ona-assets/floorplans/brochure-2br.png",
-    towerB2East: "/ona-assets/floorplans/brochure-2br.png",
+    towerB2West: "/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg",
+    towerB2East: "/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg",
     towerB3West: "/ona-assets/floorplans/brochure-3br.png",
     towerB3East: "/ona-assets/floorplans/brochure-3br.png",
     towerBPenthouse3: "/ona-assets/floorplans/brochure-penthouse-3br.png",

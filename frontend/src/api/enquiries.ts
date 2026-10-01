@@ -23,6 +23,8 @@ export interface EnquiryResponse {
   success: boolean;
   reference_number: string;
   message: string;
+  customer_email_sent?: boolean;
+  staff_email_sent?: boolean;
 }
 
 export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryResponse> {

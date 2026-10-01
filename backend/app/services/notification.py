@@ -1,8 +1,13 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
 import html
 import logging
 import smtplib
 import ssl
 from email.message import EmailMessage
+
+import httpx
 
 from app.core.config import Settings
 from app.schemas.enquiry import EnquiryRecord, EnquiryType
@@ -10,32 +15,93 @@ from app.schemas.enquiry import EnquiryRecord, EnquiryType
 logger = logging.getLogger(__name__)
 
 
+@dataclass(frozen=True)
+class NotificationResult:
+    staff_sent: bool = False
+    customer_sent: bool = False
+    provider: str = "none"
+
+
 class NotificationService:
     def __init__(self, settings: Settings):
         self.settings = settings
 
-    def send_enquiry_notifications(self, enquiry: EnquiryRecord) -> None:
+    def configuration_status(self) -> dict[str, object]:
+        provider = self.settings.effective_email_provider
+        enabled = self.settings.email_delivery_enabled
+        issues: list[str] = []
+
+        if not enabled:
+            issues.append("Transactional email is disabled. Set EMAIL_ENABLED=true or configure RESEND_API_KEY.")
+        if not self.settings.smtp_from_email:
+            issues.append("SMTP_FROM_EMAIL is not configured.")
+        if provider == "none":
+            issues.append("No email transport is configured. Set RESEND_API_KEY or SMTP_HOST.")
+        elif provider == "resend" and not (self.settings.resend_api_key or "").strip():
+            issues.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY.")
+        elif provider == "smtp":
+            if not self.settings.smtp_host:
+                issues.append("EMAIL_PROVIDER=smtp requires SMTP_HOST.")
+            if bool(self.settings.smtp_username) != bool(self.settings.smtp_password):
+                issues.append("SMTP_USERNAME and SMTP_PASSWORD must be configured together.")
+        if not self.settings.sales_notification_email:
+            issues.append("SALES_NOTIFICATION_EMAIL is not configured; staff notifications will be skipped.")
+        if not self.settings.cityview_url.strip().lower().startswith(("https://", "http://")):
+            issues.append("CITYVIEW_URL must be an absolute http(s) URL.")
+
+        customer_ready = enabled and bool(self.settings.smtp_from_email) and provider != "none"
+        if provider == "resend":
+            customer_ready = customer_ready and bool((self.settings.resend_api_key or "").strip())
+        elif provider == "smtp":
+            customer_ready = customer_ready and bool(self.settings.smtp_host) and (
+                bool(self.settings.smtp_username) == bool(self.settings.smtp_password)
+            )
+
+        return {
+            "enabled": enabled,
+            "ready": customer_ready,
+            "provider": provider,
+            "from_configured": bool(self.settings.smtp_from_email),
+            "staff_recipient_configured": bool(self.settings.sales_notification_email),
+            "cityview_url_configured": self.settings.cityview_url.strip().lower().startswith(("https://", "http://")),
+            "issues": issues,
+        }
+
+    def send_enquiry_notifications(self, enquiry: EnquiryRecord) -> NotificationResult:
         """Send staff and customer email notifications without risking the enquiry.
 
         The enquiry is already stored before this method is called. Each email is
-        therefore attempted independently: a temporary SMTP problem must never
-        prevent the customer enquiry from remaining available in the admin area.
+        attempted independently so a temporary provider error cannot remove or
+        invalidate the saved lead.
         """
-        if not self.settings.smtp_enabled:
-            logger.info("SMTP disabled; enquiry notifications skipped")
-            return
+        status = self.configuration_status()
+        provider = str(status["provider"])
+        if not status["enabled"]:
+            logger.warning("Transactional email disabled; enquiry notifications skipped")
+            return NotificationResult(provider=provider)
+        if not status["ready"]:
+            logger.warning("Transactional email is not ready: %s", "; ".join(status["issues"]))
+            return NotificationResult(provider=provider)
 
-        if not self.settings.smtp_host or not self.settings.smtp_from_email:
-            logger.warning("SMTP enabled but SMTP_HOST or SMTP_FROM_EMAIL is missing")
-            return
+        staff_sent = False
+        customer_sent = False
 
-        if bool(self.settings.smtp_username) != bool(self.settings.smtp_password):
-            logger.warning("SMTP authentication is incomplete; SMTP_USERNAME and SMTP_PASSWORD must be configured together")
-            return
+        # Customer acknowledgement is the primary transactional response, so it
+        # is attempted first. The enquiry is already persisted, and a slower
+        # internal staff notification must not delay the buyer's City View email.
+        if enquiry.email:
+            try:
+                self._send_customer_acknowledgement(enquiry)
+                customer_sent = True
+            except Exception:
+                logger.exception("Customer acknowledgement failed for enquiry %s", enquiry.reference_number)
+        else:
+            logger.info("Customer email absent; acknowledgement skipped for enquiry %s", enquiry.reference_number)
 
         if self.settings.sales_notification_email:
             try:
                 self._send_sales_notification(enquiry)
+                staff_sent = True
             except Exception:
                 logger.exception("Sales notification failed for enquiry %s", enquiry.reference_number)
         else:
@@ -44,18 +110,97 @@ class NotificationService:
                 enquiry.reference_number,
             )
 
-        if enquiry.email:
-            try:
-                self._send_customer_acknowledgement(enquiry)
-            except Exception:
-                logger.exception("Customer acknowledgement failed for enquiry %s", enquiry.reference_number)
+        return NotificationResult(
+            staff_sent=staff_sent,
+            customer_sent=customer_sent,
+            provider=provider,
+        )
+
+    def send_test_email(self, recipient: str) -> str:
+        status = self.configuration_status()
+        if not status["ready"]:
+            raise RuntimeError("Email delivery is not ready: " + "; ".join(status["issues"]))
+
+        msg = EmailMessage()
+        msg["Subject"] = "ONA Towers email delivery test"
+        msg["From"] = self._from_header()
+        msg["To"] = recipient
+        if self.settings.sales_notification_email:
+            msg["Reply-To"] = str(self.settings.sales_notification_email)
+        msg["Auto-Submitted"] = "auto-generated"
+        msg.set_content(
+            "ONA Towers email delivery is working.\n\n"
+            f"City View: {self.settings.cityview_url}\n"
+        )
+        msg.add_alternative(
+            f"""<!doctype html><html><body style="margin:0;background:#f4efe7;font-family:Arial,sans-serif;color:#302a26;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4efe7;padding:32px 14px;"><tr><td align="center">
+<table role="presentation" width="620" cellspacing="0" cellpadding="0" style="width:100%;max-width:620px;background:#fffdf9;border:1px solid #e8dfd4;border-radius:8px;overflow:hidden;">
+<tr><td align="center" style="padding:28px;background:#24333d;color:#fff;"><div style="font-family:Georgia,serif;font-size:32px;letter-spacing:7px;">ÔNA</div><div style="margin-top:7px;color:#c7a373;font-size:10px;letter-spacing:5px;">TOWERS</div></td></tr>
+<tr><td style="padding:38px 42px;"><h1 style="font-family:Georgia,serif;font-weight:400;font-size:30px;margin:0 0 18px;">Email delivery is working.</h1><p style="color:#665f58;line-height:1.7;">This test confirms that the ONA Towers backend can send transactional email using the configured provider.</p><p style="margin:28px 0 0;"><a href="{html.escape(self.settings.cityview_url, quote=True)}" style="display:inline-block;background:#ad8759;color:#fff;text-decoration:none;padding:15px 24px;font-size:12px;font-weight:700;letter-spacing:1.4px;">OPEN CITY VIEW →</a></p></td></tr>
+</table></td></tr></table></body></html>""",
+            subtype="html",
+        )
+        return self._send_message(msg, idempotency_key=f"ona-test/{recipient}")
+
+    def _send_message(self, message: EmailMessage, *, idempotency_key: str) -> str:
+        provider = self.settings.effective_email_provider
+        if provider == "resend":
+            return self._resend_send(message, idempotency_key=idempotency_key)
+        if provider == "smtp":
+            self._smtp_send(message)
+            return "smtp"
+        raise RuntimeError("No configured email provider")
+
+    def _resend_send(self, message: EmailMessage, *, idempotency_key: str) -> str:
+        api_key = (self.settings.resend_api_key or "").strip()
+        if not api_key:
+            raise RuntimeError("RESEND_API_KEY is not configured")
+
+        plain_part = message.get_body(preferencelist=("plain",))
+        html_part = message.get_body(preferencelist=("html",))
+        payload: dict[str, object] = {
+            "from": str(message["From"]),
+            "to": [str(message["To"])],
+            "subject": str(message["Subject"]),
+            "text": plain_part.get_content() if plain_part else "",
+        }
+        if html_part:
+            payload["html"] = html_part.get_content()
+        if message.get("Reply-To"):
+            payload["reply_to"] = str(message["Reply-To"])
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "Idempotency-Key": idempotency_key[:256],
+        }
+        with httpx.Client(timeout=self.settings.email_timeout_seconds) as client:
+            response = client.post(self.settings.resend_api_url, headers=headers, json=payload)
+        if response.is_error:
+            detail = response.text[:500]
+            raise RuntimeError(f"Resend returned HTTP {response.status_code}: {detail}")
+        body = response.json()
+        email_id = body.get("id")
+        if not email_id:
+            raise RuntimeError("Resend accepted the request but did not return an email id")
+        logger.info("Resend accepted email %s", email_id)
+        return str(email_id)
 
     def _smtp_send(self, message: EmailMessage) -> None:
         host = self.settings.smtp_host
         if not host:
             raise RuntimeError("SMTP_HOST is not configured")
 
-        with smtplib.SMTP(host, self.settings.smtp_port, timeout=10) as server:
+        timeout = self.settings.email_timeout_seconds
+        if self.settings.smtp_port in {465, 2465}:
+            with smtplib.SMTP_SSL(host, self.settings.smtp_port, timeout=timeout, context=ssl.create_default_context()) as server:
+                if self.settings.smtp_username and self.settings.smtp_password:
+                    server.login(self.settings.smtp_username, self.settings.smtp_password)
+                server.send_message(message)
+            return
+
+        with smtplib.SMTP(host, self.settings.smtp_port, timeout=timeout) as server:
             if self.settings.smtp_use_tls:
                 server.starttls(context=ssl.create_default_context())
             if self.settings.smtp_username and self.settings.smtp_password:
@@ -89,7 +234,7 @@ class NotificationService:
                 ]
             )
         )
-        self._smtp_send(msg)
+        self._send_message(msg, idempotency_key=f"ona-staff/{enquiry.reference_number}")
 
     def _send_customer_acknowledgement(self, enquiry: EnquiryRecord) -> None:
         cityview_url = self.settings.cityview_url.strip() or "https://www.onatowers.com/cityview"
@@ -194,7 +339,7 @@ class NotificationService:
             subtype="html",
         )
 
-        self._smtp_send(msg)
+        self._send_message(msg, idempotency_key=f"ona-customer/{enquiry.reference_number}")
 
     @staticmethod
     def _customer_email_copy(enquiry: EnquiryRecord) -> tuple[str, str, str]:

@@ -70,3 +70,5 @@ class EnquiryCreated(BaseModel):
     success: bool = True
     reference_number: str
     message: str = "Thank you. Your enquiry has been received."
+    customer_email_sent: bool = False
+    staff_email_sent: bool = False

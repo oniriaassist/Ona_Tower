@@ -56,9 +56,9 @@ export default function EnquirePage() {
       });
 
       setNotice(
-        result.reference_number
-          ? `Thank you. Your enquiry has been received. Reference: ${result.reference_number}`
-          : "Thank you. Your enquiry has been received by the ONA Towers team.",
+        result.reference_number && result.reference_number !== "RECEIVED"
+          ? `${result.message} Reference: ${result.reference_number}`
+          : result.message || "Thank you. Your enquiry has been received by the ONA Towers team.",
       );
       setNoticeType("success");
 

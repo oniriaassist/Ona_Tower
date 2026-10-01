@@ -6,7 +6,7 @@ from app.core.config import Settings
 from app.core.exceptions import DuplicateEnquiryError
 from app.repositories.base import BackendRepository
 from app.schemas.enquiry import EnquiryCreate, EnquiryRecord
-from app.services.notification import NotificationService
+from app.services.notification import NotificationResult, NotificationService
 from app.services.sanitization import sanitize_plain_text
 
 logger = logging.getLogger(__name__)
@@ -17,6 +17,7 @@ class EnquiryService:
         self.repository = repository
         self.settings = settings
         self.notifications = NotificationService(settings)
+        self.last_notification_result = NotificationResult(provider=settings.effective_email_provider)
 
     async def submit(self, payload: EnquiryCreate) -> EnquiryRecord | None:
         # Honeypot: silently accept bot submissions but do not persist/notify.
@@ -48,7 +49,7 @@ class EnquiryService:
         record = await self.repository.create_enquiry(cleaned, reference_number=reference)
 
         try:
-            self.notifications.send_enquiry_notifications(record)
+            self.last_notification_result = self.notifications.send_enquiry_notifications(record)
         except Exception:
             # Notification failure must not lose a valid enquiry.
             logger.exception("Enquiry stored but notification failed")

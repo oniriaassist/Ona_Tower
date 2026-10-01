@@ -237,3 +237,13 @@ def test_production_admin_session_does_not_depend_on_bootstrap_password_length()
         admin_session_secret="x" * 48,
     )
     validate_production_admin_config(settings)
+
+
+def test_admin_email_status_endpoint(client):
+    headers, _ = _auth(client)
+    response = client.get("/api/admin/email/status", headers=headers)
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["provider"] in {"none", "resend", "smtp"}
+    assert isinstance(body["ready"], bool)
+    assert body["cityview_url"].endswith("/cityview")

@@ -53,7 +53,7 @@ export default function AdminLoginView({
         aria-hidden="true"
       >
         <img
-          src="/ona-assets/hero/towers-sunset.webp"
+          src="/ona-assets/hero/ona-home-vision-premium.png"
           alt=""
         />
 

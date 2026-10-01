@@ -37,7 +37,7 @@ function fallbackPlanFor(unit: CityViewUnit) {
   if (unit.residence_type.includes('Penthouse')) {
     return unit.bedrooms === 4 ? '/ona-assets/floorplans/brochure-penthouse-4br.png' : '/ona-assets/floorplans/brochure-penthouse-3br.png';
   }
-  return unit.bedrooms === 2 ? '/ona-assets/floorplans/brochure-2br.png' : '/ona-assets/floorplans/brochure-3br.png';
+  return unit.bedrooms === 2 ? '/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg' : '/ona-assets/floorplans/brochure-3br.png';
 }
 
 export function InventoryView() {

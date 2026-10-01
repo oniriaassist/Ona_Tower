@@ -85,6 +85,18 @@ export interface AdminSettingsRecord {
   updated_at?: string | null;
 }
 
+
+export interface AdminEmailStatus {
+  enabled: boolean;
+  ready: boolean;
+  provider: string;
+  from_configured: boolean;
+  staff_recipient_configured: boolean;
+  cityview_url_configured: boolean;
+  cityview_url: string;
+  issues: string[];
+}
+
 export interface EnquiryListResponse {
   items: AdminEnquiry[];
   total: number;
@@ -282,5 +294,17 @@ export function getAdminSettings() { return adminRequest<AdminSettingsRecord>('/
 export function updateAdminSettings(settings: AdminWorkspaceSettings) {
   return adminRequest<AdminSettingsRecord>('/admin/settings', {
     method: 'PATCH', body: JSON.stringify(settings),
+  });
+}
+
+
+export function getAdminEmailStatus() {
+  return adminRequest<AdminEmailStatus>('/admin/email/status');
+}
+
+export function sendAdminEmailTest(email: string) {
+  return adminRequest<{ success: boolean; provider: string; message: string }>('/admin/email/test', {
+    method: 'POST',
+    body: JSON.stringify({ email }),
   });
 }

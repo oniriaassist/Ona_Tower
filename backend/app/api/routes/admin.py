@@ -25,6 +25,9 @@ from app.schemas.admin import (
     AdminEnquiry,
     AdminEnquiryList,
     AdminEnquiryUpdate,
+    AdminEmailStatus,
+    AdminEmailTestRequest,
+    AdminEmailTestResponse,
     AdminForgotPasswordRequest,
     AdminLoginRequest,
     AdminLoginResponse,
@@ -45,6 +48,7 @@ from app.schemas.admin import (
 )
 from app.schemas.cityview import CityViewInventory, CityViewStatusUpdate, CityViewUnit
 from app.services.cityview_inventory import cityview_inventory, update_cityview_status
+from app.services.notification import NotificationService
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 SETTINGS_KEY = "workspace"
@@ -574,6 +578,46 @@ async def delete_team_member(
     db.add(row)
     db.commit()
     return ApiMessage(message="Staff access removed. Historical enquiry assignments were preserved.")
+
+
+@router.get("/email/status", response_model=AdminEmailStatus)
+async def get_email_status(
+    _: AdminPrincipal = Depends(require_admin),
+    settings: Settings = Depends(get_settings),
+):
+    status_value = NotificationService(settings).configuration_status()
+    return AdminEmailStatus(
+        enabled=bool(status_value["enabled"]),
+        ready=bool(status_value["ready"]),
+        provider=str(status_value["provider"]),
+        from_configured=bool(status_value["from_configured"]),
+        staff_recipient_configured=bool(status_value["staff_recipient_configured"]),
+        cityview_url_configured=bool(status_value["cityview_url_configured"]),
+        cityview_url=settings.cityview_url,
+        issues=[str(item) for item in status_value["issues"]],
+    )
+
+
+@router.post("/email/test", response_model=AdminEmailTestResponse)
+async def send_email_test(
+    payload: AdminEmailTestRequest,
+    _: AdminPrincipal = Depends(require_super_admin),
+    settings: Settings = Depends(get_settings),
+):
+    service = NotificationService(settings)
+    try:
+        delivery_id = service.send_test_email(str(payload.email))
+    except Exception as exc:
+        detail = str(exc).strip() or type(exc).__name__
+        raise AppError(
+            f"Test email could not be sent: {detail[:400]}",
+            code="email_test_failed",
+            status_code=502,
+        ) from exc
+    return AdminEmailTestResponse(
+        provider=settings.effective_email_provider,
+        message=f"Test email accepted for delivery to {payload.email}. Delivery id: {delivery_id}",
+    )
 
 
 @router.get("/settings", response_model=AdminSettingsRecord)

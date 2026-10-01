@@ -90,7 +90,7 @@ function fallbackPlanFor(unit: CityViewUnit) {
       : '/ona-assets/floorplans/brochure-penthouse-3br.png';
   }
   return unit.bedrooms === 2
-    ? '/ona-assets/floorplans/brochure-2br.png'
+    ? '/ona-assets/cityview/floorplans/tower-a-2-ocean.jpg'
     : '/ona-assets/floorplans/brochure-3br.png';
 }
 
