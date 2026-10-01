@@ -14,7 +14,7 @@ PROJECT_ROOT = BACKEND_DIR.parent
 def normalize_database_url(url: str | None) -> str:
     """Normalize database URLs for local, Supabase, and Vercel runtimes.
 
-    Supabase recommends SSL for Postgres connections.  Production should not
+    Supabase recommends SSL for Postgres connections. Production should not
     become unavailable just because ``sslmode=require`` was omitted from the
     dashboard value, so we add it automatically for Supabase URLs.
     """
@@ -73,6 +73,7 @@ class Settings(BaseSettings):
     smtp_from_name: str = "ONA Towers"
     smtp_use_tls: bool = True
     sales_notification_email: str | None = None
+    cityview_url: str = "https://www.onatowers.com/cityview"
 
     admin_email: str = "admin@onatowers.dev"
     admin_password: str = "ona-admin-local"
@@ -180,6 +181,16 @@ def production_configuration_warnings(settings: "Settings") -> list[str]:
 
     if settings.auto_init_db:
         warnings.append("AUTO_INIT_DB should remain false in production; use Alembic migrations instead")
+
+    if settings.smtp_enabled:
+        if not settings.smtp_host or not settings.smtp_from_email:
+            warnings.append("SMTP_ENABLED is true but SMTP_HOST or SMTP_FROM_EMAIL is missing")
+        if bool(settings.smtp_username) != bool(settings.smtp_password):
+            warnings.append("SMTP_USERNAME and SMTP_PASSWORD should either both be set or both be empty")
+        if not settings.sales_notification_email:
+            warnings.append("SALES_NOTIFICATION_EMAIL is not set; customer auto-replies can send but staff email notifications will be skipped")
+        if not settings.cityview_url.strip().lower().startswith(("https://", "http://")):
+            warnings.append("CITYVIEW_URL should be an absolute http(s) URL")
 
     return warnings
 
