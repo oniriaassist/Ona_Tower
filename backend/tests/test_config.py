@@ -104,3 +104,33 @@ def test_resend_uses_its_verified_sender_not_legacy_smtp_sender():
     )
     assert settings.effective_from_email == "sales@onatowers.com"
     assert settings.resend_sender_domain_matches is True
+
+
+def test_resend_api_can_reuse_legacy_resend_smtp_api_key():
+    settings = Settings(
+        _env_file=None,
+        email_provider="resend",
+        resend_api_key=None,
+        smtp_host="smtp.resend.com",
+        smtp_username="resend",
+        smtp_password="re_legacy",
+    )
+    assert settings.effective_resend_api_key == "re_legacy"
+    assert settings.resend_key_source == "SMTP_PASSWORD"
+    assert settings.email_delivery_enabled is True
+    assert settings.effective_email_provider == "resend"
+
+
+def test_complete_legacy_resend_smtp_config_auto_enables_when_email_switch_omitted():
+    settings = Settings(
+        _env_file=None,
+        email_enabled=None,
+        email_provider="auto",
+        smtp_enabled=False,
+        smtp_host="smtp.resend.com",
+        smtp_username="resend",
+        smtp_password="re_legacy",
+    )
+    assert settings.email_delivery_enabled is True
+    assert settings.effective_email_provider == "resend"
+    assert settings.effective_from_email == "sales@onatowers.com"

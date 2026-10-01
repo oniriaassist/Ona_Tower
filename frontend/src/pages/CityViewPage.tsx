@@ -593,7 +593,7 @@ function TowerMatrix({
       <div className="cityview-tower-body">
         <div className={`cityview-tower-render ${tower === 'Tower B' ? 'is-b' : ''}`}>
           <img
-            src={tower === 'Tower A' ? '/ona-assets/cityview/tower-a-portrait.webp' : '/ona-assets/cityview/tower-b-portrait.webp'}
+            src={tower === 'Tower A' ? '/ona-assets/cityview/tower-b-portrait.webp' : '/ona-assets/cityview/tower-a-portrait.webp'}
             alt={`${tower} architectural view`}
             onError={(event) => {
               event.currentTarget.onerror = null;

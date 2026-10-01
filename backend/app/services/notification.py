@@ -39,8 +39,8 @@ class NotificationService:
         if provider == "none":
             issues.append("No email transport is configured. Set RESEND_API_KEY or SMTP_HOST.")
         elif provider == "resend":
-            if not (self.settings.resend_api_key or "").strip():
-                issues.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY.")
+            if not self.settings.effective_resend_api_key:
+                issues.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY or legacy Resend SMTP credentials.")
         elif provider == "smtp":
             if not self.settings.smtp_host:
                 issues.append("EMAIL_PROVIDER=smtp requires SMTP_HOST.")
@@ -57,7 +57,7 @@ class NotificationService:
 
         customer_ready = enabled and bool(from_email) and provider != "none"
         if provider == "resend":
-            customer_ready = customer_ready and bool((self.settings.resend_api_key or "").strip())
+            customer_ready = customer_ready and bool(self.settings.effective_resend_api_key)
         elif provider == "smtp":
             customer_ready = customer_ready and bool(self.settings.smtp_host) and (
                 bool(self.settings.smtp_username) == bool(self.settings.smtp_password)
@@ -75,6 +75,8 @@ class NotificationService:
             "staff_recipient_configured": bool(self.settings.sales_notification_email),
             "cityview_url_configured": bool(cityview_url),
             "cityview_url": cityview_url,
+            "resend_key_configured": bool(self.settings.effective_resend_api_key),
+            "resend_key_source": self.settings.resend_key_source,
             "issues": issues,
         }
 
@@ -164,7 +166,7 @@ class NotificationService:
         raise RuntimeError("No configured email provider")
 
     def _resend_send(self, message: EmailMessage, *, idempotency_key: str) -> str:
-        api_key = (self.settings.resend_api_key or "").strip()
+        api_key = self.settings.effective_resend_api_key
         if not api_key:
             raise RuntimeError("RESEND_API_KEY is not configured")
 

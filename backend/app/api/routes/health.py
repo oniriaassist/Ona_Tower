@@ -46,6 +46,7 @@ async def configuration_health():
 
     return {
         "status": "ok",
+        "release": settings.app_release,
         "environment": settings.app_env,
         "database_configured": bool(settings.sqlalchemy_database_url),
         "database_ssl_required": "sslmode=require" in settings.sqlalchemy_database_url.lower(),
@@ -59,6 +60,9 @@ async def configuration_health():
             "staff_recipient_configured": email_status["staff_recipient_configured"],
             "cityview_url_configured": email_status["cityview_url_configured"],
             "cityview_url": email_status.get("cityview_url", settings.cityview_public_url),
+            "resend_key_configured": bool(email_status.get("resend_key_configured", False)),
+            "resend_key_source": str(email_status.get("resend_key_source", "none")),
+            "issues": [str(item) for item in email_status.get("issues", [])],
         },
         "warnings": warnings,
     }

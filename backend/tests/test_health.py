@@ -176,3 +176,35 @@ def test_production_hardening_warnings_do_not_block_customer_api():
         timeout=30,
     )
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_configuration_health_exposes_release_and_safe_email_diagnostics(client, monkeypatch):
+    from app.api.routes import health
+    from app.core.config import Settings
+
+    settings = Settings(
+        _env_file=None,
+        app_env="production",
+        app_debug=False,
+        database_url=(
+            "postgresql://postgres.project-ref:password@"
+            "aws-1-region.pooler.supabase.com:6543/postgres?sslmode=require"
+        ),
+        admin_email="admin@example.com",
+        admin_password="unique-production-password",
+        admin_session_secret="x" * 48,
+        email_enabled=True,
+        email_provider="resend",
+        resend_api_key="re_test",
+    )
+    monkeypatch.setattr(health, "get_settings", lambda: settings)
+    response = client.get("/health/config")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["release"] == "2026-10-01-resend-v10"
+    assert body["email"]["ready"] is True
+    assert body["email"]["provider"] == "resend"
+    assert body["email"]["from_domain"] == "onatowers.com"
+    assert body["email"]["resend_key_configured"] is True
+    assert body["email"]["resend_key_source"] == "RESEND_API_KEY"
+    assert "re_test" not in response.text

@@ -189,3 +189,43 @@ def test_resend_smtp_also_uses_verified_ona_sender():
     assert settings.uses_resend_transport is True
     assert settings.effective_from_email == "sales@onatowers.com"
     assert service._from_header() == "ONA Towers <sales@onatowers.com>"
+
+
+def test_resend_api_payload_can_use_legacy_smtp_secret(monkeypatch):
+    settings = Settings(
+        _env_file=None,
+        email_enabled=None,
+        email_provider="resend",
+        resend_api_key=None,
+        smtp_host="smtp.resend.com",
+        smtp_username="resend",
+        smtp_password="re_legacy",
+        smtp_from_email="onatowers@proton.me",
+        sales_notification_email="onatowers@proton.me",
+    )
+    service = NotificationService(settings)
+    captured = {}
+
+    class FakeResponse:
+        is_error = False
+        text = ""
+        def json(self):
+            return {"id": "legacy-resend-id"}
+
+    class FakeClient:
+        def __init__(self, *, timeout):
+            pass
+        def __enter__(self):
+            return self
+        def __exit__(self, exc_type, exc, tb):
+            return False
+        def post(self, url, *, headers, json):
+            captured["headers"] = headers
+            captured["payload"] = json
+            return FakeResponse()
+
+    monkeypatch.setattr("app.services.notification.httpx.Client", FakeClient)
+    service._send_customer_acknowledgement(_record())
+    assert captured["headers"]["Authorization"] == "Bearer re_legacy"
+    assert captured["payload"]["from"] == "ONA Towers <sales@onatowers.com>"
+    assert captured["payload"]["reply_to"] == "onatowers@proton.me"

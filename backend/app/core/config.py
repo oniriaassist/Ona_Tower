@@ -14,6 +14,7 @@ BACKEND_DIR = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = BACKEND_DIR.parent
 
 
+APP_RELEASE = "2026-10-01-resend-v10"
 DEFAULT_CITYVIEW_URL = "https://www.onatowers.com/cityview"
 MARKDOWN_LINK_RE = re.compile(r"^\[.*?\]\((https?://[^)]+)\)$", re.IGNORECASE)
 
@@ -83,6 +84,7 @@ def normalize_database_url(url: str | None) -> str:
 
 class Settings(BaseSettings):
     app_name: str = "ONA Towers API"
+    app_release: str = APP_RELEASE
     app_env: Literal["development", "staging", "production", "test"] = "development"
     app_debug: bool = True
     api_prefix: str = "/api"
@@ -115,10 +117,10 @@ class Settings(BaseSettings):
     smtp_port: int = 587
     smtp_username: str | None = None
     smtp_password: str | None = None
-    smtp_from_email: str | None = None
+    smtp_from_email: str | None = "sales@onatowers.com"
     smtp_from_name: str = "ONA Towers"
     smtp_use_tls: bool = True
-    sales_notification_email: str | None = None
+    sales_notification_email: str | None = "onatowers@proton.me"
     cityview_url: str = DEFAULT_CITYVIEW_URL
 
     admin_email: str = "admin@onatowers.dev"
@@ -161,16 +163,45 @@ class Settings(BaseSettings):
         return normalize_database_url(self.database_url)
 
     @property
+    def effective_resend_api_key(self) -> str:
+        """Return the Resend key without forcing a production secret rename.
+
+        RESEND_API_KEY is preferred. For legacy Resend SMTP deployments, the
+        SMTP password is the same Resend API key, so it can be reused when the
+        host/username clearly identify Resend.
+        """
+        direct = (self.resend_api_key or "").strip()
+        if direct:
+            return direct
+        host = (self.smtp_host or "").strip().lower().rstrip(".")
+        username = (self.smtp_username or "").strip().lower()
+        if host == "smtp.resend.com" and username == "resend":
+            return (self.smtp_password or "").strip()
+        return ""
+
+    @property
+    def resend_key_source(self) -> str:
+        if (self.resend_api_key or "").strip():
+            return "RESEND_API_KEY"
+        if self.effective_resend_api_key:
+            return "SMTP_PASSWORD"
+        return "none"
+
+    @property
     def email_delivery_enabled(self) -> bool:
         """Return whether transactional email delivery is enabled.
 
-        EMAIL_ENABLED is the preferred switch. For backward compatibility, an
-        existing SMTP_ENABLED=true deployment still works. Supplying a Resend
-        API key also enables delivery when EMAIL_ENABLED was not explicitly set.
+        EMAIL_ENABLED is the explicit master switch. If it is omitted, the app
+        auto-enables a complete Resend or SMTP configuration for compatibility
+        with existing deployments. Set EMAIL_ENABLED=false to force email off.
         """
         if self.email_enabled is not None:
             return self.email_enabled
-        return self.smtp_enabled or bool((self.resend_api_key or "").strip())
+        smtp_credentials_present = bool((self.smtp_host or "").strip()) and (
+            not (self.smtp_username or self.smtp_password)
+            or bool(self.smtp_username and self.smtp_password)
+        )
+        return self.smtp_enabled or bool(self.effective_resend_api_key) or smtp_credentials_present
 
     @property
     def effective_email_provider(self) -> str:
@@ -179,7 +210,7 @@ class Settings(BaseSettings):
             return "resend"
         if self.email_provider == "smtp":
             return "smtp"
-        if (self.resend_api_key or "").strip():
+        if self.effective_resend_api_key:
             return "resend"
         if (self.smtp_host or "").strip():
             return "smtp"
@@ -296,8 +327,8 @@ def production_configuration_warnings(settings: "Settings") -> list[str]:
         if provider == "none":
             warnings.append("No email provider is configured; set RESEND_API_KEY or SMTP_HOST")
         elif provider == "resend":
-            if not (settings.resend_api_key or "").strip():
-                warnings.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY")
+            if not settings.effective_resend_api_key:
+                warnings.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY (or legacy Resend SMTP credentials)")
         elif provider == "smtp":
             if not settings.smtp_host:
                 warnings.append("EMAIL_PROVIDER=smtp requires SMTP_HOST")
