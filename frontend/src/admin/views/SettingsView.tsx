@@ -217,6 +217,7 @@ function EmailPanel({ user }: { user: AdminUser }) {
           <div className="grid gap-3 sm:grid-cols-2">
             <StatusItem label="Delivery enabled" ok={status.enabled} />
             <StatusItem label="Sender configured" ok={status.from_configured} />
+            {status.provider === 'resend' ? <StatusItem label={`Resend sender domain${status.from_domain ? ` (${status.from_domain})` : ''}`} ok={status.resend_domain_match} /> : null}
             <StatusItem label="Staff recipient configured" ok={status.staff_recipient_configured} />
             <StatusItem label="City View URL configured" ok={status.cityview_url_configured} />
           </div>

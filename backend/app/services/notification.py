@@ -9,7 +9,7 @@ from email.message import EmailMessage
 
 import httpx
 
-from app.core.config import Settings
+from app.core.config import Settings, email_domain
 from app.schemas.enquiry import EnquiryRecord, EnquiryType
 
 logger = logging.getLogger(__name__)
@@ -33,37 +33,48 @@ class NotificationService:
 
         if not enabled:
             issues.append("Transactional email is disabled. Set EMAIL_ENABLED=true or configure RESEND_API_KEY.")
-        if not self.settings.smtp_from_email:
-            issues.append("SMTP_FROM_EMAIL is not configured.")
+        from_email = self.settings.effective_from_email
+        if not from_email:
+            issues.append("The active email provider does not have a sender address configured.")
         if provider == "none":
             issues.append("No email transport is configured. Set RESEND_API_KEY or SMTP_HOST.")
-        elif provider == "resend" and not (self.settings.resend_api_key or "").strip():
-            issues.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY.")
+        elif provider == "resend":
+            if not (self.settings.resend_api_key or "").strip():
+                issues.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY.")
         elif provider == "smtp":
             if not self.settings.smtp_host:
                 issues.append("EMAIL_PROVIDER=smtp requires SMTP_HOST.")
             if bool(self.settings.smtp_username) != bool(self.settings.smtp_password):
                 issues.append("SMTP_USERNAME and SMTP_PASSWORD must be configured together.")
+        if self.settings.uses_resend_transport and not self.settings.resend_sender_domain_matches:
+            issues.append(
+                "Resend sender domain mismatch: "
+                f"RESEND_FROM_EMAIL must use @{self.settings.resend_sending_domain}."
+            )
         if not self.settings.sales_notification_email:
             issues.append("SALES_NOTIFICATION_EMAIL is not configured; staff notifications will be skipped.")
-        if not self.settings.cityview_url.strip().lower().startswith(("https://", "http://")):
-            issues.append("CITYVIEW_URL must be an absolute http(s) URL.")
+        cityview_url = self.settings.cityview_public_url
 
-        customer_ready = enabled and bool(self.settings.smtp_from_email) and provider != "none"
+        customer_ready = enabled and bool(from_email) and provider != "none"
         if provider == "resend":
             customer_ready = customer_ready and bool((self.settings.resend_api_key or "").strip())
         elif provider == "smtp":
             customer_ready = customer_ready and bool(self.settings.smtp_host) and (
                 bool(self.settings.smtp_username) == bool(self.settings.smtp_password)
             )
+        if self.settings.uses_resend_transport:
+            customer_ready = customer_ready and self.settings.resend_sender_domain_matches
 
         return {
             "enabled": enabled,
             "ready": customer_ready,
             "provider": provider,
-            "from_configured": bool(self.settings.smtp_from_email),
+            "from_configured": bool(from_email),
+            "from_domain": email_domain(from_email),
+            "resend_domain_match": self.settings.resend_sender_domain_matches,
             "staff_recipient_configured": bool(self.settings.sales_notification_email),
-            "cityview_url_configured": self.settings.cityview_url.strip().lower().startswith(("https://", "http://")),
+            "cityview_url_configured": bool(cityview_url),
+            "cityview_url": cityview_url,
             "issues": issues,
         }
 
@@ -130,14 +141,14 @@ class NotificationService:
         msg["Auto-Submitted"] = "auto-generated"
         msg.set_content(
             "ONA Towers email delivery is working.\n\n"
-            f"City View: {self.settings.cityview_url}\n"
+            f"City View: {self.settings.cityview_public_url}\n"
         )
         msg.add_alternative(
             f"""<!doctype html><html><body style="margin:0;background:#f4efe7;font-family:Arial,sans-serif;color:#302a26;">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4efe7;padding:32px 14px;"><tr><td align="center">
 <table role="presentation" width="620" cellspacing="0" cellpadding="0" style="width:100%;max-width:620px;background:#fffdf9;border:1px solid #e8dfd4;border-radius:8px;overflow:hidden;">
 <tr><td align="center" style="padding:28px;background:#24333d;color:#fff;"><div style="font-family:Georgia,serif;font-size:32px;letter-spacing:7px;">ÔNA</div><div style="margin-top:7px;color:#c7a373;font-size:10px;letter-spacing:5px;">TOWERS</div></td></tr>
-<tr><td style="padding:38px 42px;"><h1 style="font-family:Georgia,serif;font-weight:400;font-size:30px;margin:0 0 18px;">Email delivery is working.</h1><p style="color:#665f58;line-height:1.7;">This test confirms that the ONA Towers backend can send transactional email using the configured provider.</p><p style="margin:28px 0 0;"><a href="{html.escape(self.settings.cityview_url, quote=True)}" style="display:inline-block;background:#ad8759;color:#fff;text-decoration:none;padding:15px 24px;font-size:12px;font-weight:700;letter-spacing:1.4px;">OPEN CITY VIEW →</a></p></td></tr>
+<tr><td style="padding:38px 42px;"><h1 style="font-family:Georgia,serif;font-weight:400;font-size:30px;margin:0 0 18px;">Email delivery is working.</h1><p style="color:#665f58;line-height:1.7;">This test confirms that the ONA Towers backend can send transactional email using the configured provider.</p><p style="margin:28px 0 0;"><a href="{html.escape(self.settings.cityview_public_url, quote=True)}" style="display:inline-block;background:#ad8759;color:#fff;text-decoration:none;padding:15px 24px;font-size:12px;font-weight:700;letter-spacing:1.4px;">OPEN CITY VIEW →</a></p></td></tr>
 </table></td></tr></table></body></html>""",
             subtype="html",
         )
@@ -208,7 +219,10 @@ class NotificationService:
             server.send_message(message)
 
     def _from_header(self) -> str:
-        return f"{self.settings.smtp_from_name} <{self.settings.smtp_from_email}>"
+        from_email = self.settings.effective_from_email
+        if not from_email:
+            raise RuntimeError("No sender email is configured for the active email provider")
+        return f"{self.settings.smtp_from_name} <{from_email}>"
 
     def _send_sales_notification(self, enquiry: EnquiryRecord) -> None:
         msg = EmailMessage()
@@ -230,14 +244,14 @@ class NotificationService:
                     f"Message: {enquiry.message or '-'}",
                     f"Source: {enquiry.source}",
                     "",
-                    f"City View: {self.settings.cityview_url}",
+                    f"City View: {self.settings.cityview_public_url}",
                 ]
             )
         )
         self._send_message(msg, idempotency_key=f"ona-staff/{enquiry.reference_number}")
 
     def _send_customer_acknowledgement(self, enquiry: EnquiryRecord) -> None:
-        cityview_url = self.settings.cityview_url.strip() or "https://www.onatowers.com/cityview"
+        cityview_url = self.settings.cityview_public_url
         subject, cta_label, intro = self._customer_email_copy(enquiry)
 
         msg = EmailMessage()

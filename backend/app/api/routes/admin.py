@@ -591,9 +591,11 @@ async def get_email_status(
         ready=bool(status_value["ready"]),
         provider=str(status_value["provider"]),
         from_configured=bool(status_value["from_configured"]),
+        from_domain=str(status_value.get("from_domain", "")),
+        resend_domain_match=bool(status_value.get("resend_domain_match", True)),
         staff_recipient_configured=bool(status_value["staff_recipient_configured"]),
         cityview_url_configured=bool(status_value["cityview_url_configured"]),
-        cityview_url=settings.cityview_url,
+        cityview_url=settings.cityview_public_url,
         issues=[str(item) for item in status_value["issues"]],
     )
 

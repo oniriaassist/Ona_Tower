@@ -204,6 +204,8 @@ class AdminEmailStatus(BaseModel):
     ready: bool
     provider: str
     from_configured: bool
+    from_domain: str = ""
+    resend_domain_match: bool = True
     staff_recipient_configured: bool
     cityview_url_configured: bool
     cityview_url: str

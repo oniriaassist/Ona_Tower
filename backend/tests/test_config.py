@@ -1,6 +1,6 @@
 import pytest
 
-from app.core.config import Settings, validate_production_settings
+from app.core.config import Settings, normalize_public_url, validate_production_settings
 
 
 def test_production_settings_reject_development_defaults():
@@ -88,3 +88,19 @@ def test_weak_bootstrap_password_is_not_a_global_service_error():
 
     assert production_configuration_errors(settings) == []
     assert any("ADMIN_PASSWORD" in warning for warning in production_configuration_warnings(settings))
+
+
+def test_markdown_cityview_url_is_normalized():
+    value = "[https://www.onatowers.com/cityview](https://www.onatowers.com/cityview)"
+    assert normalize_public_url(value) == "https://www.onatowers.com/cityview"
+
+
+def test_resend_uses_its_verified_sender_not_legacy_smtp_sender():
+    settings = Settings(
+        _env_file=None,
+        email_provider="resend",
+        resend_api_key="re_test",
+        smtp_from_email="onatowers@proton.me",
+    )
+    assert settings.effective_from_email == "sales@onatowers.com"
+    assert settings.resend_sender_domain_matches is True

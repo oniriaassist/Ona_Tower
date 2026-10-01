@@ -91,6 +91,8 @@ export interface AdminEmailStatus {
   ready: boolean;
   provider: string;
   from_configured: boolean;
+  from_domain: string;
+  resend_domain_match: boolean;
   staff_recipient_configured: boolean;
   cityview_url_configured: boolean;
   cityview_url: string;

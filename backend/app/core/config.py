@@ -1,14 +1,50 @@
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
+from email.utils import parseaddr
+from urllib.parse import urlsplit
 import json
 import os
+import re
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = BACKEND_DIR.parent
+
+
+DEFAULT_CITYVIEW_URL = "https://www.onatowers.com/cityview"
+MARKDOWN_LINK_RE = re.compile(r"^\[.*?\]\((https?://[^)]+)\)$", re.IGNORECASE)
+
+
+def normalize_public_url(value: str | None, default: str = DEFAULT_CITYVIEW_URL) -> str:
+    """Return a clean absolute public URL.
+
+    This also repairs an accidentally pasted Markdown link such as
+    ``[https://example.com](https://example.com)`` from an environment variable.
+    """
+    raw = (value or "").strip().strip('"').strip("'")
+    markdown_match = MARKDOWN_LINK_RE.match(raw)
+    if markdown_match:
+        raw = markdown_match.group(1).strip()
+
+    raw = raw.replace("\\)", ")").replace("\\]", "]")
+    try:
+        parsed = urlsplit(raw)
+    except ValueError:
+        return default
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        return default
+    return raw
+
+
+def email_domain(value: str | None) -> str:
+    """Extract a lowercase domain from a mailbox value."""
+    address = parseaddr((value or "").strip())[1]
+    if "@" not in address:
+        return ""
+    return address.rsplit("@", 1)[1].strip().lower().rstrip(".")
 
 
 def normalize_database_url(url: str | None) -> str:
@@ -68,6 +104,8 @@ class Settings(BaseSettings):
     email_provider: Literal["auto", "resend", "smtp"] = "auto"
     resend_api_key: str | None = None
     resend_api_url: str = "https://api.resend.com/emails"
+    resend_from_email: str = "sales@onatowers.com"
+    resend_sending_domain: str = "onatowers.com"
     email_timeout_seconds: int = 12
 
     # Backward-compatible SMTP settings. SMTP_ENABLED is still honored when
@@ -81,7 +119,7 @@ class Settings(BaseSettings):
     smtp_from_name: str = "ONA Towers"
     smtp_use_tls: bool = True
     sales_notification_email: str | None = None
-    cityview_url: str = "https://www.onatowers.com/cityview"
+    cityview_url: str = DEFAULT_CITYVIEW_URL
 
     admin_email: str = "admin@onatowers.dev"
     admin_password: str = "ona-admin-local"
@@ -146,6 +184,40 @@ class Settings(BaseSettings):
         if (self.smtp_host or "").strip():
             return "smtp"
         return "none"
+
+    @property
+    def uses_resend_transport(self) -> bool:
+        """Return whether email is delivered by Resend API or Resend SMTP."""
+        if self.effective_email_provider == "resend":
+            return True
+        if self.effective_email_provider != "smtp":
+            return False
+        host = (self.smtp_host or "").strip().lower().rstrip(".")
+        return host == "smtp.resend.com" or host.endswith(".smtp.resend.com")
+
+    @property
+    def effective_from_email(self) -> str:
+        """Choose the sender mailbox for the active transport.
+
+        Any Resend transport deliberately uses RESEND_FROM_EMAIL instead of
+        SMTP_FROM_EMAIL. This prevents a legacy Proton mailbox from being used
+        as the Resend ``from`` address and rejected with HTTP 403.
+        """
+        if self.uses_resend_transport:
+            return (self.resend_from_email or "").strip()
+        return (self.smtp_from_email or "").strip()
+
+    @property
+    def cityview_public_url(self) -> str:
+        return normalize_public_url(self.cityview_url, DEFAULT_CITYVIEW_URL)
+
+    @property
+    def resend_sender_domain_matches(self) -> bool:
+        if not self.uses_resend_transport:
+            return True
+        expected = (self.resend_sending_domain or "").strip().lower().rstrip(".")
+        actual = email_domain(self.effective_from_email)
+        return bool(expected and actual and actual == expected)
 
 
 def is_production_runtime(settings: "Settings") -> bool:
@@ -219,21 +291,26 @@ def production_configuration_warnings(settings: "Settings") -> list[str]:
         warnings.append("Transactional email is disabled; customer auto-replies and staff email notifications will not be sent")
     else:
         provider = settings.effective_email_provider
-        if not settings.smtp_from_email:
-            warnings.append("SMTP_FROM_EMAIL is required for transactional email delivery")
+        if not settings.effective_from_email:
+            warnings.append("A sender email is required for transactional email delivery")
         if provider == "none":
             warnings.append("No email provider is configured; set RESEND_API_KEY or SMTP_HOST")
-        elif provider == "resend" and not (settings.resend_api_key or "").strip():
-            warnings.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY")
+        elif provider == "resend":
+            if not (settings.resend_api_key or "").strip():
+                warnings.append("EMAIL_PROVIDER=resend requires RESEND_API_KEY")
         elif provider == "smtp":
             if not settings.smtp_host:
                 warnings.append("EMAIL_PROVIDER=smtp requires SMTP_HOST")
             if bool(settings.smtp_username) != bool(settings.smtp_password):
                 warnings.append("SMTP_USERNAME and SMTP_PASSWORD should either both be set or both be empty")
+        if settings.uses_resend_transport and not settings.resend_sender_domain_matches:
+            warnings.append(
+                f"RESEND_FROM_EMAIL must use the configured Resend sending domain {settings.resend_sending_domain}"
+            )
         if not settings.sales_notification_email:
             warnings.append("SALES_NOTIFICATION_EMAIL is not set; customer auto-replies can send but staff email notifications will be skipped")
-        if not settings.cityview_url.strip().lower().startswith(("https://", "http://")):
-            warnings.append("CITYVIEW_URL should be an absolute http(s) URL")
+        if settings.cityview_public_url != (settings.cityview_url or "").strip():
+            warnings.append("CITYVIEW_URL was not a plain absolute URL; a safe City View URL will be used")
 
     return warnings
 

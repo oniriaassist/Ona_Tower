@@ -54,8 +54,11 @@ async def configuration_health():
             "ready": email_status["ready"],
             "provider": email_status["provider"],
             "from_configured": email_status["from_configured"],
+            "from_domain": email_status.get("from_domain", ""),
+            "resend_domain_match": email_status.get("resend_domain_match", True),
             "staff_recipient_configured": email_status["staff_recipient_configured"],
             "cityview_url_configured": email_status["cityview_url_configured"],
+            "cityview_url": email_status.get("cityview_url", settings.cityview_public_url),
         },
         "warnings": warnings,
     }
