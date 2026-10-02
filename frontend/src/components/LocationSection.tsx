@@ -8,9 +8,15 @@ import "../styles/location-kml.css";
 const ONA_MAP_EMBED =
   "https://www.google.com/maps/d/embed?mid=13U2vK-wYa5eoj-2tfuLP5WS-qZRn55I&ehbc=2E312F&noprof=1";
 
-export default function LocationSection() {
+type LocationSectionProps = {
+  compact?: boolean;
+};
+
+export default function LocationSection({ compact = false }: LocationSectionProps) {
   return (
-    <section className="ona-location-premium-page">
+    <section
+      className={`ona-location-premium-page${compact ? " ona-location-premium-page--compact" : ""}`}
+    >
       <section className="ona-location-premium-intro">
         <div className="ona-section-shell">
           <div className="ona-location-premium-heading">

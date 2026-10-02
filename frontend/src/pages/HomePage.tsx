@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
     <>
       <Hero />
       <HomeNextSteps />
-      <LocationSection />
+      <LocationSection compact />
     </>
   );
 };

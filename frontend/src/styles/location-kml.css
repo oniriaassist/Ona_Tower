@@ -232,6 +232,38 @@
 }
 
 
+/* Compact home-page presentation: keeps the same content and map,
+   but removes the oversized intro spacing used by the standalone page. */
+.ona-location-premium-page--compact {
+  min-height: 0;
+}
+
+.ona-location-premium-page--compact .ona-location-premium-intro {
+  padding:
+    clamp(3rem, 4.2vw, 4.25rem)
+    0
+    clamp(2.25rem, 3.2vw, 3rem);
+}
+
+.ona-location-premium-page--compact .ona-location-premium-kicker {
+  margin-bottom: 0.7rem;
+}
+
+.ona-location-premium-page--compact .ona-location-premium-script {
+  margin-bottom: 0;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+}
+
+.ona-location-premium-page--compact .ona-location-premium-highlights {
+  margin-top: 1.35rem;
+}
+
+.ona-location-premium-page--compact .ona-location-premium-highlights span {
+  min-height: 38px;
+  padding: 0.52rem 0.82rem;
+}
+
+
 /* ==========================================================================
    MAP SECTION
    ========================================================================== */
@@ -637,6 +669,18 @@
       7rem
       0
       3rem;
+  }
+
+
+  .ona-location-premium-page--compact .ona-location-premium-intro {
+    padding:
+      2.75rem
+      0
+      2.25rem;
+  }
+
+  .ona-location-premium-page--compact .ona-location-premium-highlights {
+    margin-top: 1.2rem;
   }
 
 
