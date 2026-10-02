@@ -167,7 +167,9 @@ def test_resend_payload_uses_verified_ona_sender_and_plain_cityview_url(monkeypa
     assert payload["reply_to"] == "onatowers@proton.me"
     assert "https://www.onatowers.com/cityview" in payload["text"]
     assert '[https://www.onatowers.com/cityview]' not in payload["text"]
+    assert 'href="https://www.onatowers.com/layouts"' in payload["html"]
     assert 'href="https://www.onatowers.com/cityview"' in payload["html"]
+    assert "Explore ONA Towers: https://www.onatowers.com/layouts" in payload["text"]
     assert captured["headers"]["Authorization"] == "Bearer re_test"
 
 

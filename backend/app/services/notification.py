@@ -6,6 +6,7 @@ import logging
 import smtplib
 import ssl
 from email.message import EmailMessage
+from urllib.parse import urlsplit
 
 import httpx
 
@@ -254,7 +255,15 @@ class NotificationService:
 
     def _send_customer_acknowledgement(self, enquiry: EnquiryRecord) -> None:
         cityview_url = self.settings.cityview_public_url
-        subject, cta_label, intro = self._customer_email_copy(enquiry)
+        parsed_public_url = urlsplit(cityview_url)
+        site_root = f"{parsed_public_url.scheme}://{parsed_public_url.netloc}"
+        layouts_url = f"{site_root}/layouts"
+        enquire_url = f"{site_root}/enquire"
+        hero_url = f"{site_root}/ona-assets/hero/hero-ocean-view.jpg"
+        tower_url = f"{site_root}/ona-assets/hero/ona-home-vision-premium.png"
+        floorplan_url = f"{site_root}/ona-assets/floorplans/brochure-3br.png"
+        viewing_url = f"{site_root}/ona-assets/commercial/ona-house-gate-premium.png"
+        subject, _, intro = self._customer_email_copy(enquiry)
 
         msg = EmailMessage()
         msg["Subject"] = subject
@@ -271,17 +280,17 @@ class NotificationService:
                     "",
                     "Thank you for your interest in ONA Towers.",
                     intro,
+                    "A dedicated member of our team will be in touch with you shortly to assist with your residence selection, current availability and private viewing arrangements.",
+                    "",
+                    "In the meantime, you can explore the ONA Towers collection, view available units, compare towers and floors, and download the floor plans.",
+                    "",
+                    f"Explore ONA Towers: {layouts_url}",
+                    f"Current availability: {cityview_url}",
+                    f"Book a viewing: {enquire_url}",
                     "",
                     f"Enquiry reference: {enquiry.reference_number}",
                     "",
-                    "Explore ONA Towers residences, current availability, towers, floors and floor plans:",
-                    cityview_url,
-                    "",
-                    "A member of the ONA Towers sales team can assist you with residence selection, availability, reservations and private viewing arrangements.",
-                    "",
-                    "Warm regards,",
-                    "ONA Towers",
-                    "Zanzibar, Tanzania",
+                    "ONA Towers · Zanzibar, Tanzania",
                     "Live above. See beyond.",
                 ]
             )
@@ -290,8 +299,13 @@ class NotificationService:
         customer_name = html.escape(enquiry.name)
         reference = html.escape(enquiry.reference_number)
         safe_intro = html.escape(intro)
-        safe_url = html.escape(cityview_url, quote=True)
-        safe_cta = html.escape(cta_label)
+        safe_layouts_url = html.escape(layouts_url, quote=True)
+        safe_cityview_url = html.escape(cityview_url, quote=True)
+        safe_enquire_url = html.escape(enquire_url, quote=True)
+        safe_hero_url = html.escape(hero_url, quote=True)
+        safe_tower_url = html.escape(tower_url, quote=True)
+        safe_floorplan_url = html.escape(floorplan_url, quote=True)
+        safe_viewing_url = html.escape(viewing_url, quote=True)
 
         msg.add_alternative(
             f"""<!doctype html>
@@ -300,50 +314,114 @@ class NotificationService:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(subject)}</title>
+  <style>
+    @media only screen and (max-width: 640px) {{
+      .email-shell {{ width:100% !important; }}
+      .content-pad {{ padding:34px 24px 30px !important; }}
+      .hero-copy {{ padding:34px 24px !important; }}
+      .hero-logo {{ font-size:36px !important; letter-spacing:8px !important; }}
+      .headline {{ font-size:35px !important; }}
+      .card-cell {{ display:block !important; width:100% !important; padding:0 0 20px !important; }}
+      .footer-cell {{ display:block !important; width:100% !important; text-align:left !important; padding:8px 24px !important; }}
+    }}
+  </style>
 </head>
-<body style="margin:0;padding:0;background:#f4efe7;font-family:Arial,Helvetica,sans-serif;color:#302a26;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#f4efe7;margin:0;padding:0;">
+<body style="margin:0;padding:0;background:#eee9e1;font-family:Arial,Helvetica,sans-serif;color:#37302b;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#eee9e1;margin:0;padding:0;">
     <tr>
-      <td align="center" style="padding:32px 14px;">
-        <table role="presentation" width="620" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:620px;background:#fffdf9;border:1px solid #e8dfd4;border-radius:8px;overflow:hidden;">
+      <td align="center" style="padding:0;">
+        <table role="presentation" width="760" cellspacing="0" cellpadding="0" border="0" class="email-shell" style="width:100%;max-width:760px;background:#faf7f2;margin:0 auto;">
           <tr>
-            <td align="center" style="padding:30px 36px;background:#24333d;">
-              <div style="font-family:Georgia,'Times New Roman',serif;color:#ffffff;font-size:34px;letter-spacing:7px;line-height:1;">ÔNA</div>
-              <div style="margin-top:8px;color:#c7a373;font-size:10px;font-weight:700;letter-spacing:5px;line-height:1;">TOWERS</div>
+            <td background="{safe_hero_url}" valign="top" style="height:330px;background-image:url('{safe_hero_url}');background-size:cover;background-position:center center;background-color:#c9b59f;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="height:330px;">
+                <tr>
+                  <td valign="top" class="hero-copy" style="padding:34px 46px;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td valign="top">
+                          <div class="hero-logo" style="font-family:Georgia,'Times New Roman',serif;color:#26231f;font-size:43px;letter-spacing:10px;line-height:1;font-weight:400;">ÔNA</div>
+                          <div style="margin-top:10px;color:#7f674f;font-size:11px;font-weight:700;letter-spacing:6px;line-height:1;text-transform:uppercase;">Towers</div>
+                        </td>
+                        <td valign="top" align="right" style="color:#685a4d;font-size:10px;font-weight:700;letter-spacing:3.4px;line-height:2;text-transform:uppercase;">LIVE ABOVE<br>SEE BEYOND<br><span style="display:inline-block;width:42px;border-top:1px solid #8d7a67;margin-top:6px;">&nbsp;</span></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" valign="bottom" style="height:168px;">
+                          <div style="color:#675c51;font-size:10px;font-weight:700;letter-spacing:3px;line-height:1.8;text-transform:uppercase;">Luxury Residences<br>Zanzibar</div>
+                          <div style="width:38px;border-top:1px solid #9d8a76;margin-top:10px;">&nbsp;</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
-          <tr>
-            <td style="padding:40px 42px 34px;">
-              <div style="margin:0 0 13px;color:#a17b52;font-size:10px;font-weight:700;letter-spacing:2.7px;text-transform:uppercase;">Luxury Residences · Zanzibar</div>
-              <h1 style="margin:0 0 20px;font-family:Georgia,'Times New Roman',serif;color:#2c2824;font-size:32px;font-weight:400;line-height:1.22;">Thank you for your interest in ONA Towers.</h1>
-              <p style="margin:0 0 16px;color:#665f58;font-size:15px;line-height:1.7;">Dear {customer_name},</p>
-              <p style="margin:0 0 16px;color:#665f58;font-size:15px;line-height:1.7;">{safe_intro}</p>
-              <p style="margin:0 0 28px;color:#665f58;font-size:15px;line-height:1.7;">You can now explore the ONA Towers residence collection, check current availability, compare towers and floors, and view available floor plans.</p>
 
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 30px;">
+          <tr>
+            <td class="content-pad" style="padding:38px 48px 34px;background:#fbf8f3;">
+              <p style="margin:0 0 24px;color:#474039;font-size:15px;line-height:1.6;">Dear {customer_name},</p>
+              <h1 class="headline" style="margin:0 0 26px;font-family:Georgia,'Times New Roman',serif;color:#39312b;font-size:43px;font-weight:400;line-height:1.12;">Thank you for your interest<br>in ÔNA Towers.</h1>
+              <p style="margin:0 0 20px;color:#59524c;font-size:15px;line-height:1.75;">{safe_intro} A dedicated member of our team will be in touch with you shortly to assist with your residence selection, current availability and private viewing arrangements.</p>
+              <p style="margin:0 0 26px;color:#59524c;font-size:15px;line-height:1.75;">In the meantime, you can explore the ÔNA Towers collection, view available units, compare towers and floors, and download the floor plans.</p>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 28px;">
                 <tr>
-                  <td style="border-radius:4px;background:#ad8759;">
-                    <a href="{safe_url}" style="display:inline-block;padding:16px 26px;color:#ffffff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;">{safe_cta} &nbsp;→</a>
+                  <td style="background:#b48b5e;">
+                    <a href="{safe_layouts_url}" style="display:inline-block;padding:17px 28px;color:#ffffff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:2.8px;text-transform:uppercase;">EXPLORE ÔNA TOWERS &nbsp;&nbsp;→</a>
                   </td>
                 </tr>
               </table>
 
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-top:1px solid #eadfd3;border-bottom:1px solid #eadfd3;">
+              <div style="border-top:1px solid #ddd3c7;margin:0 0 22px;"></div>
+
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
                 <tr>
-                  <td style="padding:17px 0;">
-                    <div style="color:#9a8d80;font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;">Enquiry reference</div>
-                    <div style="margin-top:6px;color:#302a26;font-size:14px;font-weight:700;">{reference}</div>
+                  <td width="25%" valign="top" class="card-cell" style="padding:0 6px 0 0;">
+                    <a href="{safe_layouts_url}" style="text-decoration:none;color:#39312b;">
+                      <img src="{safe_hero_url}" width="154" alt="ÔNA Towers residences" style="display:block;width:100%;height:126px;object-fit:cover;border:0;">
+                      <div style="padding:12px 4px 0;text-align:center;font-size:10px;font-weight:700;letter-spacing:2.1px;text-transform:uppercase;">Residences</div>
+                      <div style="padding:7px 4px 0;text-align:center;color:#9a8d80;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Explore the collection</div>
+                    </a>
+                  </td>
+                  <td width="25%" valign="top" class="card-cell" style="padding:0 6px;">
+                    <a href="{safe_cityview_url}" style="text-decoration:none;color:#39312b;">
+                      <img src="{safe_tower_url}" width="154" alt="ÔNA Towers availability" style="display:block;width:100%;height:126px;object-fit:cover;border:0;">
+                      <div style="padding:12px 4px 0;text-align:center;font-size:10px;font-weight:700;letter-spacing:2.1px;text-transform:uppercase;">Availability</div>
+                      <div style="padding:7px 4px 0;text-align:center;color:#9a8d80;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Check current units</div>
+                    </a>
+                  </td>
+                  <td width="25%" valign="top" class="card-cell" style="padding:0 6px;">
+                    <a href="{safe_layouts_url}" style="text-decoration:none;color:#39312b;">
+                      <img src="{safe_floorplan_url}" width="154" alt="ÔNA Towers floor plans" style="display:block;width:100%;height:126px;object-fit:cover;border:0;">
+                      <div style="padding:12px 4px 0;text-align:center;font-size:10px;font-weight:700;letter-spacing:2.1px;text-transform:uppercase;">Floor Plans</div>
+                      <div style="padding:7px 4px 0;text-align:center;color:#9a8d80;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">View &amp; download</div>
+                    </a>
+                  </td>
+                  <td width="25%" valign="top" class="card-cell" style="padding:0 0 0 6px;">
+                    <a href="{safe_enquire_url}" style="text-decoration:none;color:#39312b;">
+                      <img src="{safe_viewing_url}" width="154" alt="Book an ÔNA Towers viewing" style="display:block;width:100%;height:126px;object-fit:cover;border:0;">
+                      <div style="padding:12px 4px 0;text-align:center;font-size:10px;font-weight:700;letter-spacing:2.1px;text-transform:uppercase;">Book a Viewing</div>
+                      <div style="padding:7px 4px 0;text-align:center;color:#9a8d80;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Private appointment</div>
+                    </a>
                   </td>
                 </tr>
               </table>
 
-              <p style="margin:26px 0 0;color:#756d65;font-size:13px;line-height:1.7;">A member of the ONA Towers sales team can assist you with residence selection, availability, reservations and private viewing arrangements.</p>
+              <div style="border-top:1px solid #ddd3c7;margin:29px 0 20px;"></div>
+              <div style="color:#9a8d80;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Enquiry reference</div>
+              <div style="margin-top:8px;color:#39312b;font-size:15px;font-weight:700;letter-spacing:.5px;">{reference}</div>
             </td>
           </tr>
+
           <tr>
-            <td align="center" style="padding:23px 36px;background:#f2ece4;border-top:1px solid #e8dfd4;">
-              <div style="color:#6f675f;font-size:12px;line-height:1.5;">ONA Towers · Zanzibar, Tanzania</div>
-              <div style="margin-top:7px;color:#9b7650;font-family:Georgia,'Times New Roman',serif;font-size:14px;font-style:italic;">Live above. See beyond.</div>
+            <td style="padding:24px 40px;background:#f0e9df;border-top:1px solid #e2d8ca;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td width="28%" valign="middle" class="footer-cell" style="font-family:Georgia,'Times New Roman',serif;color:#625548;font-size:25px;letter-spacing:6px;">ÔNA<br><span style="font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;">Towers</span></td>
+                  <td width="45%" valign="middle" class="footer-cell" style="border-left:1px solid #d4c9bc;padding-left:24px;color:#8b7b6a;font-size:11px;line-height:1.55;">A member of ONIRIA Investments<br><span style="color:#a38d73;">Distinctive places. Unmistakably ONIRIA.</span></td>
+                  <td width="27%" valign="middle" align="right" class="footer-cell" style="color:#8b7b6a;font-size:8px;font-weight:700;letter-spacing:2px;line-height:1.8;text-transform:uppercase;">Zanzibar, Tanzania<br>ONATOWERS.COM</td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
