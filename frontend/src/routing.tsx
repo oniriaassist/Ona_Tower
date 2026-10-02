@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export type SitePath =
   | '/'
+  | '/layouts'
   | '/residences'
   | '/cityview'
   | '/development'

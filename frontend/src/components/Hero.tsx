@@ -39,10 +39,10 @@ export default function Hero() {
             </SiteLink>
 
             <SiteLink
-              to="/residences"
+              to="/layouts"
               className="ona-button ona-button--glass"
             >
-              <span>View residences</span>
+              <span>View layouts</span>
               <span aria-hidden="true">→</span>
             </SiteLink>
           </div>

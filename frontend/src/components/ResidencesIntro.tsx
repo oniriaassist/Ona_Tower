@@ -5,14 +5,14 @@ import "../styles/ona-redesign.css";
 const experiences = [
   {
     label: "LIVE",
-    title: "Residences",
+    title: "Layouts",
     description:
       "Two- and three-bedroom homes shaped by natural light, generous terraces and elevated views across Zanzibar.",
     image: projectImages.residences.twoBedroomLiving,
     alt: "ONA Towers residence living interior",
     to: "#residence-portfolio",
     anchor: true,
-    cta: "Explore residences",
+    cta: "Explore layouts",
   },
   {
     label: "LIFE",

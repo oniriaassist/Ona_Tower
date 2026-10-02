@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import HomeNextSteps from '../components/home/HomeNextSteps';
+import LocationSection from '../components/LocationSection';
 
 export const HomePage: React.FC = () => {
 
@@ -8,6 +9,7 @@ export const HomePage: React.FC = () => {
     <>
       <Hero />
       <HomeNextSteps />
+      <LocationSection />
     </>
   );
 };

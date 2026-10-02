@@ -7659,3 +7659,7 @@ span:last-child {
   border-bottom-color: transparent;
   color: var(--story-muted);
 }
+
+/* City View is part of the shared site shell so Sales keeps the global header visible. */
+.ona-cityview-with-header{padding-top:90px;background:#f6f1e9}
+@media(max-width:920px){.ona-cityview-with-header{padding-top:76px}}

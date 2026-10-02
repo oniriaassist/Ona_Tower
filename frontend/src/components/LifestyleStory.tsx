@@ -195,8 +195,8 @@ export default function LifestyleStory() {
             </p>
 
             <div className="ona-life-landscape-actions">
-              <SiteLink to="/residences" className="ona-button ona-button--sand">
-                Discover residences <span aria-hidden="true">→</span>
+              <SiteLink to="/layouts" className="ona-button ona-button--sand">
+                Explore layouts <span aria-hidden="true">→</span>
               </SiteLink>
 
               <SiteLink to="/enquire" className="ona-button ona-button--glass">

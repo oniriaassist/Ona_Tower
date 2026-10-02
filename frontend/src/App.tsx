@@ -23,8 +23,9 @@ import "./styles/admin-premium.css";
 
 const pageTitles: Record<string, string> = {
   "/": "ONA Towers — Zanzibar | Live above. See beyond.",
-  "/residences": "Residences | ONA Towers Zanzibar",
-  "/cityview": "City View | ONA Towers Zanzibar",
+  "/layouts": "Layouts | ONA Towers Zanzibar",
+  "/residences": "Layouts | ONA Towers Zanzibar",
+  "/cityview": "Sales | ONA Towers Zanzibar",
   "/development": "Our Story | ONA Towers Zanzibar",
   "/lifestyle": "Life at ONA | ONA Towers Zanzibar",
   "/commercial": "ONA House | ONA Towers Zanzibar",
@@ -51,10 +52,6 @@ export function App() {
     }
   }, [pathname]);
 
-  if (pathname === "/cityview") {
-    return <CityViewPage />;
-  }
-
   if (
     pathname === "/admin" ||
     pathname.startsWith("/admin/")
@@ -73,8 +70,17 @@ export function App() {
       page = <HomePage />;
       break;
 
+    case "/layouts":
     case "/residences":
       page = <ResidencesPage />;
+      break;
+
+    case "/cityview":
+      page = (
+        <div className="ona-cityview-with-header">
+          <CityViewPage />
+        </div>
+      );
       break;
 
     case "/development":

@@ -69,12 +69,12 @@ const residenceContent: Record<
 const discoveryCards = [
   {
     label: "LIVE",
-    title: "Residences",
+    title: "Layouts",
     description:
       "Expansive two- and three-bedroom residences shaped by natural light, generous terraces and elevated views across Zanzibar.",
     image: projectImages.residences.twoBedroomLiving,
-    link: "/residences",
-    cta: "Discover residences",
+    link: "/layouts",
+    cta: "Explore layouts",
   },
   {
     label: "LIFE",
@@ -132,7 +132,7 @@ export default function ResidencesPage() {
       <section className="ona-res-hero">
         <div className="ona-section-shell ona-res-hero-grid">
           <div className="ona-res-hero-copy">
-            <span className="ona-kicker">Residences</span>
+            <span className="ona-kicker">Layouts</span>
             <span className="ona-subkicker">Designed for elevated living</span>
 
             <h1>
@@ -338,10 +338,6 @@ export default function ResidencesPage() {
             ))}
           </div>
 
-          <div className="ona-res-final-note">
-            <strong>Every detail is intentional.</strong>
-            <span>Every view becomes part of the home.</span>
-          </div>
         </div>
       </section>
     </main>

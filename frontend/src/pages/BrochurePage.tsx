@@ -95,10 +95,10 @@ export default function BrochurePage() {
             </div>
 
             <SiteLink
-              to="/residences"
+              to="/layouts"
               className="ona-brochure-text-link"
             >
-              Explore residences
+              Explore layouts
               <ArrowUpRight size={18} />
             </SiteLink>
           </div>

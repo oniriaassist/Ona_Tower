@@ -13,15 +13,15 @@ const leftLinks = [
     to: "/lifestyle",
   },
   {
-    label: "Location",
-    to: "/location",
+    label: "Layouts",
+    to: "/layouts",
   },
 ];
 
 const rightLinks = [
   {
-    label: "Residences",
-    to: "/residences",
+    label: "Sales",
+    to: "/cityview",
   },
   {
     label: "Brochure",
@@ -114,7 +114,7 @@ export default function Header() {
         <div className="ona-header-inner">
           <nav
             className="ona-header-nav ona-header-nav--left"
-            aria-label="Residences and sales navigation"
+            aria-label="Story, community and layouts navigation"
           >
             {leftLinks.map((item) => renderLink(item))}
           </nav>

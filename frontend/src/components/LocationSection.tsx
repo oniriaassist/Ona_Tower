@@ -10,7 +10,7 @@ const ONA_MAP_EMBED =
 
 export default function LocationSection() {
   return (
-    <main className="ona-location-premium-page">
+    <section className="ona-location-premium-page">
       <section className="ona-location-premium-intro">
         <div className="ona-section-shell">
           <div className="ona-location-premium-heading">
@@ -85,6 +85,6 @@ export default function LocationSection() {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 }

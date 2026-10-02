@@ -12,11 +12,11 @@ type ShowcaseCard = {
 
 const showcaseCards: ShowcaseCard[] = [
   {
-    title: "Residences",
+    title: "Layouts",
     description:
       "Two- and three-bedroom residences, crowned by signature oceanfront penthouses.",
-    action: "Discover Homes",
-    path: "/residences",
+    action: "Explore Layouts",
+    path: "/layouts",
     image: projectImages.residences.threeBedroomLiving,
   },
   {
@@ -127,10 +127,10 @@ export default function HomeNextSteps() {
 
             <div className="ona-home-sales-finale-actions">
               <SiteLink
-                to="/residences"
+                to="/layouts"
                 className="ona-home-sales-finale-button ona-home-sales-finale-button--primary"
               >
-                Explore residences <span aria-hidden="true">→</span>
+                Explore layouts <span aria-hidden="true">→</span>
               </SiteLink>
 
               <SiteLink

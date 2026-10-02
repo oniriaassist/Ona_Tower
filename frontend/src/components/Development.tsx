@@ -30,7 +30,7 @@ const partners = [
   },
   {
     eyebrow: "Builder",
-    name: "BUILDER VIGSTERN",
+    name: "VIGSTERN",
     text: "A Zanzibar-based construction company delivering ONA Towers from vision to built reality, with a focus on quality, precision and long-term value.",
     logo: "/ona-assets/partners/vigstern-company-limited.png",
     logoClass: "ona-story-partner-logo--vigstern",
