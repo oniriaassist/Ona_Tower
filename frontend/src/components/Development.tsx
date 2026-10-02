@@ -36,14 +36,6 @@ const partners = [
     logoClass: "ona-story-partner-logo--vigstern",
   },
   {
-    eyebrow: "Wider business ecosystem",
-    name: "Vigor Group of Companies",
-    text: "A diversified Tanzanian business group rooted in Zanzibar, bringing decades of operating experience across multiple sectors.",
-    href: "https://turkysgroup.co.tz/",
-    logo: "/ona-assets/partners/vigor-group.png",
-    logoClass: "ona-story-partner-logo--vigor",
-  },
-  {
     eyebrow: "Project Promoter",
     name: "ONIRIA Investments",
     text: "The driving force behind ONA Towers' market presence, shaping its positioning, identity, commercialization, sales and buyer journey with a focus on exclusivity, experience and long-term value.",
